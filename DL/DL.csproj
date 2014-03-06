@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Accounts.cs" />
     <Compile Include="Brokers.cs" />
+    <Compile Include="DepositsDataRepository.cs" />
     <Compile Include="forexBoxDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ForexBox.Controllers
 {
-    public class StatsController : ForexBoxController
+    public class StatsController : Controller
     {
         //
         // GET: /Stats/

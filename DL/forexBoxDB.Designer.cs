@@ -546,6 +546,22 @@ namespace DL
             }
         }
         private ObjectSet<sysdiagrams> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DepositsData> DepositsDatas
+        {
+            get
+            {
+                if ((_DepositsDatas == null))
+                {
+                    _DepositsDatas = base.CreateObjectSet<DepositsData>("DepositsDatas");
+                }
+                return _DepositsDatas;
+            }
+        }
+        private ObjectSet<DepositsData> _DepositsDatas;
 
         #endregion
 
@@ -781,6 +797,14 @@ namespace DL
         public void AddTosysdiagrams(sysdiagrams sysdiagrams)
         {
             base.AddObject("sysdiagrams", sysdiagrams);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DepositsDatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDepositsDatas(DepositsData depositsData)
+        {
+            base.AddObject("DepositsDatas", depositsData);
         }
 
         #endregion
@@ -4493,6 +4517,141 @@ namespace DL
         private Nullable<global::System.Double> _balancePartner;
         partial void OnbalancePartnerChanging(Nullable<global::System.Double> value);
         partial void OnbalancePartnerChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="forexBox2Model", Name="DepositsData")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DepositsData : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DepositsData object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="amount">Initial value of the Amount property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static DepositsData CreateDepositsData(global::System.Int32 id, global::System.Decimal amount, global::System.DateTime date, global::System.Int32 userId)
+        {
+            DepositsData depositsData = new DepositsData();
+            depositsData.Id = id;
+            depositsData.Amount = amount;
+            depositsData.Date = date;
+            depositsData.UserId = userId;
+            return depositsData;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Amount
+        {
+            get
+            {
+                return _Amount;
+            }
+            set
+            {
+                OnAmountChanging(value);
+                ReportPropertyChanging("Amount");
+                _Amount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Amount");
+                OnAmountChanged();
+            }
+        }
+        private global::System.Decimal _Amount;
+        partial void OnAmountChanging(global::System.Decimal value);
+        partial void OnAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
 
         #endregion
 

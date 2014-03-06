@@ -13,7 +13,7 @@ namespace DL
 
         static BrokersManagement()
         {
-             EntitiesContainer = new forexBox2Entities(ConfigurationManager.ConnectionStrings["ApplicationServices2"].ConnectionString);
+             EntitiesContainer = new forexBox2Entities();
         }
 
         public static List<brokers> GetBrokers()
