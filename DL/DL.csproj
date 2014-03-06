@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Accounts.cs" />
     <Compile Include="Brokers.cs" />
-    <Compile Include="DepositsDataRepository.cs" />
+    <Compile Include="Repository\DepositsDataRepository.cs" />
     <Compile Include="forexBoxDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
