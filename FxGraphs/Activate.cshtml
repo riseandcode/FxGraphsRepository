@@ -1,0 +1,156 @@
+﻿@model ForexBox.Models.ActivateAccountModel
+@{
+            <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery-1.5.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.numeric.js")"></script>    
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Activate", "Home", FormMethod.Post))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#activacc").val("");
+            $(".integer").numeric(false, function () {
+                alert("Только цифры");
+                this.value = "";
+                this.focus();
+            });
+        });
+
+    </script>
+<center>
+<div id="face">
+<div id="header"></div>
+<div id="down"></div>
+<div id="menuhome"></div>
+<div id="menuadviser"></div>
+<div id="menucomments"></div>
+<div id="menuhotlog"></div>
+<div id="hometab">
+    <a href="@Url.Action("Index")" id="hometabicon"></a>
+    <em>Главная</em>
+    </div>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>Советник</em>
+    </div>
+    <div id="helptab">
+    <a href="@Url.Action("Help")" id="helptabicon"></a>
+    <em>Контакты</em>
+    </div>
+<div id="log">
+ @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+ {
+        <a href="@Url.Action("Login")" id="login">Войти</a>
+ }
+  
+   @if (HttpContext.Current.User.Identity.IsAuthenticated)
+   {
+        <a href="@Url.Action("LogOff")" id="logout">Выйти</a>
+   }
+  
+  
+</div>
+    <a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+       onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+return false;"></a>
+    <script type="text/javascript">
+        function checkAndSubmit() {
+            var selectedBroker = $("#cmbBrokers").val();
+            var accountNumber = $("#activacc").val();
+            var errorMessage = "";
+            if (selectedBroker == -1) {
+                errorMessage += "Выберите пожалуйста брокера\n";
+            }
+            if (accountNumber == "") {
+                errorMessage += "Введите пожалуйста номер счета\n";
+            }
+
+            if (errorMessage == "") {
+                $("form:first").submit();
+            } else {
+                alert(errorMessage);
+            }
+            return false;
+        }
+
+    </script>
+
+<div id="accblok">
+<div id="blokgray">
+   <a href="@Url.Action("Open")" class="button gray">Открыть счет</a>
+   <a href="@Url.Action("Activate")" class="button gray2">Активировать счет</a>
+   <a href="@Url.Action("Download")" class="button gray">Скачать советник</a>
+   <a href="@Url.Action("Advisors")" class="button gray">Советники</a>
+   <a href="@Url.Action("Partner")" class="button gray">Партнерам</a>
+</div>
+</div>
+<div id="accpanel"></div>
+<div class="acctextup">Введите номер счета, и активируйте!</div>
+@Html.TextBoxFor(m => m.AccountNumber, new { id = "activacc", @class = "integer" })
+<div id=buttonaktposition>
+<a href="#" onclick="return checkAndSubmit();" id="buttonactive2">Активация</a>
+</div>
+    <div id="formbrokers">
+        @Html.DropDownListFor(m => m.BrokerID,
+        new SelectList(ForexBox.Models.BrokerAccounts.GetBrokers(), "BrokerID", "BrokerName", -1),
+         new { name = "brokers", id = "cmbBrokers" })
+    </div>
+    <div id="accpanel2">
+        <div id="acctext3">Список счетов&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Статус&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div id="tab">
+        @if (Model.Accounts.Count() == 0)
+        {
+            <div id="acctext2">Вы еще не открыли ни одного счета.</div>
+        }
+        else
+        {
+
+
+            <table cellspacing="0">
+            
+            @foreach (var account in Model.Accounts)
+            {
+              
+                <tr>
+                <td></td>
+                <td>@account.AccountNumber</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@account.StatusDescription</td>
+                <td></td>
+                </tr>
+                
+            }
+            
+            </table>
+
+
+        }
+        </div>
+        
+    </div>
+</div>
+</center>
+}

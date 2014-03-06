@@ -1,0 +1,83 @@
+﻿@using ForexBox.LanguagesLocalization
+@{
+
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+  <!--[if lte IE 7]>
+    <table style="width: 100%; height: 100%" border="0" cellspacing="0" cellpadding="0"> <tr>
+        <td valign="top"><table style="width: 100%;" border="0" cellspacing="0" cellpadding="0"><tbody>
+          <tr><td><![endif]-->
+
+
+<div class="header">
+    <div class="cell">
+              
+        <br>
+        @{
+            Html.RenderPartial("MainDesign"); 
+            Html.RenderPartial("LoginShared");
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
+        {
+            <div class="menulogin">
+                <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
+            </div>    
+        }
+
+    </div>
+</div>
+
+
+<div class="content">
+    <div class="cell">
+        <div class="companytext">
+            <div class="pptext1">Добро пожаловать на сервис Fxgraphs.
+                <br><br>
+                    Наша команда предоставляет бесплатную платформу для транслирования торговли на Форекс.      
+                    Благодаря нам Вы сможете найти себе уникальных клиентов и инвесторов, или наоборот воспользовавшись рейтингом счетов, выбрать наиболее доходного для Вас трейдера.
+                    <br><br>Почему мы лучше других?<br><br>- Нам не нужны никакие номера и пароли Ваших счетов.<br>- Наш сервис единственный поддерживает платформы Jforex и Metatrader.<br>- Регистрация и настройка трансляции займет не более 5 минут.<br><br>
+                    Для каждого пользователя будет предоставлена в общем доступе целая страница, на которой помимо графика Ваших торгов, Вы можете указать свои контакты, партнерскую ссылку на брокера и краткую информацию.<br><br>Если у Вас возникнут вопросы или предложения, обращайтесь в нашу тех-поддержку, и мы обязательно Вам ответим.
+ 
+            </div>  
+
+               
+        </div>
+        <br>@{ Html.RenderPartial("RegisterShared2"); }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--[if lte IE 7]>
+          </td></tr></thead></table></td>
+      </tr>
+          <tr><td valign="bottom"><![endif]-->
+
+      <div class="footer">
+          <div class="cell">
+              @{
+                  Html.RenderPartial("MainDesignfooter"); 
+               }
+              
+          </div>
+          
+      </div>
+
+      <!--[if lte IE 7]>
+          </td></tr>
+    </table>
+      <![endif]-->
+
+
+
+

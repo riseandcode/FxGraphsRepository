@@ -1,0 +1,83 @@
+﻿@using ForexBox.LanguagesLocalization
+@model ForexBox.Models.MainDesign
+
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.formstyler.js")"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                $('input, select').styler();
+            })
+        })(jQuery)
+	    
+
+        jsHover = function() {
+            var hEls = document.getElementByClass("langmenu").getElementsByTagName("li");
+            for (var i=0, len=hEls.length; i<len; i++) {
+                hEls[i].onmouseover=function() { this.className+=" jshover"; }
+                hEls[i].onmouseout=function() { this.className=this.className.replace(" jshover", ""); }
+            }
+        }
+        if (window.attachEvent && navigator.userAgent.indexOf("Opera")==-1) window.attachEvent("onload", jsHover);
+    </script>
+    <script type="text/javascript">
+        function SwitchLanguage(language) {
+            var controller = '@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()';
+            var action = '@HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString()';
+            var url = window.location.protocol + "//" + window.location.hostname;
+            if (window.location.port != "80") {
+                url = url + ":" + window.location.port;
+            }
+            url = url + "/" + language;
+            if (controller == "Home" && action == "Index") {
+                window.location = url;
+            } else {
+                url = url + "/" + controller + "/" + action;
+                window.location = url;
+            }
+
+        }
+
+        function EditLanguagesMenu(language) {
+            debugger;
+            var langs = ['ru', 'en', 'uk', 'de', 'it', 'es', 'zh'];
+            var html = '<li> <a href="#" class="lang-' + language + '2"><div class="arrow"></div></a> <ul>';
+            for (var i = 0; i < langs.length; i++) {
+                if (langs[i] != language) {
+                    html += '<li><a href="#"class="lang-' + langs[i] + '2" onclick="return SwitchLanguage(\'' + langs[i] + '\')"></a></li>';
+                }
+            }
+            html += "</li>";
+            $(".langmenu").html(html);
+        }
+
+        $(function () {
+            var lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.Parent.Name";
+            EditLanguagesMenu(lang);
+        });
+
+    </script>
+    <a href="@Url.Action("Index")"><div class="logoup"><div class="logoleft"></div><div class="logo"></div></div></a>
+    <div class="menu">
+        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Companymenu")</a>    
+        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Newsmenu")</a>
+        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Forummenu")</a>
+        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Reitingmenu")</a>
+        <a href="@Url.Action("Company")" class="buttonmenu">Jforex</a>
+        <a href="@Url.Action("Company")" class="buttonmenu">Metatrader</a>
+    </div>
+    <div class="langmenupos">
+        <ul class="langmenu">   
+            <li>
+                <ul>
+                    <li><a href="#"onclick="return SwitchLanguage('ru')"></a></li>
+                    <li><a href="#"onclick="return SwitchLanguage('en')"></a></li>
+                    <li><a href="#"onclick="return SwitchLanguage('uk')"></a></li> 
+                    <li><a href="#"onclick="return SwitchLanguage('de')"></a></li>
+                    <li><a href="#"onclick="return SwitchLanguage('it')"></a></li>
+                    <li><a href="#"onclick="return SwitchLanguage('es')"></a></li>  
+                    <li><a href="#"onclick="return SwitchLanguage('zh')"></a></li>     
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="logotext">Fxgraphs - сервис мониторинга торговли на Forex.</div>

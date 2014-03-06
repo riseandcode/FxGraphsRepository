@@ -1,0 +1,246 @@
+﻿@using ForexBox.LanguagesLocalization
+@{
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.js" type="text/javascript"></script> 
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.ui.draggable.js" type="text/javascript"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.cookie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.alerts.js")"></script>    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.placeholder.min.test.js")"></script>
+
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+   
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+            Html.RenderPartial("MainDesign");
+        }
+    
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+       }
+        <div id="menuaccaunt">
+           <a href="@Url.Action("PammCabinet")" class="button gray2">ПАММ счет</a>
+           <a href="@Url.Action("Withdraw")" class="button gray">Снять средства</a>
+           <a href="@Url.Action("Partner")" class="button gray">Партнерка</a>
+        </div>
+
+        @{     
+            Html.RenderAction("MainCabinet");
+        }
+
+        <div class="accountpanel">Доверительное управление ПАММ счет!</div>
+        
+        
+        <div class="accountborder">
+                
+ 
+            Мониторинг нашего счета на странице "<a href="@Url.Action("PAMM")"class="href2" target="_blank">ПАММ счет</a>".<br><br>
+            <b>Оферта</b><br><br>
+            
+
+
+            <div rel="modal10" class="modal2">Условия торговли</div><br><br>
+            <div rel="modal11" class="modal2">Предупреждение о рисках</div><br><br>
+
+
+            После ознакомления и согласия со всеми условиями, подайте заявку на участие в ПАММ системе.
+        <br>
+            <br>
+            <br>
+            <br>
+            
+        </div>
+        
+
+
+
+        <div class="modalbox" id="modal10"> 
+    <div class="modalcss3">
+        <center>	
+            <div class="avtoriz">Условия торговли</div>
+            <br>
+            <br>
+            
+            <br>
+            <br>
+            На стадии тестирования.
+            <br>
+            Следите за новостями.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </center>	
+        <div class="close">&#215;</div>
+        <br>
+    </div>
+</div>
+
+
+
+
+         <div class="modalbox" id="modal11"> 
+    <div class="modalcss3">
+        <center>	
+            <div class="avtoriz">Предупреждение о рисках</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            На стадии тестирования.
+            <br>
+            Следите за новостями.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </center>	
+        <div class="close">&#215;</div>
+        <br>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+            <script type="text/javascript">
+
+            $(document).ready(function() {           
+		$('div.modal, .modal2').click(function() {
+		var modalid = $(this).attr('rel');
+		$('#' + modalid).fadeIn(300);
+		$('#fadebody').fadeIn(300);
+		var topm = ($('#' + modalid).height() + 10) / 2;
+		var leftm = ($('#' + modalid).width() + 10) / 2;
+		$('#' + modalid).css({
+		'margin-top' : -topm,
+		'margin-left' : -leftm
+		});
+		$('.close').click(function() {
+		$('#fadebody , .modalbox').fadeOut(300)
+		return false;
+		});
+		});
+            });
+
+
+
+           
+
+
+
+</script>
+       
+        <div class="pammregistration">
+        <div class="buttonsite"></div>
+        <div class="buttonsite2">Подать заявку</div>
+</div>
+
+<div class="buttonpammpos">
+            <div rel="modal9" class="modal">Подать заявку</div>
+</div>
+
+<script type="text/javascript">
+    function SendPammRegister()
+    {
+        var nameSurname = $("#txtNameSurname").val();
+        var mobile = $("#txtMobile").val();
+        var mail = $("#txtMail").val();
+        var lang = $("#txtLanguage").val();
+        var depoSize = $("#txtDepoSize").val();
+
+        $.ajax(
+               {
+                   url: '@Url.Action("SendPammRegister")',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        "nameSurname": nameSurname,
+                        "phoneNumber": mobile,
+                        "mail": mail,
+                        "language": lang,
+                        "depositSize" : depoSize
+                    }),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            jAlert("Ошибка. Попробуйте еще раз.", "@ResourceReader.GetRes("PammCabinet", "attention")");
+                        } else {
+                            $("form:first").submit();
+                            jAlert("Заявка отправлена. Скоро с Вами свяжется наш сотрудник", "Внимание!");
+                        }
+                    },
+                    error: function (xhr) {                      
+                        
+                        jAlert("Ошибка. Попробуйте еще раз.", "Внимание!");
+                    }
+                });
+
+
+
+        //SendPammRegister
+    }
+
+</script>
+
+
+<div class="modalbox" id="modal9"> 
+    <div class="modalcss3">
+        <center>	
+            <div class="avtoriz">Регистрация в ПАММ системе</div>
+            <br><br>
+            <br>
+            <input type="text" class="texbox" id="txtNameSurname" placeholder="Имя, Фамилия" title="Имя, Фамилия">
+            <br>
+            <br>
+            <input type="text" class="texbox" id="txtMobile" placeholder="Моб. телефон" title="Моб. телефон">
+            <br>
+            <br>
+            <input type="text" class="texbox" id="txtMail" placeholder="E-mail" title="E-mail">
+            <br>
+            <br>
+            <input type="text" class="texbox" id="txtLanguage" placeholder="Язык" title="Язык">
+            <br>
+            <br>
+            <input type="text" class="texbox" id="txtDepoSize" placeholder="Размер депозита (USD)" title="Размер депозита (USD)">
+            <br>
+            <br>
+            После подачи заявки, в течении суток,<br> с Вами свяжеться наш менеджер.
+            <br><br>
+            <input type="button" onclick="return SendPammRegister()" value="Подать заявку" id="regbutton"/><br>
+
+        </center>	
+        <div class="close">&#215;</div>
+        <br>
+    </div>
+
+
+            </div>
+        <div id="fadebody"></div>
+
+    </div>
+</center>

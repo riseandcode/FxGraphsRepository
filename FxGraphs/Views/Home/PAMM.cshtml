@@ -1,0 +1,70 @@
+﻿@using ForexBox.LanguagesLocalization
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+ 
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+           Html.RenderPartial("MainDesign");
+        } 
+        <div class="pammakt">
+       <div class="newaktiv">@ResourceReader.GetRes("MainDesign", "PAMMmenu")</div>
+       </div>
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+       <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+       }
+       
+       @{     
+           Html.RenderPartial("LoginShared");
+        }    
+       @{
+           Html.RenderPartial("RegisterShared2");
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <div id="menuback">
+            <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]</a>
+        </div>
+        }
+        <div class="partnerpagetext">
+            <div class="pptext1">@ResourceReader.GetRes("PAMM", "Pammtext1") <b>@ResourceReader.GetRes("PAMM", "Pammtext2")</b>.</div>
+            <br>
+            
+            <div class="pptext2">
+                @ResourceReader.GetRes("PAMM", "Pammtext3") "<a href="http://ru.wikipedia.org/wiki/%D0%9F%D0%90%D0%9C%D0%9C-%D1%81%D1%87%D1%91%D1%82" target="_blank" class="href2">@ResourceReader.GetRes("PAMM", "Pammtext1")</a>".
+                @ResourceReader.GetRes("PAMM", "Pammtext4")
+               
+               
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                @ResourceReader.GetRes("PAMM", "Pammtext5")
+                <!-- <a href="http://www.myfxbook.com/members/docotor/4rexbox/621627" title="Подробнее" class="plusmfbook" target="_blank"><div class="plus"></div><img  border="0" src="http://widgets.myfxbook.com/widgets/621627/large.jpg"/ ></a>
+                 -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                 <b>@ResourceReader.GetRes("PAMM", "Pammtext6")</b> @ResourceReader.GetRes("PAMM", "Pammtext7").
+            </div>     
+       </div>
+    </div>
+</center>

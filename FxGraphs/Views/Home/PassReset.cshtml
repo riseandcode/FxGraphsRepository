@@ -1,0 +1,119 @@
+﻿@model ForexBox.Models.ResetPasswordModel 
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.4.min.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("PassReset", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Status)
+    <center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+    Html.RenderAction("MainDesign");
+        }
+            <div id="blokpassrest">
+                <div class="modaltext">Введите Ваш логин и новый пароль</div><br><br>
+    
+                @Html.HiddenFor(m => m.GeneratedPassword, new { id = "GeneratedPassword", })
+
+                <div class="modaltext">Логин</div>
+    
+                @Html.TextBoxFor(m => m.UserName, new { id = "resetlog", @class = "texbox" })
+
+                <div class="modaltext">Новый пароль</div>
+
+                @Html.PasswordFor(m => m.NewPassword, new { id = "resetpass", @class = "texbox" })
+
+                <div class="modaltext">Повторите пароль</div>
+    
+                @Html.PasswordFor(m => m.NewPasswordRepeat, new { id = "resetpass2", @class = "texbox" })
+
+                <br><br>
+                <div id="regbutton" onclick="return CheckAndSubmit();">Отправить</div>
+            </div>
+        </div>
+    </center>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+           
+            var status = $("#Status").val();
+            if (status == "True") {
+                alert("Пароль был изменен успешно");    
+                window.location.href = "/home/index";
+            } else if(status == "False") {
+                alert("Пароль не был изменен. Попробуйте переустановку пароля еще раз");
+            }
+        });
+
+
+        function SubmitPassToServer() {
+            var un = $("#resetlog").val();
+            var up = $("#resetpass").val();
+            var generPass = $("#GeneratedPassword").val();
+            
+            $.ajax(
+                {
+                    url: '@Url.Action("PassReset")',
+                    type: 'POST',
+                    data: JSON.stringify({ "userName": un, "newPassword": up, "oldPassword": generPass }),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "true") {
+                            alert("Ваш пароль был успешно изменен");
+                            window.location.href = "/Home";
+                        } else {
+                            alert("Не удалось изменить ваш пароль. Попробуйте еще раз переустановить пароль. В случае проблем обратитесь к администрации");
+                        }
+                    },
+                    error: function () {
+                        alert('На сервере произошла ошибка');
+                    }
+                });
+
+        }
+        
+
+
+        function CheckAndSubmit() {
+            
+            var un = $("#resetlog").val();
+            var up = $("#resetpass").val();
+            var up2 = $("#resetpass2").val();
+
+            var errorMessage = "";
+            if(un == "") {
+                errorMessage = "Укажите имя пользователя \n";
+            }
+            if(up == "") {
+                errorMessage = "Укажите пароль \n";
+            }
+            if(up2 == "") {
+                errorMessage += "Повторите пароль \n";
+            }
+            if(up != up2) {
+                errorMessage += "Пароль и повторение не совпадают \n";
+            }
+            if (up.length < 6) {
+                errorMessage += "Минимальная длинна пароля 6 символов\n";
+            }
+
+            if (errorMessage == "") {
+                SubmitPassToServer();
+            } else {
+                errorMessage = "Пожалуйста, исправьте следующие ошибки: \n" + errorMessage;
+                alert(errorMessage);
+            }
+        }
+    </script>
+}

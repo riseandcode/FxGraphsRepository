@@ -1,0 +1,206 @@
+﻿@using ForexBox.LanguagesLocalization
+@model ForexBox.Models.LogOnModel
+@{
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.js" type="text/javascript"></script> 
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.ui.draggable.js" type="text/javascript"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.alerts.js")"></script>
+}
+
+
+
+
+<script type="text/javascript">
+
+     function CheckLoginParametersAndSubmit1() {
+         $("#buttonregload").attr("class", "buttonregloadcss");
+        var un = $("#textboxlog").val();
+        var pass = $("#textboxlog2").val();
+        var errorMessage = "";
+        if (un == "") {
+            errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotlog")\n";
+        }
+        if (pass == "") {
+            errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotpas")\n";
+        }
+
+        if (errorMessage == "") {
+            $.ajax(
+                {
+                    url: '@Url.Action("CheckLogin")',
+                    type: 'POST',
+                    
+                    data: JSON.stringify({ "userName": un, "password": pass }),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            jAlert("@ResourceReader.GetRes("LoginShared", "Incorrectlogpas")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                            $("#buttonregload").attr("class", "button");
+                        } else {
+                            
+                            $.post("@Url.Action("Login", "Home")",
+                            {
+                                userName:  $("#textboxlog").val(),
+                                password : $("#textboxlog2").val()
+                            },
+                            function (data, status, xhr)
+                            {
+                                if(data == "{\"Success\":true}")
+                                {
+                                    var lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.Parent.Name";
+                                    window.location = "/" + lang + "/Home/Account";
+                                }
+                                else
+                                {
+                                    jAlert("@ResourceReader.GetRes("LoginShared", "Incorrectall")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                                    $("#buttonregload").attr("class", "button");
+                                }
+
+                            });
+
+                        }
+                    },
+                    error: function () {
+                        jAlert('@ResourceReader.GetRes("LoginShared", "Alert")');
+                        $("#buttonregload").attr("class", "button");
+                    }
+                });
+        } else {
+            errorMessage = "@ResourceReader.GetRes("LoginShared", "Incorrectplease")\n" + errorMessage;
+            jAlert(errorMessage, "@ResourceReader.GetRes("LoginShared", "Attention")");
+            $("#buttonregload").attr("class", "button");
+        }
+        return false;
+    }
+
+     $(document).ready(function () {
+    
+       
+
+        /*hack for function not found in java scrpt*/
+         $('#textboxlog2').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                CheckLoginParametersAndSubmit1();
+                // jQuery('#regbutton').focus();
+            }
+        });
+
+        $('#textboxlog').keypress(function (e) {
+            if (e.which == 13) {
+            
+                jQuery(this).blur();
+                jQuery('#textboxlog2').focus();
+            }
+        });
+
+
+
+
+    });
+
+        
+
+    $(document).ready(function () {
+        $('div.loginbox').click(function () {
+            var modalid = $(this).attr('rel');
+            $('#' + modalid).fadeIn(300);
+            $('#fadebody').fadeIn(300);
+            var topm = ($('#' + modalid).height() + 10) / 2;
+            var leftm = ($('#' + modalid).width() + 10) / 2;
+            $('#' + modalid).css({
+                'margin-top': -topm,
+                'margin-left': -leftm
+            });
+            $('.close').click(function () {
+                $('#fadebody , .modalbox').fadeOut(300);
+                return false;
+            });
+        });
+    });
+
+
+</script>
+<script>
+    function Login() {
+        $("#modalcss3log").show();
+        return true;
+    }
+
+    $(function () {
+        $("#modalcss3log").hide();
+        $("#closelogin,#forgetpass").click(function () {
+            $("#modalcss3log").hide();
+        });
+
+
+    });
+
+</script>
+<script>
+    function Login2() {
+        $("#modalcss3log8").show();
+        return true;
+    }
+
+    $(function () {
+        $("#modalcss3log8").hide();
+        $("#closelogin8").click(function () {
+            $("#modalcss3log8").hide();
+        });
+
+
+    });
+
+</script>
+
+      
+        @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div class="menulogin">
+            <a class="loginbox" onclick="return Login();" tabindex="1" >@ResourceReader.GetRes("LoginShared", "LogInbutton")<div class="imageligin"></div></a> 
+            </div>
+            
+            <div class="sub-menu">
+                <div class="modalcss3" id="modalcss3log">
+                    <center>	
+                        <br>
+                        <br>
+                        <input type="text" autofocus="active" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderlogin")" title="@ResourceReader.GetRes("LoginShared", "Placeholderlogin")"@Html.TextBoxFor(m => m.UserName, new { id = "textboxlog", @class = "texbox" })
+                        <br>
+                        <br>
+                        <input type="password" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderpas")" title="@ResourceReader.GetRes("LoginShared", "Placeholderpas")"@Html.PasswordFor(m => m.Password, new { id = "textboxlog2", @class = "texbox" })
+                        <br>
+                        <br>
+                        <a class="forgetpass" id="forgetpass" onclick="return Login2();">Забыли пароль?</a>
+                        <br>
+                        <br>
+                        <input type="button" onclick="return CheckLoginParametersAndSubmit1();" value="@ResourceReader.GetRes("LoginShared", "LogInbutton")" class="button" id="buttonregload"/><br>
+                    </center>
+                    <div class="close" id="closelogin">&#215;</div>
+                    <br>
+                </div>
+            </div>
+            
+            
+            <div class="sub-menu">
+                <div class="modalcss3" id="modalcss3log8">
+                    <center>	
+                        <br>
+                        <br>
+                        <input type="text"autofocus="active" placeholder="E-mail" title="E-mail"@Html.TextBoxFor(m => m.UserName, new { id = "textboxlog", @class = "texbox" })
+                        <br>
+                        <br>
+                        <input type="button" onclick="return CheckLoginParametersAndSubmit1();" value="Отправить" class="button" /><br>
+                    </center>
+                    <div class="close" id="closelogin8">&#215;</div>
+                    <br>
+                </div>
+            </div>
+
+        }
+
+
+            
+

@@ -1,0 +1,208 @@
+﻿@model ForexBox.Models.RegisterModel
+
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    
+     $(document).ready(function () {
+
+        $('#textboxreg').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg1').focus();
+            }
+        });
+
+        $('#textboxreg1').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg2').focus();
+            }
+        });
+        
+         $('#textboxreg2').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg3').focus();
+            }
+        }); 
+         
+         $('#textboxreg3').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                CheckValidityAndThenSubmit();
+            }
+        }); 
+
+    });
+     
+    function CheckAvailabilityUserName() {
+          var un = $("#textboxreg").val();
+        
+         $.ajax(
+                {
+                    url: '@Url.Action("CheckAvailabilityUserName")',
+                    type: 'POST',
+                    data: JSON.stringify({ "userName": un}),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            alert("Такое имя уже используется");
+                        } else {
+                            CheckUserMail();
+                        }
+                    },
+                    error: function () {
+                        alert('На сервере произошла ошибка');
+                    }
+                });
+     }
+    
+
+    function CheckUserMail() {
+        
+        var um = $("#textboxreg1").val();
+         $.ajax(
+                {
+                    url: '@Url.Action("CheckAvailabilityUserMail")',
+                    type: 'POST',
+                    data: JSON.stringify({ "userMail": um}),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            alert("Такой мейл уже используется");
+                        } else {
+                            Submit();
+                        }
+                    },
+                    error: function () {
+                        alert('На сервере произошла ошибка');
+                    }
+                });
+    }
+    
+    function Submit() {
+        $("form:first").submit();
+    }
+
+
+    function CheckValidityAndThenSubmit() {
+        var login = $("#textboxreg").val();
+        var email = $("#textboxreg1").val();
+        var password = $("#textboxreg2").val();
+        var confirmPassword = $("#textboxreg3").val();
+        var errorMessage = "";
+        if (login == "") {
+            errorMessage += "Вы забыли указать логин\n";
+        }
+        if (email == "") {
+            errorMessage += "Вы забыли указать почту\n";
+        }
+        if (password == "") {
+            errorMessage += "Вы забыли указать пароль\n";
+        }
+        if (confirmPassword == "") {
+            errorMessage += "Вы забыли указать повторение пароля\n";
+        }
+        if (password != confirmPassword) {
+            errorMessage += "Пароли не совпадают\n";
+        }
+        if(!checkEmail(email)) {
+            errorMessage += "Неверный формат електронной почты\n";
+        }
+        if(password.length < 6) {
+            errorMessage += "Минимальная длинна пароля 6 символов\n";
+        }
+
+
+        if (errorMessage == "") {
+            CheckAvailabilityUserName();
+        } else {
+            errorMessage = "Исправте пожалуйста следующие ошибки:\n" + errorMessage;
+            alert(errorMessage);
+        }
+    }
+    
+    function checkEmail(email) {
+        var filter = @Html.Raw(ViewData["emailValidator"].ToString());
+        if (!filter.test(email)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+</script>
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{ 
+<center>
+<div id="face">
+<div id="header"></div>
+<div id="down"></div>
+<div id="menuhome"></div>
+<div id="menuadviser"></div>
+<div id="menucomments"></div>
+<div id="menuhotlog">
+
+     @if (HttpContext.Current.User.Identity.IsAuthenticated)
+     {
+           <div id="menuback">
+               <a href="@Url.Action("Account")" id="back">В кабинет</a>
+           </div>
+     }
+           
+</div>
+<div id="hometab">
+    <a href="@Url.Action("Index")" id="hometabicon"></a>
+    <em>Главная</em>
+    </div>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>Советник</em>
+    </div>
+    <div id="helptab">
+    <a href="@Url.Action("Help")" id="helptabicon"></a>
+    <em>Контакты</em>
+    </div>
+<div id="log">
+@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+{
+        <a href="@Url.Action("Login")" id="login">Войти</a>
+}
+  
+   @if (HttpContext.Current.User.Identity.IsAuthenticated)
+   {
+        <a href="@Url.Action("LogOff")" id="logout">Выйти</a>
+   }
+  
+</div>
+<a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+return false;"></a>
+<div id="blokcentr"></div>
+                @Html.AntiForgeryToken()
+                @Html.TextBoxFor(m => m.UserName, new { id = "textboxreg" })
+                @Html.TextBoxFor(m => m.Email, new { id = "textboxreg1" })
+                @Html.PasswordFor(m => m.Password, new { id = "textboxreg2" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { id = "textboxreg3" })
+<input type="button" onclick="return  CheckValidityAndThenSubmit()" value="Стать партнером" id="rereg"/>
+<div id="textreg">Логин:<br> E-mail:<br> Пароль:<br> Повторите пароль:</div>
+<div id="textregup">Регистрация личного кабинета</div>
+
+            
+        </div>
+        </center>
+    }

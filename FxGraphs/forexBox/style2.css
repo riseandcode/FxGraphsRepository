@@ -1,0 +1,106 @@
+*{margin: 0;padding: 0;}
+::selection{background:#fff;height:50px;}
+::-moz-selection{background:#fff;}
+html, body{height: 100%;background: #fff;font: normal  1em/1.5 sans-serif;}
+body{box-shadow: 0 0 5px rgba(0,0,0,0.5);font-size: 13px;font-family: Tahoma, Geneva, sans-serif;-webkit-user-select: none;display:table;border-width: 0 1px;height: 100%;margin: auto;background:#fff;}
+p{margin: 1em 0;}
+
+
+/*Шапка сайта*/
+.header{display:table-header-group;}
+.header .cell{min-width: 1000px;background: none repeat scroll 0% 0% rgb(206, 33, 37);box-shadow: 0px 2px 3px rgb(85, 85, 85);background-image: url(images/shadow.png);background-repeat: repeat-x;height: 70px}
+.logo{width:63px;height:45px;background-position: 14px 8px;background-image:url(images/logofx2.png);background-repeat:no-repeat;outline:0;}
+.logoup{float: left;position: relative;left: -1px;top: -10px;width:70px;height:50px;outline:0;-moz-box-shadow: 0px 2px 3px #555;-webkit-box-shadow: 0px 2px 3px #222;box-shadow: 0px 2px 3px #222;background:#CE2125;}
+.cell{display: table-cell;}
+.logoleft{background-image:url(images/logoleft.png);width: 10px;height: 58px;float: left;position: relative;left: -5px;background-repeat: no-repeat}
+.logotext{cursor: default; height: 0px;position: relative;top: 7px;left: 15px;font-size: 13px;color: #fff;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 0px -1px #860000;}
+
+
+/*Контент*/
+.content{display:table-row;}
+.companytext{ width: 1px;margin: 111px 100px 100px;color: #575454;float: left;text-align: justify;}
+.homeimagepos{ float: left;height: 0px;}
+.homeimage{top: -222px;left: 20px;position: relative;background-image: url(images/Capture555555.png);width: 457px;height: 304px;background-size:cover;}
+.homeimage2{margin: 65px 95px 0px;position: relative;background-image: url(images/Capture2new2.png);width: 500px;height: 420px;background-size:cover;}
+.pptext1{ width: 500px;cursor: default;}
+#page {  
+    width: 500px;
+    padding: 100px;
+    float: right;    height: 400px}									.tabs {				width:100%;				overflow:hidden;				font-size:0.9em;				margin:2em 0;				zoom:1;				padding:1px;				position:relative;			}						.tabs dt {				float:left;				line-height:2;				height:2em;				background:#e8e8e8;				border:1px solid #e8e8e8;				border-bottom:0;				padding:0 1em;				position:relative;				left:35px;				margin-right:1px;				cursor:pointer;			}						.tabs dt:hover {										}						.tabs dt.selected {												background:#fff;				z-index:3;				cursor:auto;			}						.tabs dd {				background:#fff;				display:none;				float:right;				width:100%;				margin:2em 0 0 -100%;				position:relative;				z-index:2;			}						.tabs dd.selected {				display:block;			}						.tabs .tab-content {                box-shadow: 0 0 5px rgba(0,0,0,0.5);				border:1px solid #e8e8e8;				padding:20px;			}
+
+
+
+
+/*Низ*/
+.footer{display:table-header-group;height:1px;background: none repeat scroll 0% 0% #333;}
+.textfooter{cursor: default;padding: 20px 35px 20px;float: right;display: inline-block;color: #e8e8e8;font-size: 12px;font-family: Tahoma, Geneva, sans-serif;text-align: left;text-decoration: none;text-shadow: 0px -1px #000;}
+.hreffooter{float: left;min-width: 100px;-webkit-user-select: auto;color: #e8e8e8;font-size: 12px;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 0px -1px #000;opacity: 0.5}
+.hreffooter:hover{opacity: 1}
+.footerblokdown{float: right;height:25px;background: none repeat scroll 0% 0% #444;width: 100%;}
+.footerblokdowntext{opacity: 0.5;cursor: default;margin: 3px 25px 0px;;position: absolute;font-size: 13px;color: #e8e8e8;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 0px -1px #000;}
+.footerimage{opacity: 0.3;top: 70px;left: 80px;position: relative;background-image: url(images/logofx2.png);width: 63px;height: 45px;background-size:cover;}
+
+
+/*Меню*/
+.menulogin{float: right}
+.menu {float: left;cursor: default;position: absolute;background: none repeat scroll 0% 0% rgb(206, 33, 37);box-shadow: 0px 2px 3px rgb(85, 85, 85);min-height: 34px;top: 74px;width: 1000px;}
+.buttonmenu{padding: 0px 5px 0px;border-bottom: 2px solid rgb(206, 33, 37);-webkit-transition: All 0.8s ease;-moz-transition: All 0.3s ease;-o-transition: All 0.3s ease;-ms-transition: All 0.3s ease;transition: All 0.3s ease;height: 30px;line-height: 30px;margin: 2px 10px 0px;display: inline-block;color: #fff;font-size: 13px;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 0px -1px #860000;cursor: pointer;}
+.buttonmenu:hover{border-bottom: 2px solid #e8e8e8;}
+.spase{ width: 10px;display: inline-block;height: 1px;}
+
+
+/*Логин,регистрация кнопка, форма*/
+.imageligin{width:25px;height:30px;background-repeat: no-repeat;background-position-y: -2px;background-image:url(images/loginim.png);display: inline-block;float: left}
+.sub-menu {float: right;height: 0px;z-index: 2;position: relative;left: 150px;top: 33px;width: 220px;display: block;}
+.loginbox{line-height: 30px;padding: 2px 0px 0px;display: inline-block;cursor:pointer;text-decoration:none;outline:0;color: #fff;font-size: 13px;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 0px -1px #860000;}
+.sub-menu2{padding: 0 15px 0;width: 220px;top: 370px;position: absolute;-webkit-transition: opacity .5s;-moz-transition: opacity .5s;-ms-transition: opacity .5s;-o-transition: opacity .5s;transition: opacity .5s;}
+.modalcss3{display: none;position:relative;left:5px;font-size:13px;cursor:default;font-family:Tahoma, Geneva, sans-serif;color:#8e8e8e;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px 5px 5px 5px;box-shadow:0 0 5px rgba(0,0,0,0.5);}
+.texboxnumber:active,.texboxnumber:focus,.texbox:active,.texbox:focus,#activacc:active,#activacc:focus,#cmbBrokers:active,#cmbBrokers:focus,.textareclass:active,.textareclass:focus{outline:none!important;}
+.texboxnumber{height:30px;width:150px;line-height:30px;font-size:17px;color:#fff;font-family:Tahoma, Geneva, sans-serif;border-top:1px solid #cecece;border-bottom:1px solid #eaeaea;border-left:1px solid #e3e3e3;border-right:1px solid #e3e3e3;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;text-align:center;padding:0 16px;}
+.texbox{height:30px;width:150px;line-height:30px;font-size:13px;color:#444;font-family:Tahoma, Geneva, sans-serif;border-top:1px solid #cecece;border-bottom:1px solid #eaeaea;border-left:1px solid #e3e3e3;border-right:1px solid #e3e3e3;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;text-align:left;padding:0 16px;}
+#texboxnumber{left:355px;top:267px;position:absolute;}
+.buttonsite2faq{top: 0px;left: 0px;height: 30px;width: 90px;position: absolute;color: #e8e8e8;font-size: 15px;font-family: Tahoma, Geneva, sans-serif;line-height: 28px;text-decoration: none;text-shadow: 0px -1px #860000;background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FF4545), color-stop(1, #AD0000) );background:-moz-linear-gradient( center top, #FF4545 5%, #AD0000 100% );background-color:#C51E1E;filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=170, Strength=3);}
+.buttonsite3faq{top: 0px;left: 0px;height: 30px;width: 90px;position: absolute;opacity: 0;-webkit-transition: opacity 0.2s;-moz-transition: opacity 0.2s;-o-transition: opacity 0.2s;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);background: #252525;color: #e8e8e8;font-size: 15px;font-family: Tahoma, Geneva, sans-serif;line-height: 28px;text-decoration: none;text-shadow: 0px -1px #860000;cursor: pointer;outline: 0;}
+.newaktivfaq{top:0;left:0;height:30px;width:90px;position:absolute;font-size:15px;font-family:Tahoma, Geneva, sans-serif;line-height:28px;text-decoration:none;background:#252525;background-color:#252525;cursor:default;}
+.buttonsite2flag{top: 0px;left: 0px;height: 30px;width: 52px;position: absolute;color: #e8e8e8;font-size: 15px;font-family: Tahoma, Geneva, sans-serif;line-height: 28px;text-decoration: none;text-shadow: 0px -1px #860000;background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FF4545), color-stop(1, #AD0000) );background:-moz-linear-gradient( center top, #FF4545 5%, #AD0000 100% );background-color:#C51E1E;filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=170, Strength=3);}
+.button.primary:active,.button.primary.selected,.minibutton.primary:active,.minibutton.primary.selected{background-color:#569e3d;background-image:none;border-color:#418737}
+.button{position:relative;display:inline-block;font-size:13px;color:#808080;text-shadow:0 1px 0 rgba(255,255,255,0.9);white-space:nowrap;background-color:#eee;background-image:linear-gradient(#fcfcfc,#eee);background-repeat:repeat-x;border-radius:3px;border:1px solid #d5d5d5;vertical-align:middle;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:none;font-family:Tahoma, Geneva, sans-serif;padding:4px 12px}
+.button:focus,.minibutton:focus{outline:none;text-decoration:none;box-shadow:none}
+.button:active,.button.selected,.button.selected:hover,.button.zeroclipboard-is-active,.minibutton:active,.minibutton.selected,.minibutton.selected:hover,.minibutton.zeroclipboard-is-active{background-color:#dcdcdc;background-image:none;box-shadow:inset 0 2px 4px rgba(0,0,0,0.15);border-color:#b5b5b5}
+.button:disabled,.button:disabled:hover,.button.disabled,.button.disabled:hover,.minibutton:disabled,.minibutton:disabled:hover,.minibutton.disabled,.minibutton.disabled:hover{opacity:.5;color:#666;background-image:none;background-color:#e5e5e5;cursor:default;box-shadow:none;border-color:#c5c5c5}
+.button.primary,.button.primary,.minibutton.primary{color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);background-color:#60b044;background-image:linear-gradient(#8add6d,#60b044);background-repeat:repeat-x;border-color:#5ca941}
+.button.primary:disabled,.button.primary:disabled:hover,.button.primary.disabled,.button.primary.disabled:hover,.minibutton.primary:disabled,.minibutton.primary:disabled:hover,.minibutton.primary.disabled,.minibutton.primary.disabled:hover{color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.25);background-color:#60b044;background-image:linear-gradient(#8add6d,#60b044);background-repeat:repeat-x;border-color:#74bb5a #74bb5a #509338;}
+.buttonregloadcss{width: 60px;height: 9px;border: none;outline: 0;font-size: 0;color: #fff;line-height: 50px;background: none; background-image: url(images/103.gif)}
+.close{text-shadow:none;position:absolute;top:-3px;left:195px;color:#808080;cursor:pointer;font-size:25px;}
+#popup_container{z-index:99999;background:#fff;border-radius:5px 5px 5px 5px;box-shadow:0 0 10px rgba(0,0,0,0.5);min-width:300px;}
+#popup_title{font-size: 15px;font-family: Tahoma, Geneva, sans-serif;text-align: center;font-weight:normal;line-height: 1.75em;color: #e8e8e8;text-shadow: 1px 1px #222;background:#333;-moz-box-shadow: 0px 2px 3px #555;-webkit-box-shadow: 0px 2px 3px #555;box-shadow: 0px 2px 3px #555;cursor: default;padding: 0em;margin: 0em;}
+#popup_content{font-family:Tahoma, Geneva, sans-serif;color:#797979;text-shadow:0 1px #fff;font-size:13px;cursor:default;margin:0;padding:10px}
+#popup_panel{text-align:center;padding:10px;}
+#popup_ok{color: #e8e8e8;background:#333;font-family: Tahoma, Geneva, sans-serif;text-decoration: none;text-shadow: 1px 1px #222;cursor: pointer;border: none;-moz-box-shadow: 0px 2px 3px #555;-webkit-box-shadow: 0px 2px 3px #555;box-shadow: 0px 2px 3px #555;outline: 0;padding: 3px 10px}
+.forgetpass{cursor: pointer;border-bottom: 1px dashed #8e8e8e;}
+.positionRegister{ float: right;margin: 130px 25px 265px;width: 350px;}
+.facemon{padding: 0px 55px;}
+.displaynone{opacity: 0}
+.regtext{ position: relative;left: -10px;color: #575454;cursor: default;}
+
+
+/*Переключения языка*/
+.langmenupos{ float: right;padding: 0px 10px 0px;}
+.section2{z-index:5}
+.langmenu{font-size:100%;font-family:Georgia;margin:0;padding:0}
+.langmenu li{list-style:none;float:left;height:20px;width:50px;text-align:center;vertical-align:top;position:relative;opacity:0.9;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-o-transition:opacity .2s;margin:0;padding:12px 0 0}
+.langmenu li:hover{opacity:1}
+.langmenu li ul{list-style:none;width:50px;opacity:0;position:absolute;left:0;top:35px;border:1px solid #CCC;border-radius:4px;background:#FFF;box-shadow:0 1px 2px rgba(0,0,0,0.1);font:14px/18px Arial, sans-serif;visibility:hidden;-webkit-transition:opacity .5s;-moz-transition:opacity .5s;-ms-transition:opacity .5s;-o-transition:opacity .5s;transition:opacity .5s;margin:0;padding:0}
+.langmenu li ul li{float:none;height:20px;width:50px;text-align:center;margin:0}
+.langmenu li a{display:block;width:50px;height:33px;color:#fff;text-decoration:none}
+.langmenu li:hover ul{opacity:1;visibility:visible}
+.langmenu li ul li:hover{background:#ddd}
+.arrow{position:absolute;top:15px;right:7px;width:0;height:0;overflow:hidden;border-top:5px solid #fff;border-right:5px solid transparent;border-left:5px solid transparent}
+.lang-ru2{background:url(images/ru.png);background-repeat:no-repeat;position:relative;top:-10px;left:-1px;background-position:10px}
+.lang-en2{background:url(images/gb.png);background-repeat:no-repeat;position:relative;top:-10px;left:-1px;background-position:10px}
+.lang-de2 {background: url(images/de.png);background-repeat: no-repeat;position: relative;top: -10px;left: -1px;background-position: 10px;}
+.lang-uk2 {background: url(images/ua.png);background-repeat: no-repeat;position: relative;top: -10px;left: -1px;background-position: 10px;}
+.lang-it2 {background: url(images/it.png);background-repeat: no-repeat;position: relative;top: -10px;left: -1px;background-position: 10px;}
+.lang-es2 {background: url(images/es.png);background-repeat: no-repeat;position: relative;top: -10px;left: -1px;background-position: 10px;}
+.lang-zh-CHS2,.lang-zh2 {background: url(images/cn.png);background-repeat: no-repeat;position: relative;top: -10px;left: -1px;background-position: 10px;}
+

@@ -1,0 +1,68 @@
+﻿@using ForexBox.LanguagesLocalization
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.4.min.js")"></script>  
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<center><div id="head"><div class="shadow"></div></div>
+    <div id="all">
+        <div id="face3">
+            
+
+        </div>
+       
+        
+        <div id="news">
+            <br>
+            <br>
+            <div class="data">04.12.2013</div><br><br><br>
+
+                                                      <div class="textbloknews">
+                                                          <div class="textnews"><b></b>Уважаемые партнеры, сейчас подходит к концу тестирование сервиса "<a href="@Url.Action("PAMM")"class="href2" target="_blank">ПАММ счет ForexBox</a>"! Скоро у Вас появится возможность проследить за мониторингом наших торговых операций, и подключиться к нашему ПАММ счету.</div>
+                                                      </div>
+
+                                                      <br>
+                                                      <br>
+                                                      <div class="data">03.10.2013</div><br><br><br>
+                                                                                                <div class="textbloknews">
+                                                                                                    <div class="textnews"><b></b><br>Уважаемые партнеры, рады сообщить что при регистрации, у каждого на партнерском счету уже имеются реальных 25$.</div>
+                                                                                                </div>
+                                                                                                <br>
+
+        </div>
+         
+         
+
+        @{     
+            Html.RenderPartial("MainDesign");
+        }
+       
+       
+       
+        @{     
+            Html.RenderPartial("LoginShared");
+        }
+       
+        @{
+            Html.RenderPartial("RegisterShared2");
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div id="menuback">
+                <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]</a>
+            </div>
+        }
+        
+    </div>
+    
+   
+   
+
+</center>
+
+ <div class="headdown"><div class="shadowdown"></div></div>

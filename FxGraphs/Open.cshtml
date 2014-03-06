@@ -1,0 +1,102 @@
+﻿@{
+        <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery-1.5.1.min.js")"></script>
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#SlideShow1").slideshow(
+   {
+       interval: 5000,
+       type: 'sequence',
+       effect: 'fade',
+       direction: '',
+       effectlength: 1000
+   });
+        var jQueryTabs1Opts =
+   {
+       fx:
+      {
+          opacity: 'toggle',
+          duration: 'normal'
+      },
+       event: 'click',
+       collapsible: false
+   };
+        $("#jQueryTabs1").tabs(jQueryTabs1Opts);
+        $("#jQueryTabs1").tabs('rotate', 3000, false);
+    });
+</script>
+<center>
+<div id="face">
+<div id="header"></div>
+<div id="down"></div>
+<div id="menuhome"></div>
+<div id="menuadviser"></div>
+<div id="menucomments"></div>
+<div id="menuhotlog"></div>
+<div id="hometab">
+    <a href="@Url.Action("Index")" id="hometabicon"></a>
+    <em>Главная</em>
+    </div>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>Советник</em>
+    </div>
+    <div id="helptab">
+    <a href="@Url.Action("Help")" id="helptabicon"></a>
+    <em>Контакты</em>
+    </div>
+<div id="log">
+@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+{
+        <a href="@Url.Action("Login")" id="login">Войти</a>
+}
+  
+   @if (HttpContext.Current.User.Identity.IsAuthenticated)
+   {
+        <a href="@Url.Action("LogOff")" id="logout">Выйти</a>
+   }
+  
+</div>
+<a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+return false;"></a>
+<div id="accblok">
+<div id="blokgray">
+   <a href="@Url.Action("Open")" class="button gray2">Открыть счет</a>
+   <a href="@Url.Action("Activate")" class="button gray">Активировать счет</a>
+   <a href="@Url.Action("Download")" class="button gray">Скачать советник</a>
+   <a href="@Url.Action("Advisors")" class="button gray">Советники</a>
+   <a href="@Url.Action("Partner")" class="button gray">Партнерам</a>
+</div>
+</div>
+<div id="accpanel"></div>
+<div class="acctextup">Выберете брокера, и откройте счет!</div>
+<div id="opentext">Брокер &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Партнерский код &nbsp&nbsp&nbsp&nbsp Инструкция</div>
+<div id="brokopen">
+<a href="http://instaforex.com/index.php?x=CVTU" target="_blank" class="buttonbr br">Instaforex</a>
+<a href="http://www.forex4you.org/?affid=72abceb" target="_blank" class="buttonbr br">Forex4you</a>
+<a href="http://alpari.ru/?partner_id=1211824" target="_blank" class="buttonbr br">Alpari</a>
+<a href="http://www.roboforex.ru/?a=lbws" target="_blank" class="buttonbr br">RoboForex</a>
+<a href="#" target="_blank" class="buttonbr br">Nord FX</a>
+</div>
+<div id="opentextprat">CVTU<br>72abceb<br>1211824<br>lbws<br>auto</div>
+<a href="http://youtube.googleapis.com/v/F8CHusf_QYI&hl=en&fs=1&rel=0&ap=%2526fmt%3D22" target="blank" class="vidbrokers"></a>
+<a href="http://youtube.googleapis.com/v/MFQwSqi6AQo&hl=en&fs=1&rel=0&ap=%2526fmt%3D22" target="blank" class="vidbrokers"></a>
+<a href="http://youtube.googleapis.com/v/440hkkmQIKs&hl=en&fs=1&rel=0&ap=%2526fmt%3D22" target="blank" class="vidbrokers"></a>
+<a href="http://youtube.googleapis.com/v/38MJASKDMCk&hl=en&fs=1&rel=0&ap=%2526fmt%3D22" target="blank" class="vidbrokers"></a>
+<a href="http://youtube.googleapis.com/v/tqfOK_yRBgw&hl=en&fs=1&rel=0&ap=%2526fmt%3D22" target="blank" class="vidbrokers"></a>
+</div>
+</center>

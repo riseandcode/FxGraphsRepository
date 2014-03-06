@@ -1,0 +1,127 @@
+     @{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.blind.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.bounce.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.clip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.drop.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.fold.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.scale.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.slide.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.widget.min.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.button.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.mouse.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.sortable.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.tabs.min.js")"></script>
+    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/searchindex.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/wb.slideshow.js")"></script>
+         
+
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $("#SlideShow1").slideshow(
+   {
+       interval: 5000,
+       type: 'sequence',
+       effect: 'fade',
+       direction: '',
+       effectlength: 1000
+   });
+        var jQueryTabs1Opts =
+   {
+       fx:
+      {
+          opacity: 'toggle',
+          duration: 'normal'
+      },
+       event: 'click',
+       collapsible: false
+   };
+        $("#jQueryTabs1").tabs(jQueryTabs1Opts);
+        $("#jQueryTabs1").tabs('rotate', 3000, false);
+        
+    });
+</script>
+<center>
+    <div id="face">
+    <div id="header"></div>
+    <div id="down"></div>
+    <div id="menuhome"></div>
+    <div id="menuadviser"></div>
+    <div id="menucomments"></div>
+    <div id="menuhotlog">
+
+         @if (HttpContext.Current.User.Identity.IsAuthenticated)
+         {
+             <div id="menuback">
+                 <a href="@Url.Action("Account")" id="back">@ViewData["Inkabinet"]</a>
+             </div>
+         }
+ 
+    </div>
+    <a href="@Url.Action("Index")" id="buttonhome2"></a>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>@ViewData["Inload"]</em>
+    </div>
+    <div id="helptab">
+    <a href="@Url.Action("Help")" id="helptabicon"></a>
+    <em>@ViewData["Incontakts"]</em>
+    </div>
+    <div id="log">
+    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+            <a href="@Url.Action("Login")" id="login">@ViewData["Enter"]</a>
+    }
+  
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+            <a href="@Url.Action("LogOff")" id="logout">@ViewData["Exit"]</a>
+       }
+  
+    </div>
+    <a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+    onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+    'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+    return false;"></a>
+    <div id="navig">
+       <a href="@Url.Action("Load")" id="urlLoad" class="button gray">@ViewData["Load"]</a>
+       <a href="@Url.Action("News")" class="button gray">@ViewData["News"]</a>
+       <a href="@Url.Action("Free")" class="button gray">@ViewData["Free"]</a>
+       <a href="@Url.Action("Forex")" class="button gray">@ViewData["Forex"]</a>
+       <a href="@Url.Action("FAQ")" class="button gray">@ViewData["Faq"]</a>
+       </div>
+    <div id="headblok"></div>
+    <div id="headblok2"></div>
+    <div id="logoforexbox"></div>
+    <div id="SlideShow1">
+    <img style="border-width:0;left:0px;top:0px;width:396px;height:87px;" src="/forexbox/images/1.PNG" alt="" title="">
+    <img style="border-width:0;left:0px;top:0px;width:396px;height:87px;display:none;" src="/forexbox/images/2.PNG" alt="" title="">
+    <img style="border-width:0;left:0px;top:0px;width:396px;height:87px;display:none;" src="/forexbox/images/3.PNG" alt="" title="">
+    </div>
+    <div id="blokreg"></div>
+    <div id="regbutton">
+    <a href="@Url.Action("Registration")" id="regbutton2">@ViewData["Partnertext"]</a>
+    </div>
+    <div id="blokvideo"></div>
+    <div id="texthome">@ViewData["Videotext"]</div>
+    <a href="http://youtube.googleapis.com/v/FvUlk0YzOq8&hl=en&fs=1&rel=0&ap=%2526fmt%3D22"target="blank" id="video"></a>
+    </div>
+</center>

@@ -1,0 +1,76 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+        <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<center>
+<div id="face">
+<div id="header"></div>
+<div id="down"></div>
+<div id="menuhome"></div>
+<div id="menuadviser"></div>
+<div id="menucomments"></div>
+<div id="menuhotlog">
+ @if (HttpContext.Current.User.Identity.IsAuthenticated)
+ {
+         <div id="menuback">
+             <a href="@Url.Action("Account")" id="back">В кабинет</a>
+         </div>
+ }
+</div>
+<div id="hometab">
+    <a href="@Url.Action("Index")" id="hometabicon"></a>
+    <em>Главная</em>
+    </div>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>Советник</em>
+    </div>
+    <div id="helptab">
+    <a href="@Url.Action("Help")" id="helptabicon"></a>
+    <em>Контакты</em>
+    </div>
+<div id="log">
+@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+{
+        <a href="@Url.Action("Login")" id="login">Войти</a>
+}
+  
+   @if (HttpContext.Current.User.Identity.IsAuthenticated)
+   {
+        <a href="@Url.Action("LogOff")" id="logout">Выйти</a>
+   }
+  
+</div>
+<a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+return false;"></a>
+<div id="navig">
+   <a href="@Url.Action("Load")" class="button gray">О советнике</a>
+   <a href="@Url.Action("News")" class="button gray">Новости и отзывы</a>
+   <a href="@Url.Action("Free")" class="button gray2">Почему бесплатно?</a>
+   <a href="@Url.Action("Forex")" class="button gray">Что такое Forex?</a>
+   <a href="@Url.Action("FAQ")" class="button gray">Вопросы и ответы</a>
+   </div>
+   <div class="textall">
+
+   <b>· Почему наш советник бесплатный?</b><br>
+Многие задавались вопросом, почему на некоторых сайтах торговые советники продаются, а на других бесплатные? Все очень просто! Цель нашей компании основана на развитии партнерской программы. По-этому советник бесплатно предоставляется только нашим партнерам. Брокер будет выплачивать нам небольшой процент с каждой закрытой Вами сделки. Например: Вы заключили сделку в 100$ c которой заработок брокера составил 10 $. То если Вы не являетесь нашим клиентом, брокер удержит с Вас 10 $, если же Вы являетесь нашим клиентом, брокер все равно удержит с Вас 10 $, просто 5 $. оставит себе, а 5 $. передаст нам.<br><br>
+<b>· Тише едешь дальше будешь...</b> <br>
+Некоторые тратят большие деньги на рекламу и раскрутку своих торговых систем, и зарабатывают в 10 раз больше когда их партнеры сливают из-за не качественного продукта. Мы же заинтересованы в длительных отношениях с клиентами, и глубоко заинересованы в заработке каждого из них. Вы всегда можете обратиться в "онлайн поддержку" и получить все нужные наставления и рекомендации. <br><br>
+<b>· Партнерская программа.</b> <br>
+Вы уже убидились в надежности наших торговых систем? Если да, то у Вас есть возможность не просто быть учасником компании ForexBox, а стать нашим полноправным представителем и самому приглашать новых партнеров! Благодаря этому Вы сможете увеличить свой заработок на 1000$ и более, в месяц! Более подробную информацию Вы сможете узнать в личном кабинете.   
+   </div>
+
+</div>
+</center>

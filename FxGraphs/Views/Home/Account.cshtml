@@ -1,0 +1,111 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style2.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.4.min.js")"></script>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-menu.js")"></script>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.6.2.min.js")"></script>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-tubs.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquerytabs.min.js")"></script>
+    }
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('div > a').click(function (){
+            $('.container > div').hide();
+            var i=$(this).data('id');
+            $('#d'+i).fadeIn();
+        });		
+        $("#urlHome").trigger("click");
+    });
+</script>
+
+<script type="text/javascript">    $(function () {
+        $('dl.tabs dt').click(function () {
+            $(this)                .siblings().removeClass('selected').end()                .next('dd').andSelf().addClass('selected');
+        });
+    });</script>
+
+
+
+
+<div class="header">
+    <div class="cell">
+              
+        <br>
+        @{
+            Html.RenderPartial("MainDesign");    
+            Html.RenderPartial("LoginShared");
+            
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
+        {
+            <div class="menulogin">
+                <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]<div class="imageligin"></div></a>            
+            </div>    
+        }
+
+    </div>
+</div>
+
+
+
+<div class="content">
+    <div class="cell">
+        
+        
+        <div id="page">			<dl class="tabs">				<dt class="selected">Рост</dt>				<dd class="selected">                    <div class="tab-content">
+                       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                       {
+                           <input type="checkbox" /> <span> Отображать для всех</span> <br/>
+                       }                                                                          Содержимое вкладки 1                                                                                </div>				</dd>								<dt>Баланс</dt>				<dd>                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                               <input type="checkbox" value="Отображать для всех"/>
+                        }                                                                         Содержимое вкладки 2                                                                                                    </div>				</dd>								<dt>Прибыль</dt>				<dd>                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                       {
+                           <input type="checkbox" value="Отображать для всех"/>
+                       }                                                Содержимое вкладки 3                                                                                </div>				</dd>								<dt>Просадка</dt>				<dd>                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                       {
+                           <input type="checkbox" value="Отображать для всех"/>
+                       }                                                                        Содержимое вкладки 4                                                                                                                     </div>				</dd>								<dt>Настройки</dt>				<dd>                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                       {
+                           <input type="checkbox" value="Отображать для всех"/>
+                       }                                                                                                 Содержимое вкладки 5                                                                                                    </div>				</dd>			</dl>					</div>
+
+        
+
+       
+    </div>
+</div>
+
+
+
+
+
+
+<div class="footer">
+    <div class="cell">
+        @{
+            Html.RenderPartial("MainDesignfooter");              
+        }  
+    </div>
+          
+</div>
+
+
+
+
+
+
+
+
+
+
+

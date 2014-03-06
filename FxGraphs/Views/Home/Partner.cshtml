@@ -1,0 +1,43 @@
+﻿@model ForexBox.Models.PartnerModel
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+         Html.RenderAction("MainDesign");
+        }
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+       }
+        <div id="menuaccaunt">
+           <a href="@Url.Action("PammCabinet")" class="button gray">ПАММ счет</a>
+           <a href="@Url.Action("Withdraw")" class="button gray">Снять средства</a>
+           <a href="@Url.Action("Partner")" class="button gray2">Партнерка</a>
+        </div>
+        <div id="accountpanel">Приведите партнера, умножте прибыль!</div>
+        @{     
+            Html.RenderAction("MainCabinet");
+        }   
+        <div class="partnercode">
+               <b>Ваша партнерская ссылка</b>
+                <br><br>
+                 http://4rexbox.com/home/PartnerArrived?partnerKey=@ViewData["PartnerCode"]
+                <br>
+        </div> 
+        <div class="partnercode2"><b>Сгенерированный  HTML код</b><br><br>
+             <textarea class="textareclass" cols="100" rows="10" style="margin: 0px; width: 339px; height: 70px;"><a href="http://4rexbox.com/home/PartnerArrived?partnerKey=@ViewData["PartnerCode"]" target="_blank">Стать партнером ForexBox!</a></textarea><br>
+             <b>Пример:</b> <a class="href2" href="http://4rexbox.com/home/PartnerArrived?partnerKey=@ViewData["PartnerCode"]" target="_blank">Стать партнером ForexBox!</a>
+             <br><br><b>Партнерский код:</b> @ViewData["PartnerCode"]
+        </div>
+    </div>
+</center>

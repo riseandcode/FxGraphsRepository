@@ -1,0 +1,56 @@
+﻿@{
+    <link href="@Url.Content("/Themes/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.blind.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.bounce.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.clip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.drop.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.fold.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.scale.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.slide.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.widget.min.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.button.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.mouse.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.sortable.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.tabs.min.js")"></script>
+    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/searchindex.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/wb.slideshow.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_ColumnsThree.cshtml";
+}
+<div id="face"></div>
+  <div id="head"></div>
+  <div id="down"></div>
+  <div id="menu1"></div>
+  <div id="menu2"></div>
+  <div id="menu3"></div>
+  <div id="menu4"></div>
+  <div id="menu up2">
+   <a href="@Url.Action("Home")" id="home"></a>
+   <a href="@Url.Action("Load")" id="load"></a>
+   <a href="@Url.Action("Help")" id="help"></a>
+   <a href="@Url.Action("Login")" id="login"></a>
+  </div>
+  <div id="menuup">
+   <a href="@Url.Action("Load")" id="pload">О советнике</a>
+   <a href="@Url.Action("News")" id="pnewsicon">Новости и отзывы</a>
+   <a href="@Url.Action("Free")" id="pfree">Почему бесплатно?</a>
+   <a href="@Url.Action("Forex")" id="pforex">Что такое forex?</a>
+   <a href="@Url.Action("FAQ")" id="pfaq">Вопросы и ответы</a>
+
+<div id="hypercomments_widget"></div><script type="text/javascript">
+                                         var _hcp = _hcp || {};
+                                         _hcp.widget_id = 1302;
+                                         _hcp.widget = "Stream";
+                                         (function () {
+                                             var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+                                             hcc.src = ("https:" == document.location.protocol ? "https" : "http") + "://widget.hypercomments.com/apps/js/hc.js";
+                                             var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling);
+                                         })();</script></div>
+  </div>

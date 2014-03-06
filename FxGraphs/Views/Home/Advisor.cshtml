@@ -1,0 +1,77 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<center>
+    <div id="all">
+        <div id="face"></div>
+            <div id="head2"></div>
+        <div id="face2"></div>
+         @{
+            Html.RenderPartial("MainDesign");
+        }
+       
+       @{     
+         Html.RenderPartial("LoginShared");
+        }
+
+       @{
+         Html.RenderPartial("RegisterShared2");
+        }
+       
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+            } 
+
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <div id="menuback">
+            <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]</a>
+        </div>
+        }
+        <div class="advisoractive">
+       <div class="newaktiv">Советник</div>
+       </div>
+        <div id="logo2price2"></div>
+        <div id="advtext3">Цена: Бесплатно<br>Тип: Автоматический<br>Брокер: Alpari<br>Партнерский код: 1211824<br>Валютная пара: EURUSD<br>Таймфрейм: M15<br><br>Советник можно протестировать<br>на Демо счете!</div>
+
+        <div id="nameadvisor">
+        
+        <div id="testadvisor2">
+            <div class="buttonsite"></div>
+            <div class="buttonsite2">Price AutoBox тест</div>
+            <a href="http://4rexbox.com/html/StrategyTester.htm" target="_blank" class="buttonsite3">Price AutoBox тест</a>
+        </div>
+
+        </div>
+        
+        <div class="tablpos">Таблица лотов
+            <table width="200" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td2">Депозит</td>
+                    <td class="td2">Лот    </td>
+                </tr>
+                <tr>
+                    <td>200$</td>
+                    <td>0.01</td>
+                </tr>
+                <tr>
+                    <td>500$</td>
+                    <td>0.03</td>
+                </tr>
+                <tr>
+                    <td>1000$</td>
+                    <td>0.06</td>
+                </tr>
+           </table> 
+       </div>
+        
+
+    </div>
+</center>

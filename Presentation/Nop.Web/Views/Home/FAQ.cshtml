@@ -1,0 +1,82 @@
+﻿@{
+    <link href="@Url.Content("/Themes/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.blind.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.bounce.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.clip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.drop.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.fold.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.scale.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.slide.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.widget.min.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.button.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.mouse.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.sortable.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.tabs.min.js")"></script>
+    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/searchindex.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/wb.slideshow.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_ColumnsThree.cshtml";
+}
+
+ <div id="face"></div>
+  <div id="head"></div>
+  <div id="down"></div>
+  <div id="menu1"></div>
+  <div id="menu2"></div>
+  <div id="menu3"></div>
+  <div id="menu4"></div>
+  <div id="menu up2">
+   <a href="@Url.Action("Home")" id="home"></a>
+   <a href="@Url.Action("Load")" id="load"></a>
+   <a href="@Url.Action("Help")" id="help"></a>
+   <a href="@Url.Action("Login")" id="login"></a>
+  </div>
+  <div id="menuup">
+   <a href="@Url.Action("Load")" id="pload">О советнике</a>
+   <a href="@Url.Action("News")" id="pnews">Новости и отзывы</a>
+   <a href="@Url.Action("Free")" id="pfree">Почему бесплатно?</a>
+   <a href="@Url.Action("Forex")" id="pforex">Что такое forex?</a>
+   <a href="@Url.Action("FAQ")" id="pfaqicon">Вопросы и ответы</a>
+  </div>
+  <div id="tex14">
+  <b>· Сложно ли начать этот бизнес?</b>
+  <br/>
+Вовсе нет! Вам нужно открыть счет на Forex, и пополнить его. 
+Далее скачать терминал, установить на него советник и запустить его для торговли. 
+Он все будет делать самостоятельно, Вы только будете снимать заработанные деньги.
+  <br/>
+  <br/>
+  <b>· Что такое терминал и советник?</b>
+  <br/>
+ Терминал - это программа в которой осуществляются сделки,
+ а советник - это маленькая утилита которую устанавливают в терминал.
+  <br/>
+  <br/>
+  <b>· Как пополнить торговый счет?</b>
+  <br/>
+Пополнить счет, или снять деньги Вы можете в вашем торговом кабинете,
+ в разделе "Финансовые операции" (слева).
+  <br/>
+  <br/>
+  <b>· Сколько минимум нужно положить денег на счет?</b>
+  <br/>
+Все зависит от того какой Вы выставите лот. Сам советник может работать с любым депозитом, 
+но мы рекомендуем начинать с 50$.
+  <br/>
+  <br/>
+  <b>· Сколько должен находиться терминал в работе?</b>
+  <br/>
+Терминал должен работать 5 дней в неделю (в выходные Forex не работает). 
+Можно его выключать на пример на ночь, со сделками ничего не случится,
+ они закроются только тогда когда будет выгодно даже в оффлайне.
+ Но если есть возможность оставляйте включенным и ночью (для корректной работы советника).
+  </div>
+  <a href="@Url.Action("FAQ")" id="faq1b2"></a>
+  <a href="@Url.Action("FAQ2")" id="faq2b"></a>

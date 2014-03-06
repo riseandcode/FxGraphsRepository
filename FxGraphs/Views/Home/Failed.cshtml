@@ -1,0 +1,54 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.4.min.js")"></script>
+    ViewBag.Title = "Success";
+}
+
+<script type="text/javascript" src="../../ForexBoxTrade2/javascript/jquery.cookie.js"></script>
+
+
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+         Html.RenderPartial("MainDesign");
+        }
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+        }      
+        <div id="accountpanel">Введите сумму, и пополните счет!</div>        
+        <div id="menuaccaunt">
+           <a href="@Url.Action("Deposit")" class="button gray2">Пополнить счет</a>
+           <a href="@Url.Action("Withdraw")" class="button gray">Снять средства</a>
+           <a href="@Url.Action("Partner")" class="button gray">Партнерка</a>
+        </div>      
+        @{     
+            Html.RenderAction("MainCabinet");
+        }
+        <div id="accountborder">
+                <br>
+                <div class="walettextbutton">                 
+                    <div class="textwallet">Сумма указывается в долларах</div>                          
+                    <input id="txtAmount" type="text" class="texbox"/>                          
+                    <div class="buttonwallet">
+                        <a class="button gray" onclick="return SubmitPayment();">Пополнить счет</a>                  
+
+                    </div>  
+                    <div class="textwallet2">
+                        На данный момент  мы работаем только с платежной системой WebMoney.<br><br>Пользуйтесь <a href="https://vmex.info/index.php?langId=1&partnerId=3140" target="_blanl" class="href2" >обменным сервисом</a>.
+                    </div>     
+                </div>
+            </div>       
+    </div>
+</center>
+
+<script type="text/javascript">
+    $(function () {
+        alert("Ошибка. Попробуйте еще раз.");
+        window.location = "/home/Deposit";
+    });
+
+</script>

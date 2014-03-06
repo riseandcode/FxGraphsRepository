@@ -1,0 +1,61 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/tooltip.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<center>
+<div id="face">
+<div id="header"></div>
+<div id="down"></div>
+<div id="menuhome"></div>
+<div id="menuadviser"></div>
+<div id="menucomments"></div>
+<div id="menuhotlog">
+ @if (HttpContext.Current.User.Identity.IsAuthenticated)
+ {
+         <div id="menuback">
+             <a href="@Url.Action("Account")" id="back">В кабинет</a>
+         </div>
+ }
+</div>
+<div id="hometab">
+    <a href="@Url.Action("Index")" id="hometabicon"></a>
+    <em>Главная</em>
+    </div>
+    <div id="advisortab">
+    <a href="@Url.Action("Load")" id="advisertabicon"></a>
+    <em>Советник</em>
+    </div>
+    <a href="@Url.Action("Help")" id="buttoncomments2"></a>
+<div id="log">
+@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+{
+        <a href="@Url.Action("Login")" id="login">Войти</a>
+}
+  
+   @if (HttpContext.Current.User.Identity.IsAuthenticated)
+   {
+        <a href="@Url.Action("LogOff")" id="logout">Выйти</a>
+     }
+  
+</div>
+<a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+return false;"></a>
+<div id="blokcentr">
+<div id="helplogo"></div>
+<div id="helpemail">forexboxinfo@gmail.com</div>
+<div id="mailicon"></div>
+</div>
+
+</div>
+</center>

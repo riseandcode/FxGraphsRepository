@@ -1,0 +1,187 @@
+﻿@{
+    <link href="@Url.Content("/Themes/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.blind.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.bounce.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.clip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.drop.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.fold.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.scale.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.effects.slide.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.core.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.widget.min.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.button.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.mouse.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.sortable.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.ui.tabs.min.js")"></script>
+    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/searchindex.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/wb.slideshow.js")"></script>
+}
+
+
+@{
+    Layout = "~/Views/Shared/_ColumnsThree.cshtml";
+}
+
+<div id="face"></div>
+  <div id="head"></div>
+  <div id="down"></div>
+  <div id="menu1"></div>
+  <div id="menu2"></div>
+  <div id="menu3"></div>
+  <div id="menu4"></div>
+  <div id="menu up2">
+   <a href="@Url.Action("Home")" id="home"></a>
+   <a href="@Url.Action("Load")" id="loadicon"></a>
+   <a href="@Url.Action("Help")" id="help"></a>
+   <a href="@Url.Action("Login")" id="login"></a>
+  </div>
+  <div id="loadblokr"></div>
+  <div id="loadblokl"></div>
+  <div id="loadblok2"></div>
+  <div id="loadblok3"></div>
+  <div id="loadlogo"></div>
+  <div id="tex2">+ видео инструкция по установке!</div>
+  <div id="tex3">
+  Станьте нашим партнером, 
+  и получите возможность скачать 
+  один из самых лучших советников 
+  для торговли на Forex.
+  </div>
+  <div id="tex4">
+  + полностью автоматизирован!<br/>
+  + регулируемый риск!<br/>
+  + открывает отложенные ордера!
+  </div>
+  <div id="jQueryTabs1">
+<ul>
+<li><a href="#jquerytabs1-page-0"><span>Центовый счет</span></a></li>
+<li><a href="#jquerytabs1-page-1"><span>Долларовый счет</span></a></li>
+</ul>
+<div style="height:156px;overflow:auto" id="jquerytabs1-page-0">
+<table style="position:absolute;left:4px;top:45px;width:312px;height:138px;z-index:0;border:1px #FFFFFF inset;" cellpadding="0" cellspacing="1" id="Table1">
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Депозит ($)</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Лот</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Прибыль (месяц)</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>50</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,4</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+40</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>100</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,8</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+80</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>200</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>1,6</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+160</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>500</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>4</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+400</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+</table>
+</div>
+<div style="height:156px;overflow:auto" id="jquerytabs1-page-1">
+<table style="position:absolute;left:4px;top:45px;width:312px;height:138px;z-index:1;border:1px #FFFFFF inset;" cellpadding="0" cellspacing="1" id="Table2">
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Депозит ($)</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Лот</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>Прибыль (месяц)</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>1000</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,08</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+600</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>2000</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,15</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+1500</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>5000</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,3</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+3500</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:120px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>10 000</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;width:60px;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>0,8</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+<td align="center" valign="top" style="border:1px #C0C0C0 solid;height:24px;">
+<div style="line-height:16px;"><font style="font-size:13px" color="#7F7F7F" face="Arial"><b>+7000</b></font><font style="font-size:8px" color="#000000" face="Arial"><br></font></div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="tex11">
+<b>Обновления до: 20.06.12</b><br/><br/>
+Таймфрейм  &nbsp  Валютная пара   &nbsp  Советник<br/>
+&nbsp&nbsp&nbsp&nbsp&nbspМ15  &nbsp&nbsp  &nbsp &nbspEURUSD \ USDCAD  &nbsp&nbsp FBcobra<br/><br/>
+Тип счета: USD \ USD Cents</div>
+</div>

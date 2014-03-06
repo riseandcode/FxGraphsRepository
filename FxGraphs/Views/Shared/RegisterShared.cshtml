@@ -1,0 +1,271 @@
+﻿@using ForexBox.LanguagesLocalization
+@model ForexBox.Models.RegisterModel
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.js" type="text/javascript"></script> 
+    <script src="http://megascripts.ru/demo/zamena_okon/jquery.ui.draggable.js" type="text/javascript"></script> 
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.cookie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.alerts.js")"></script>    
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.placeholder.min.test.js")"></script>
+
+    }
+
+<script type="text/javascript">
+    
+
+     $(document).ready(function () {
+    
+        $('#textboxreg').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg1').focus();
+            }
+        });
+
+        $('#textboxreg1').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg2').focus();
+            }
+        });
+        
+         $('#textboxreg2').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg3').focus();
+            }
+        }); 
+         
+         $('#textboxreg3').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                jQuery('#textboxreg4').focus();
+            }
+        }); 
+
+       $("#textboxreg4").val($.cookie("partnerKey"));       
+       $('#textboxreg4').keypress(function (e) {
+            if (e.which == 13) {
+                jQuery(this).blur();
+                CheckValidityAndThenSubmit();
+            }
+        }); 
+
+
+    });
+     
+    function CheckAvailabilityUserName() {
+          var un = $("#textboxreg").val();
+          
+         $.ajax(
+                {
+                    url: '@Url.Action("CheckAvailabilityUserName")',
+                    type: 'POST',
+                    data: JSON.stringify({ "userName": un}),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        
+                        if (data == "false") {
+                            jAlert("@ResourceReader.GetRes("RegisterShared", "Incorrectname")","@ResourceReader.GetRes("LoginShared", "Attention")");
+                        } else {
+                            CheckUserMail();
+                        }
+                    },
+                    error: function () {
+                        jAlert('@ResourceReader.GetRes("LoginShared", "Alert")',"@ResourceReader.GetRes("LoginShared", "Attention")");
+                    }
+                });
+     }
+    
+
+    function CheckUserMail() {
+        
+        var um = $("#textboxreg1").val();
+         $.ajax(
+                {
+                    url: '@Url.Action("CheckAvailabilityUserMail")',
+                    type: 'POST',
+                    data: JSON.stringify({ "userMail": um}),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            jAlert("@ResourceReader.GetRes("RegisterShared", "Incorrectemail")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                        } else {
+                            Submit();
+                        }
+                    },
+                    error: function () {
+                        jAlert('@ResourceReader.GetRes("LoginShared", "Alert")',"@ResourceReader.GetRes("LoginShared", "Attention")");
+                    }
+                });
+    }
+    
+    function Submit() {
+       
+         var parentID = "0";
+         if($("#textboxreg4").val() != "")
+         {
+             debugger;
+             var parID = parseInt($("#textboxreg4").val());
+             if(parID.toString() != "NaN")
+             {
+                 parentID = parID;
+             }
+         }
+         
+
+         $.post("@Url.Action("Register", "Home")",
+                            {
+                                userName:  $("#textboxreg").val(),
+                                email : $("#textboxreg1").val(),
+                                password : $("#textboxreg2").val(),
+                                confirmPassword :  $("#textboxreg3").val(),
+                                parentID : parentID
+
+                            },
+                            function (data, status, xhr)
+                            {
+                                if(data == "{\"Success\":true}")
+                                {
+                                    jAlert("@ResourceReader.GetRes("RegisterShared", "Registerfinishes")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                                    var lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.Parent.Name";
+                                    var command = "window.location.href='" + "/" + lang + "/Home'";
+                                    setTimeout(command, 4000);
+                                    //setTimeout("window.location.href='/Home';",4000);
+                                }
+                                else
+                                {
+                                    jAlert("@ResourceReader.GetRes("RegisterShared", "Registernotfinishes")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                                }
+
+                            });
+
+
+        
+        //$("form:first").submit();
+    }
+
+
+    function CheckValidityAndThenSubmit() {
+        
+        var login = $("#textboxreg").val();
+        var email = $("#textboxreg1").val();
+        var password = $("#textboxreg2").val();
+        var confirmPassword = $("#textboxreg3").val();
+        var errorMessage = "";
+        if (login == "") {
+            errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotlog")\n";
+        }
+        if (email == "") {
+            errorMessage += "@ResourceReader.GetRes("RegisterShared", "Incorrectwriteemail")\n";
+        }
+        if (password == "") {
+            errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotpas")\n";
+        }
+        if (confirmPassword == "") {
+            errorMessage += "@ResourceReader.GetRes("RegisterShared", "Incorrectwritepas")\n";
+        }
+        if (password != confirmPassword) {
+            errorMessage += "@ResourceReader.GetRes("RegisterShared", "Incorrectwrite2pas")\n";
+        }
+        if(!checkEmail(email)) {
+            errorMessage += "@ResourceReader.GetRes("RegisterShared", "Incorrectemailformat")\n";
+        }
+        if(password.length < 6) {
+            errorMessage += "@ResourceReader.GetRes("RegisterShared", "Incorrectwritepaslong")\n";
+        }
+
+
+        if (errorMessage == "") {
+            CheckAvailabilityUserName();
+        } else {
+            errorMessage = "@ResourceReader.GetRes("LoginShared", "Incorrectplease")\n" + errorMessage;
+            jAlert(errorMessage, "@ResourceReader.GetRes("LoginShared", "Attention")");
+        }
+    }
+    
+    function checkEmail(email) {
+        var filter = @Html.Raw(ViewData["emailValidator"].ToString());
+        if (!filter.test(email)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+    $(document).ready(function() {           
+        $('div.button').click(function() {
+		    var buttonid = $(this).attr('rel');
+		$('#' + buttonid).fadeIn(300);
+		$('#fadebody').fadeIn(300);
+		var topm = ($('#' + buttonid).height() + 10) / 2;
+		var leftm = ($('#' + buttonid).width() + 10) / 2;
+		$('#' + buttonid).css({
+		'margin-top' : -topm,
+		'margin-left' : -leftm
+		});
+		$('.close').click(function() {
+		$('#fadebody , .modalbox').fadeOut(300)
+		return false;
+		});
+		});
+		});
+
+
+    jQuery(function () { jQuery('input[placeholder], textarea[placeholder]').placeholder(); });
+
+
+   
+
+
+</script>
+
+
+
+
+
+
+<div id="buttonreg3pos">
+            <div rel="modal1" class="button primary">@ResourceReader.GetRes("RegisterShared", "Registerbutton")</div>
+</div>
+
+
+<div class="modalbox" id="modal1"> 
+    <div class="modalcss3">
+        <center>	
+            <div class="avtoriz">@ResourceReader.GetRes("RegisterShared", "Registertext")</div>
+            <br>
+            <br>
+            @Html.AntiForgeryToken()
+            <br>
+            <input type="text" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderlogin")" title="@ResourceReader.GetRes("LoginShared", "Placeholderlogin")"@Html.TextBoxFor(m => m.UserName, new { id = "textboxreg", @class = "texbox", maxlength = "15"})
+            <br>
+            <br>
+            <input type="text" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderemail")" title="@ResourceReader.GetRes("LoginShared", "Placeholderemail")"@Html.TextBoxFor(m => m.Email, new { id = "textboxreg1", @class = "texbox",})
+            <br>
+            <br>
+            <input type="password" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderpas")" title="@ResourceReader.GetRes("LoginShared", "Placeholderpas")"@Html.PasswordFor(m => m.Password, new { id = "textboxreg2", @class = "texbox"})
+            <br>
+            <br>
+            <input type="password" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderpas2")" title="@ResourceReader.GetRes("LoginShared", "Placeholderpas2")"@Html.PasswordFor(m => m.ConfirmPassword, new { id = "textboxreg3", @class = "texbox"})
+            <br>
+            <br>
+            <input type="password" placeholder="@ResourceReader.GetRes("LoginShared", "Placeholderpartner")" title="@ResourceReader.GetRes("LoginShared", "Texboxno")"@Html.TextBoxFor(m => m.PartnerCode, new { id = "textboxreg4", @class = "texbox", Enabled = "false", ReadOnly = "true", style = "background-color:#F0F0F0;", title = "Необязательное поле" })
+            <br><br>
+                <input type="button" onclick="return  CheckValidityAndThenSubmit()" value="@ResourceReader.GetRes("RegisterShared", "Registerbutton")" class="button"/><br>
+        </center>	
+        <div class="close">&#215;</div>
+        <br>
+    </div>
+
+
+</div>
+<div id="fadebody"></div>

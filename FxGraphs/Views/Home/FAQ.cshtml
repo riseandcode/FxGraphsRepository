@@ -1,0 +1,75 @@
+﻿@using ForexBox.LanguagesLocalization
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jMenu.js")"></script>      
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jMenu2.js")"></script>  
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+         Html.RenderPartial("MainDesign");
+        }
+        <div class="faqakt">
+       <div class="newaktivfaq">@ResourceReader.GetRes("MainDesign", "faqmenu")</div>
+       </div>
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+        }
+        
+       @{     
+         Html.RenderPartial("LoginShared");
+        }
+       @{
+         Html.RenderPartial("RegisterShared2");
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <div id="menuback">
+            <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]</a>
+        </div>
+        }
+        <div id="spoiler"><br>
+            
+            
+            
+            
+            
+                          <div class="accordian">
+                              <ul>
+                                  @ResourceReader.GetRes("FAQ", "faqtext1")<br><br>
+                                  <li>@ResourceReader.GetRes("FAQ", "faqtext2")</li>
+                                  <li><br>@ResourceReader.GetRes("FAQ", "faqtext3")</li>
+                                  <br>
+                                  <li>@ResourceReader.GetRes("FAQ", "faqtext4")</li>
+                                  <li><br>@ResourceReader.GetRes("FAQ", "faqtext5")</li>
+                                  <br>
+                                  <li>@ResourceReader.GetRes("FAQ", "faqtext6")</li>
+                                  <li><br>@ResourceReader.GetRes("FAQ", "faqtext7")</li>
+                                  <br>
+                                  <li>@ResourceReader.GetRes("FAQ", "faqtext8")</li>
+                                  <li><br>@ResourceReader.GetRes("FAQ", "faqtext9")</li>
+                                  <br>
+                                  <li>@ResourceReader.GetRes("FAQ", "faqtext10")</li>
+                                  <li><br>@ResourceReader.GetRes("FAQ", "faqtext11")"<a href="@Url.Action("PartnerPage")"class="href2" target="_blank">@ResourceReader.GetRes("FAQ", "faqtext12")</a>".</li>
+                                  <br>
+                              </ul>
+                          </div>
+
+            
+
+         
+                <br>
+          
+        </div>
+    </div>
+</center>

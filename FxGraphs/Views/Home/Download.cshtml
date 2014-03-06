@@ -1,0 +1,119 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.js")"></script>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('div.playdownload').click(function () {
+            var modalid = $(this).attr('rel');
+            $('#' + modalid).fadeIn(300);
+            $('#fadebody').fadeIn(300);
+            var topm = ($('#' + modalid).height() + 10) / 2;
+            var leftm = ($('#' + modalid).width() + 10) / 2;
+            $('#' + modalid).css({
+                'margin-top': -topm,
+                'margin-left': -leftm
+            });
+            $('.close2').click(function () {
+                $('#fadebody , .modalbox').fadeOut(300)
+                return false;
+            });
+        });
+    });
+</script>
+
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        <div id="head"></div>
+        <div id="down"></div>
+
+        <div id="menu">
+            <div id="buttonmenu">
+                <div class="buttonsite2">Советники</div>
+                <a href="@Url.Action("Advisor")" class="buttonsite3">Советники</a>
+            </div>
+            <div id="buttonmenu2">
+                <div class="buttonsite2">Брокер</div>
+                <a href="@Url.Action("Brokers")" class="buttonsite3">Брокер</a>
+            </div>
+            <div id="buttonmenu3">
+                <div class="buttonsite2">Новости</div>
+                <a href="@Url.Action("News")" class="buttonsite3">Новости</a>
+            </div>
+            <div id="buttonmenu4">
+                <div class="buttonsite2">О компании</div>
+                <a href="@Url.Action("Company")" class="buttonsite3">О компании</a>
+            </div>
+            <div id="buttonmenu5">
+                <div class="buttonsite2">Начинающим</div>
+                <a href="@Url.Action("Faq")" class="buttonsite3">Начинающим</a>
+            </div>
+        </div>
+
+        <div id="menudown">
+            <div id="textcop">© 2011 - 2012 4rexbox.com</div>
+            <div id="textcop2">support@4rexbox.com</div>
+        </div>
+        <a href="@Url.Action("index")" id="logo" title="Главная"></a>
+
+        <a href="https://siteheart.com/webconsultation/379314?"id="siteheart" 
+        onclick="o=window.open;o('https://siteheart.com/webconsultation/379314?', 
+        'siteheart_sitewindow_379314', 'width=550,height=400,top=30,left=30,resizable=yes'); 
+        return false;"></a>
+    
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+       }
+
+        <div id="menuaccaunt">
+           <a href="@Url.Action("Open")" class="button gray">Открыть счет</a>
+           <a href="@Url.Action("Activate")" class="button gray">Активировать счет</a>
+           <a href="@Url.Action("Download")" class="button gray2">Установка советника</a>
+           <a href="@Url.Action("Advisors")" class="button gray">Наши советники</a>
+           <a href="@Url.Action("Partner")" class="button gray">Партнерам</a>
+        </div>
+
+        <div id="accountpanel">Откройте, и активируйте Ваш счет!</div>
+
+
+        <div id="downloadborder"><br>
+        <div class="accounttext">После открытия и активации Вашего счета, советники будут отправлены на Вашу почту.</div><br>
+        </div>
+        
+        <div class="partnerbutton2">
+            <a href="http://4rexbox.com/ForexBox.exe" class="button gray" onclick="window.location = 'http://files.inbox.lv/ticket/download/021dce12e82223c808e3d3b30df944abc9011900';return false;">Скачать Демо-версию</a>
+        </div>
+        
+
+        <div id="downloadborder2">Установка и тест</div>
+
+        <div rel="modaldown" class="playdownload"></div>
+        
+            <div class="modalbox" id="modaldown"> 
+                <div class="modalcss3">
+            
+                    <center>			
+                        <div id="youtube">
+                            <object width="640" height="360"><param name="movie" value="http://www.youtube.com/v/jeeGknarsNU?&showinfo=0&border=0&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/jeeGknarsNU?&showinfo=0&border=0&rel=0" type="application/x-shockwave-flash" width="640" height="360" allowscriptaccess="always" allowfullscreen="true"></embed></object>    
+                        </div>
+                    </center>	
+            
+                    <div class="close2">&#215;</div>
+                    <br>
+                </div>
+
+
+            </div>
+            <div id="fadebody"></div>
+
+
+    </div>
+</center>

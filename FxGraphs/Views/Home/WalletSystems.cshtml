@@ -1,0 +1,76 @@
+﻿@model ForexBox.Models.PaymentSystemItem
+
+@{
+    ViewBag.Title = "Платежные системы. Автоматическая торговля на рынке форекс. Скачать советник бессплатно.";
+}
+           
+@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.4.4.min.js")"></script>  
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("WalletSystems", "Home", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken("WalletSystems")
+    <center>
+        <div id="all">
+             <div id="face3"></div>
+        @{     
+    Html.RenderAction("MainDesign");
+        }
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+       {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+       }
+        <div id="menuaccaunt">
+           <a href="@Url.Action("PammCabinet")" class="button gray">ПАММ счет</a>
+           <a href="@Url.Action("Activate")" class="button gray">Получить советник</a>
+           <a href="@Url.Action("Withdraw")" class="button gray">Снять средства</a>
+           <a href="@Url.Action("Partner")" class="button gray">Партнерка</a>
+        </div>
+
+            <div id="accountpanel">Введите номер кошелька, и сохраните!</div>
+            @{     
+            Html.RenderAction("MainCabinet");
+            }   
+            <div id="accountborder">
+                <br>
+
+                <div class="walettextbutton">
+                    
+                    <div class="textwallet">Пример: WMZ1234567890</div>               
+            
+                    @Html.TextBoxFor(m => m.WalletID, new {id = "WalletID", @class = "texbox"})           
+
+    
+                    <div class=buttonwallet>
+                                    
+                        <a href="#" onclick=" $('form:first').submit();" class="button gray">Сохранить</a>
+
+                    </div>
+                    
+                    <div class="textwallet2">На данный момент мы работаем только с платежной системой WebMoney. 
+                    Если же у Вас нет возможности роботать с этой системой, обратитесь в тех-поддержку.</div>     
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </center>
+
+
+
+
+}

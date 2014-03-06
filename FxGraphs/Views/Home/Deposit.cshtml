@@ -1,0 +1,85 @@
+﻿@{
+    <link href="@Url.Content("/forexBox/style.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("/forexBox/buttons.css")" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.reveal.js")"></script>
+    <script type="text/javascript" src="http://www.steamdev.com/zclip/js/jquery.zclip.min.js"></script>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function() {
+      
+    });
+
+    function SubmitPayment() {
+        var amountOfMoney = $("#txtAmount").val().replace(",", ".");
+        $("[name='LMI_PAYMENT_AMOUNT']").val(amountOfMoney);
+        $("[name='LMI_PAYMENT_DESC']").val("Account number @ViewData["PartnerCode"]");
+        
+        $.ajax(
+                {
+                    url: '@Url.Action("SavePaymentSession")',
+                    type: 'POST',
+                    data: JSON.stringify({ "partnerID": @ViewData["PartnerCode"], "amount": amountOfMoney }),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data == "false") {
+                            alert("вашы деньги не у нас");
+                        } else {
+                            $('#pay').submit();
+                        }
+                    },
+                    error: function () {
+                        alert('На сервере произошла ошибка');
+                    }
+                });
+    }
+    
+    function CopyToClipBoard() {
+        
+            var press = jQuery.Event("keyup");
+            press.ctrlKey = true;
+            press.which = 67;
+            self.trigger(press);
+            alert("test");
+  
+        }
+</script>  
+<center>
+    <div id="all">
+        <div id="face3"></div>
+        @{     
+         Html.RenderPartial("MainDesign");
+        }
+       @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+        <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]</a>
+        }      
+        <div id="accountpanel">Выберете платежную систему!</div>        
+        <div id="menuaccaunt">
+           <a href="@Url.Action("Deposit")" class="button gray2">Пополнить счет</a>
+           <a href="@Url.Action("Withdraw")" class="button gray">Снять средства</a>
+           <a href="@Url.Action("Partner")" class="button gray">Партнерка</a>
+        </div>      
+        @{     
+            Html.RenderAction("MainCabinet");
+        }
+        <div id="accountborder">
+        
+
+            <div class="plsystems">
+                При отправке средств, укажите номер Вашего счета - @ViewData["PartnerCode"], в коментарии к платежу.<br><br>Наши реквизиты:<br><br>
+                <div class="plsystemstext">Webmoney: Z397885094876</div><br>
+                <div class="plsystemstext">Liberty reserve: U1314335</div><br>
+                <div class="plsystemstext">Perfect money: U1522431</div><br>
+                Если возникнут трудности или вопросы, обращайтесь в тех-поддержку.
+            </div>
+       </div>
+            
+ </div>       
+ 
+</center>
