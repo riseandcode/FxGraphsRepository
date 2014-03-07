@@ -39,5 +39,23 @@ namespace DL
         public bool IsUpdatedVisible { get; private set; }
         [DataMember]
         public bool IsTrackingVisible { get; private set; }
+        [DataMember]
+        public bool IsDescriptionVisible { get; private set; }
+        [DataMember]
+        public bool IsViewsVisible { get; private set; }
+        [DataMember]
+        public bool IsBrokerVisible { get; private set; }
+        [DataMember]
+        public bool IsLeverageVisible { get; private set; }
+        [DataMember]
+        public bool IsTypeVisible { get; private set; }
+        [DataMember]
+        public bool IsSystemVisible { get; private set; }
+        [DataMember]
+        public bool IsTradingVisible { get; private set; }
+        [DataMember]
+        public bool IsStartedVisible { get; private set; }
+        [DataMember]
+        public bool IsTimezoneVisible { get; private set; }
     }
 }
