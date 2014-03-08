@@ -383,6 +383,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\kendo\kendo.common.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.default.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.min.css" />
+    <Content Include="Content\kendo\kendo.default.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="ForexBoxTrade2\account.html" />
     <Content Include="ForexBoxTrade2\activate.html" />
@@ -597,6 +601,9 @@
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.numeric.js" />
     <Content Include="Scripts\JsForRegisterAndLogin.js" />
+    <Content Include="Scripts\kendo\console.js" />
+    <Content Include="Scripts\kendo\jquery.min.js" />
+    <Content Include="Scripts\kendo\kendo.dataviz.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\tooltip.js" />
@@ -732,7 +739,7 @@
     <Content Include="Views\Home\Company.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\MainDesign.cshtml" />
+    <Content Include="Views\Shared\MainDesign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\MainCabinet.cshtml" />
@@ -935,7 +942,7 @@
     </EmbeddedResource>
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <Content Include="Views\Home\PammCabinet.cshtml" />
-    <Content Include="Views\Home\MainDesignfooter.cshtml" />
+    <Content Include="Views\Shared\MainDesignfooter.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

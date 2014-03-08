@@ -32,27 +32,6 @@
 
 
 
-<div class="header">
-    <div class="cell">
-              
-        <br>
-        @{
-            Html.RenderPartial("MainDesign");    
-            Html.RenderPartial("LoginShared");
-            
-        }
-        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
-        {
-            <div class="menulogin">
-                <a href="@Url.Action("LogOff")" class="loginbox">@ViewData["Exit"]<div class="imageligin"></div></a>            
-            </div>    
-        }
-
-    </div>
-</div>
-
-
-
 <div class="content">
     <div class="cell">
         
@@ -84,28 +63,4 @@
        
     </div>
 </div>
-
-
-
-
-
-
-<div class="footer">
-    <div class="cell">
-        @{
-            Html.RenderPartial("MainDesignfooter");              
-        }  
-    </div>
-          
-</div>
-
-
-
-
-
-
-
-
-
-
 

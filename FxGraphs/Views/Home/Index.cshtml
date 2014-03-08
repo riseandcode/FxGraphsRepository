@@ -9,32 +9,14 @@
     <!--[if lte IE 7]>
         <table style="width: 100%; height: 100%" border="0" cellspacing="0" cellpadding="0"> <tr>
                                                                                              <td valign="top"><table style="width: 100%;" border="0" cellspacing="0" cellpadding="0"><tbody>
-                                                                                                                                                                                     <tr><td><![endif]-->
+                                                                                                                                                                                    <tr><td><![endif]-->
 
-   
+  
 
     <!--[if lte IE 7]>
         </td></tr></tbody>
         <thead><tr><td><![endif]-->
 
-<div class="header">
-    <div class="cell">
-              
-        <br>
-        @{
-            Html.RenderPartial("MainDesign");    
-            Html.RenderPartial("LoginShared");
-            
-        }
-        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
-        {
-            <div class="menulogin">
-                <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
-            </div>    
-        }
-
-    </div>
-</div>
 
  <div class="content">
      <div class="cell">
@@ -52,14 +34,7 @@
         </tr>
         <tr><td valign="bottom"><![endif]-->
 
-    <div class="footer">
-        <div class="cell">
-            @{
-                Html.RenderPartial("MainDesignfooter");              
-            }  
-        </div>
-          
-    </div>
+
 
     <!--[if lte IE 7]>
         </td></tr>

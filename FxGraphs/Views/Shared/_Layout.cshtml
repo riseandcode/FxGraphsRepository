@@ -14,6 +14,43 @@
 
 </head>
 <body>
+
+  <div class="header">
+    <div class="cell">
+              
+        <br>
+        @{
+            Html.RenderPartial("MainDesign");    
+            Html.RenderPartial("LoginShared");
+            
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
+        {
+            <div class="menulogin">
+                <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
+            </div>    
+        }
+
+    </div>
+</div>
+
+
     @RenderBody()
+    <!--[if lte IE 7]>
+        </td></tr></thead></table></td>
+        </tr>
+        <tr><td valign="bottom"><![endif]-->
+
+    <div class="footer">
+        <div class="cell">
+            @{
+                Html.RenderPartial("MainDesignfooter");              
+            }  
+        </div>
+          
+    </div>
+
+
+   
 </body>
 </html>
