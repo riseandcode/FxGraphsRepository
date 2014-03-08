@@ -6,15 +6,15 @@ using System.Web.Mvc;
 
 namespace ForexBox.Controllers
 {
-   public class StatsController : ForexBoxController
-   {
-      //
-      // GET: /Stats/
+    public class StatsController : ForexBoxController
+    {
+        //
+        // GET: /Stats/
 
-      public ActionResult Index()
-      {
-         return View();
-      }
+        public ActionResult Index()
+        {
+            return View();
+        }
 
       [HttpGet]
       public ContentResult GetGraphData(string graphType)
@@ -26,6 +26,6 @@ namespace ForexBox.Controllers
 
 
       }
-   }
+    }
 
 }

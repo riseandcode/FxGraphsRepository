@@ -46,12 +46,15 @@
   <ItemGroup>
     <Compile Include="Accounts.cs" />
     <Compile Include="Brokers.cs" />
+    <Compile Include="Model\UserStatisticSettings.cs" />
+    <Compile Include="Repository\DepositsDataRepository.cs" />
     <Compile Include="forexBoxDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>forexBoxDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\StatisticConfigurationRepository.cs" />
     <Compile Include="UserAccountsInfo.cs" />
     <Compile Include="Users.cs" />
   </ItemGroup>
@@ -63,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

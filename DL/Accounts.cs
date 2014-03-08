@@ -19,7 +19,7 @@ namespace DL
     {
         static AccountsManagement()
         {
-            EntitiesContainer = new forexBox2Entities(ConfigurationManager.ConnectionStrings["ApplicationServices2"].ConnectionString);
+            EntitiesContainer = new forexBox2Entities();
         }
         private static forexBox2Entities EntitiesContainer { get; set; }
 

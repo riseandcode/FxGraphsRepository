@@ -32,6 +32,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_Partners_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.aspnet_Users), "Partners", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.Partners), true)]
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_UsersPaymentSystems_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DL.aspnet_Users), "UsersPaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.UsersPaymentSystems), true)]
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_UsersPaymentSystems_PaymentSystems", "PaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.PaymentSystems), "UsersPaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.UsersPaymentSystems), true)]
+[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_DepositsData_Accounts", "Accounts", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.Accounts), "DepositsData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.DepositsData), true)]
+[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "Accounts", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.Accounts), "StatisticConfiguration", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.StatisticConfiguration), true)]
 
 #endregion
 
@@ -546,6 +548,38 @@ namespace DL
             }
         }
         private ObjectSet<sysdiagrams> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DepositsData> DepositsDatas
+        {
+            get
+            {
+                if ((_DepositsDatas == null))
+                {
+                    _DepositsDatas = base.CreateObjectSet<DepositsData>("DepositsDatas");
+                }
+                return _DepositsDatas;
+            }
+        }
+        private ObjectSet<DepositsData> _DepositsDatas;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<StatisticConfiguration> StatisticConfigurations
+        {
+            get
+            {
+                if ((_StatisticConfigurations == null))
+                {
+                    _StatisticConfigurations = base.CreateObjectSet<StatisticConfiguration>("StatisticConfigurations");
+                }
+                return _StatisticConfigurations;
+            }
+        }
+        private ObjectSet<StatisticConfiguration> _StatisticConfigurations;
 
         #endregion
 
@@ -782,6 +816,22 @@ namespace DL
         {
             base.AddObject("sysdiagrams", sysdiagrams);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DepositsDatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDepositsDatas(DepositsData depositsData)
+        {
+            base.AddObject("DepositsDatas", depositsData);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the StatisticConfigurations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToStatisticConfigurations(StatisticConfiguration statisticConfiguration)
+        {
+            base.AddObject("StatisticConfigurations", statisticConfiguration);
+        }
 
         #endregion
 
@@ -948,6 +998,54 @@ namespace DL
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_Accounts", "DepositsData")]
+        public EntityCollection<DepositsData> DepositsDatas
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_Accounts", "DepositsData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_Accounts", "DepositsData", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "StatisticConfiguration")]
+        public EntityCollection<StatisticConfiguration> StatisticConfigurations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_Accounts", "StatisticConfiguration");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_Accounts", "StatisticConfiguration", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -4502,6 +4600,183 @@ namespace DL
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="forexBox2Model", Name="DepositsData")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DepositsData : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DepositsData object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="amount">Initial value of the Amount property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static DepositsData CreateDepositsData(global::System.Int32 id, global::System.Decimal amount, global::System.DateTime date, global::System.Int32 userId)
+        {
+            DepositsData depositsData = new DepositsData();
+            depositsData.Id = id;
+            depositsData.Amount = amount;
+            depositsData.Date = date;
+            depositsData.UserId = userId;
+            return depositsData;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Amount
+        {
+            get
+            {
+                return _Amount;
+            }
+            set
+            {
+                OnAmountChanging(value);
+                ReportPropertyChanging("Amount");
+                _Amount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Amount");
+                OnAmountChanged();
+            }
+        }
+        private global::System.Decimal _Amount;
+        partial void OnAmountChanging(global::System.Decimal value);
+        partial void OnAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_Accounts", "Accounts")]
+        public Accounts Account
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Accounts> AccountReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="forexBox2Model", Name="Partners")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -4838,6 +5113,157 @@ namespace DL
         #endregion
 
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="forexBox2Model", Name="StatisticConfiguration")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class StatisticConfiguration : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new StatisticConfiguration object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="data">Initial value of the Data property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static StatisticConfiguration CreateStatisticConfiguration(global::System.Int32 id, global::System.Byte[] data, global::System.Int32 userId)
+        {
+            StatisticConfiguration statisticConfiguration = new StatisticConfiguration();
+            statisticConfiguration.Id = id;
+            statisticConfiguration.Data = data;
+            statisticConfiguration.UserId = userId;
+            return statisticConfiguration;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Data
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Data);
+            }
+            set
+            {
+                OnDataChanging(value);
+                ReportPropertyChanging("Data");
+                _Data = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Data");
+                OnDataChanged();
+            }
+        }
+        private global::System.Byte[] _Data;
+        partial void OnDataChanging(global::System.Byte[] value);
+        partial void OnDataChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "Accounts")]
+        public Accounts Account
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Accounts> AccountReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>

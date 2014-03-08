@@ -22,9 +22,11 @@
           <EntitySet Name="ASPStateTempSessions" EntityType="forexBox2Model.Store.ASPStateTempSessions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="brokers" EntityType="forexBox2Model.Store.brokers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Deposits" EntityType="forexBox2Model.Store.Deposits" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DepositsData" EntityType="forexBox2Model.Store.DepositsData" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Partners" EntityType="forexBox2Model.Store.Partners" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaymentSystems" EntityType="forexBox2Model.Store.PaymentSystems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ResetURLs" EntityType="forexBox2Model.Store.ResetURLs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StatisticConfigurations" EntityType="forexBox2Model.Store.StatisticConfigurations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="forexBox2Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersPaymentSystems" EntityType="forexBox2Model.Store.UsersPaymentSystems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vw_aspnet_Applications" EntityType="forexBox2Model.Store.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Applications">
@@ -162,9 +164,17 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_DepositsData_Accounts" Association="forexBox2Model.Store.FK_DepositsData_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="DepositsData" EntitySet="DepositsData" />
+          </AssociationSet>
           <AssociationSet Name="FK_Partners_aspnet_Users" Association="forexBox2Model.Store.FK_Partners_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatisticConfigurations_Accounts" Association="forexBox2Model.Store.FK_StatisticConfigurations_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="StatisticConfigurations" EntitySet="StatisticConfigurations" />
           </AssociationSet>
           <AssociationSet Name="FK_UsersPaymentSystems_aspnet_Users" Association="forexBox2Model.Store.FK_UsersPaymentSystems_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -358,6 +368,15 @@
           <Property Name="InvestorID" Type="bigint" Nullable="false" />
           <Property Name="balancePartner" Type="float" />
         </EntityType>
+        <EntityType Name="DepositsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="decimal" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Partners">
           <Key>
             <PropertyRef Name="ID" />
@@ -379,6 +398,14 @@
           </Key>
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="resetURL" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatisticConfigurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -689,6 +716,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DepositsData_Accounts">
+          <End Role="Accounts" Type="forexBox2Model.Store.Accounts" Multiplicity="1" />
+          <End Role="DepositsData" Type="forexBox2Model.Store.DepositsData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="DepositsData">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Partners_aspnet_Users">
           <End Role="aspnet_Users" Type="forexBox2Model.Store.aspnet_Users" Multiplicity="1" />
           <End Role="Partners" Type="forexBox2Model.Store.Partners" Multiplicity="*" />
@@ -698,6 +737,18 @@
             </Principal>
             <Dependent Role="Partners">
               <PropertyRef Name="systemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatisticConfigurations_Accounts">
+          <End Role="Accounts" Type="forexBox2Model.Store.Accounts" Multiplicity="1" />
+          <End Role="StatisticConfigurations" Type="forexBox2Model.Store.StatisticConfigurations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="StatisticConfigurations">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1283,6 +1334,16 @@
           <EntitySet Name="ASPStateTempSessions" EntityType="forexBox2Model.ASPStateTempSessions" />
           <EntitySet Name="Deposits" EntityType="forexBox2Model.Deposits" />
           <EntitySet Name="sysdiagrams" EntityType="forexBox2Model.sysdiagrams" />
+          <EntitySet Name="DepositsDatas" EntityType="forexBox2Model.DepositsData" />
+          <EntitySet Name="StatisticConfigurations" EntityType="forexBox2Model.StatisticConfiguration" />
+          <AssociationSet Name="FK_DepositsData_Accounts" Association="forexBox2Model.FK_DepositsData_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="DepositsData" EntitySet="DepositsDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatisticConfigurations_Accounts" Association="forexBox2Model.FK_StatisticConfigurations_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="StatisticConfiguration" EntitySet="StatisticConfigurations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1313,14 +1374,14 @@
           <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
           <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="aspnet_Applications" Relationship="forexBox2Model.FK__aspnet_Me__Appli__21B6055D" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK__aspnet_Me__UserI__22AA2996" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
@@ -1343,7 +1404,7 @@
           </Key>
           <Property Name="PathId" Type="Guid" Nullable="false" />
           <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="aspnet_Paths" Relationship="forexBox2Model.FK__aspnet_Pe__PathI__628FA481" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
         </EntityType>
         <EntityType Name="aspnet_PersonalizationPerUser">
@@ -1354,7 +1415,7 @@
           <Property Name="PathId" Type="Guid" />
           <Property Name="UserId" Type="Guid" />
           <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="aspnet_Paths" Relationship="forexBox2Model.FK__aspnet_Pe__PathI__68487DD7" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK__aspnet_Pe__UserI__693CA210" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
         </EntityType>
@@ -1366,7 +1427,7 @@
           <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PropertyValuesString" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PropertyValuesBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK__aspnet_Pr__UserI__38996AB5" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
         </EntityType>
         <EntityType Name="aspnet_Roles">
@@ -1400,7 +1461,7 @@
           <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
           <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
-          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="aspnet_Applications" Relationship="forexBox2Model.FK__aspnet_Us__Appli__0DAF0CB0" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
           <NavigationProperty Name="aspnet_Membership" Relationship="forexBox2Model.FK__aspnet_Me__UserI__22AA2996" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
           <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="forexBox2Model.FK__aspnet_Pe__UserI__693CA210" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
@@ -1414,8 +1475,8 @@
             <PropertyRef Name="EventId" />
           </Key>
           <Property Name="EventId" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
-          <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" />
-          <Property Name="EventTime" Type="DateTime" Nullable="false" />
+          <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EventType" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="EventSequence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
           <Property Name="EventOccurrence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
@@ -1468,20 +1529,20 @@
           <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
           <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ApplicationId" Type="Guid" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
           <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
-          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="vw_aspnet_Profiles">
           <Key>
@@ -1489,7 +1550,7 @@
             <PropertyRef Name="LastUpdatedDate" />
           </Key>
           <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataSize" Type="Int32" />
         </EntityType>
         <EntityType Name="vw_aspnet_Roles">
@@ -1520,7 +1581,7 @@
           <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
           <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
-          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="vw_aspnet_UsersInRoles">
           <Key>
@@ -1549,7 +1610,7 @@
           </Key>
           <Property Name="PathId" Type="Guid" Nullable="false" />
           <Property Name="DataSize" Type="Int32" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="vw_aspnet_WebPartState_User">
           <Key>
@@ -1558,7 +1619,7 @@
           <Property Name="PathId" Type="Guid" />
           <Property Name="UserId" Type="Guid" />
           <Property Name="DataSize" Type="Int32" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK__aspnet_Me__Appli__21B6055D">
           <End Role="aspnet_Applications" Type="forexBox2Model.aspnet_Applications" Multiplicity="1" />
@@ -1681,6 +1742,8 @@
           <Property Type="Int64" Name="accountNumber" Nullable="false" />
           <Property Type="Boolean" Name="active" Nullable="false" />
           <Property Type="Int64" Name="brokerID" />
+          <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_Accounts" FromRole="Accounts" ToRole="DepositsData" />
+          <NavigationProperty Name="StatisticConfigurations" Relationship="forexBox2Model.FK_StatisticConfigurations_Accounts" FromRole="Accounts" ToRole="StatisticConfiguration" />
         </EntityType>
         <EntityType Name="brokers">
           <Key>
@@ -1773,10 +1836,10 @@
             <PropertyRef Name="SessionId" />
           </Key>
           <Property Type="String" Name="SessionId" Nullable="false" MaxLength="88" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="Created" Nullable="false" />
-          <Property Type="DateTime" Name="Expires" Nullable="false" />
-          <Property Type="DateTime" Name="LockDate" Nullable="false" />
-          <Property Type="DateTime" Name="LockDateLocal" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Expires" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LockDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LockDateLocal" Nullable="false" Precision="3" />
           <Property Type="Int32" Name="LockCookie" Nullable="false" />
           <Property Type="Int32" Name="Timeout" Nullable="false" />
           <Property Type="Boolean" Name="Locked" Nullable="false" />
@@ -1790,7 +1853,7 @@
           </Key>
           <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Double" Name="amount" Nullable="false" />
-          <Property Type="DateTime" Name="date" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="3" />
           <Property Type="Double" Name="balance" Nullable="false" />
           <Property Type="Int64" Name="InvestorID" Nullable="false" />
           <Property Type="Double" Name="balancePartner" />
@@ -1805,6 +1868,49 @@
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="DepositsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="forexBox2Model.FK_DepositsData_Accounts" FromRole="DepositsData" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="StatisticConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="Data" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="forexBox2Model.FK_StatisticConfigurations_Accounts" FromRole="StatisticConfiguration" ToRole="Accounts" />
+        </EntityType>
+        <Association Name="FK_DepositsData_Accounts">
+          <End Type="forexBox2Model.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="forexBox2Model.DepositsData" Role="DepositsData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="DepositsData">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatisticConfigurations_Accounts">
+          <End Type="forexBox2Model.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="forexBox2Model.StatisticConfiguration" Role="StatisticConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="StatisticConfiguration">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2087,6 +2193,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DepositsDatas">
+            <EntityTypeMapping TypeName="forexBox2Model.DepositsData">
+              <MappingFragment StoreEntitySet="DepositsData">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatisticConfigurations">
+            <EntityTypeMapping TypeName="forexBox2Model.StatisticConfiguration">
+              <MappingFragment StoreEntitySet="StatisticConfigurations">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2183,7 +2308,7 @@
           <ConnectorPoint PointX="9.29492484375" PointY="16.268992513020834" />
           <ConnectorPoint PointX="10.5" PointY="16.268992513020834" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="forexBox2Model.PaymentSystems" Width="1.5" PointX="11.25" PointY="18.375" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="forexBox2Model.PaymentSystems" Width="1.5" PointX="11.625" PointY="18.375" Height="1.595683593749996" />
         <EntityTypeShape EntityType="forexBox2Model.UsersPaymentSystems" Width="1.5" PointX="13.5" PointY="15.125" Height="2.1725878906250102" />
         <AssociationConnector Association="forexBox2Model.FK_UsersPaymentSystems_aspnet_Users" >
           <ConnectorPoint PointX="9.75" PointY="14.747091471354171" />
@@ -2199,6 +2324,10 @@
         <EntityTypeShape EntityType="forexBox2Model.ASPStateTempSessions" Width="1.5" PointX="5.375" PointY="15.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="forexBox2Model.Deposits" Width="1.5" PointX="15.375" PointY="6.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="forexBox2Model.sysdiagrams" Width="1.5" PointX="15.375" PointY="9.75" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="15.25" PointY="13.625" />
+        <EntityTypeShape EntityType="forexBox2Model.StatisticConfiguration" Width="1.5" PointX="16.125" PointY="16.25" />
+        <AssociationConnector Association="forexBox2Model.FK_DepositsData_Accounts" />
+        <AssociationConnector Association="forexBox2Model.FK_StatisticConfigurations_Accounts" />
       </Diagram>
     </Diagrams>
   </Designer>
