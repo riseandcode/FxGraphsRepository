@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -387,6 +384,7 @@
     <Content Include="Content\kendo\kendo.dataviz.default.min.css" />
     <Content Include="Content\kendo\kendo.dataviz.min.css" />
     <Content Include="Content\kendo\kendo.default.min.css" />
+    <Content Include="Content\ShortStatistic.css" />
     <Content Include="favicon.ico" />
     <Content Include="ForexBoxTrade2\account.html" />
     <Content Include="ForexBoxTrade2\activate.html" />
@@ -607,6 +605,7 @@
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\tooltip.js" />
+    <Content Include="Views\Stats\StatisticInfo.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -1,4 +1,11 @@
-﻿@{
+﻿<style type="text/css">
+     body {
+         width: 100%;
+     }
+ </style>
+
+@{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,28 +27,29 @@
     <script src="../../Scripts/kendo/kendo.dataviz.min.js"></script>
 </head>
 <body >
-    <div style="margin-top:50px;">
-    <div class="chart-wrapper">
+    <div style="margin-top:50px;margin-left:50px">
+        
+    <div style="float: left">
+        @Html.Partial("StatisticInfo")
+    </div>
+    <div class="chart-wrapper" style="float:left">
         <div id="chart"></div>
     </div>
     <script>
 
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $.ajax({
                 url: '/ru/Stats/GetGraphData?graphType=growth',
                 type: 'GET',
                 accepts: "application/json; charset=utf-8",
-                error: function (xhr)
-                {
+                error: function (xhr) {
                     alert('Error: ' + xhr.statusText);
                 },
-                success: function (result)
-                {
+                success: function (result) {
                     createChart(result);
                 },
-                
-               
+
+
             });
         });
 
@@ -90,8 +98,7 @@
         //    "loss": 3
         //}];
 
-        function createChart(grandSlam)
-        {
+        function createChart(grandSlam) {
             $("#chart").kendoChart({
                 dataSource: {
                     data: grandSlam
@@ -115,7 +122,7 @@
                         },
                         position: "bottom"
                     }
-                },{
+                }, {
                     field: "loss",
                     name: "Losses"
                 }],
