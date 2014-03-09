@@ -23,8 +23,6 @@ namespace ForexBox.Controllers
 
             return Content(json, "application/json");
 
-
-
         }
         public ActionResult Index(string id)
         {
