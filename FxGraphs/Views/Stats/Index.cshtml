@@ -1,4 +1,8 @@
-﻿@{
+﻿@model DL.Statistic
+
+
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -24,7 +28,7 @@
     <div style="margin-top:50px;margin-left:50px">
         
     <div style="float: left">
-        @Html.Partial("StatisticInfo")
+        @Html.Partial("StatisticInfo", Model.ShortStatisticData)
     </div>
     <div class="chart-wrapper" style="float:left">
         <div id="chart"></div>

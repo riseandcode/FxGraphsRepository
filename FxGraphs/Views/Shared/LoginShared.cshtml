@@ -27,7 +27,7 @@
         if (errorMessage == "") {
             $.ajax(
                 {
-                    url: '@Url.Action("CheckLogin")',
+                    url: 'en/Home/CheckLogin',
                     type: 'POST',
                     
                     data: JSON.stringify({ "userName": un, "password": pass }),

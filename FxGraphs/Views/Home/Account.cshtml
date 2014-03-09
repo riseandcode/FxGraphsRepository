@@ -6,61 +6,119 @@
     <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-1.6.2.min.js")"></script>  
     <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery-tubs.js")"></script> 
     <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquerytabs.min.js")"></script>
-    }
+}
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript">
-    $(document).ready(function (){
-        $('div > a').click(function (){
+    $(document).ready(function () {
+        $('div > a').click(function () {
             $('.container > div').hide();
-            var i=$(this).data('id');
-            $('#d'+i).fadeIn();
-        });		
+            var i = $(this).data('id');
+            $('#d' + i).fadeIn();
+        });
         $("#urlHome").trigger("click");
     });
 </script>
 
-<script type="text/javascript">    $(function () {
+<script type="text/javascript">
+    $(function () {
         $('dl.tabs dt').click(function () {
-            $(this)                .siblings().removeClass('selected').end()                .next('dd').andSelf().addClass('selected');
+            $(this)
+                .siblings().removeClass('selected').end()
+                .next('dd').andSelf().addClass('selected');
         });
-    });</script>
+    });
+</script>
 
 
 
 
 <div class="content">
-    <div class="cell">
-        
-        
-        <div id="page">			<dl class="tabs">				<dt class="selected">Рост</dt>				<dd class="selected">                    <div class="tab-content">
-                       @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                       {
-                           <input type="checkbox" /> <span> Отображать для всех</span> <br/>
-                       }                                                                          Содержимое вкладки 1                                                                                </div>				</dd>								<dt>Баланс</dt>				<dd>                    <div class="tab-content">
+
+    <div style="overflow-y: auto;">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {        
+            <div>Short Statistic Configurations</div>
+            <div>
+                @Html.Partial("StatisticConfiguration", ViewBag.StatisticSettings as DL.UserStatisticSettings)
+            </div>
+        }
+    </div>
+
+
+    @*<div class="cell">
+
+
+        <div id="page">
+            <dl class="tabs">
+                <dt class="selected">Рост</dt>
+                <dd class="selected">
+                    <div class="tab-content">
                         @if (HttpContext.Current.User.Identity.IsAuthenticated)
                         {
-                               <input type="checkbox" value="Отображать для всех"/>
-                        }                                                                         Содержимое вкладки 2                                                                                                    </div>				</dd>								<dt>Прибыль</dt>				<dd>                    <div class="tab-content">
-                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                       {
-                           <input type="checkbox" value="Отображать для всех"/>
-                       }                                                Содержимое вкладки 3                                                                                </div>				</dd>								<dt>Просадка</dt>				<dd>                    <div class="tab-content">
-                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                       {
-                           <input type="checkbox" value="Отображать для всех"/>
-                       }                                                                        Содержимое вкладки 4                                                                                                                     </div>				</dd>								<dt>Настройки</dt>				<dd>                    <div class="tab-content">
-                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                       {
-                           <input type="checkbox" value="Отображать для всех"/>
-                       }                                                                                                 Содержимое вкладки 5                                                                                                    </div>				</dd>			</dl>					</div>
+                            <input type="checkbox" value="Отображать для всех" />
+                        }
+                        Содержимое вкладки 1
+                    </div>
+                </dd>
 
-        
+                <dt>Баланс</dt>
+                <dd>
+                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <input type="checkbox" value="Отображать для всех" />
+                        }
+                        Содержимое вкладки 2
+                    </div>
+                </dd>
 
-       
-    </div>
+                <dt>Прибыль</dt>
+                <dd>
+                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <input type="checkbox" value="Отображать для всех" />
+                        }
+                        Содержимое вкладки 3
+                    </div>
+                </dd>
+
+                <dt>Просадка</dt>
+                <dd>
+                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <input type="checkbox" value="Отображать для всех" /><span>Отображать для всех</span><br />
+                        }
+                        Содержимое вкладки 4                 
+                    </div>
+                </dd>
+
+                <dt>Настройки</dt>
+                <dd>
+                    <div class="tab-content">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <input type="checkbox" value="Отображать для всех" />
+                        }
+                        Содержимое вкладки 5
+
+                        <div>
+                            @Html.Partial("StatisticConfiguration", ViewBag.StatisticSettings as DL.UserStatisticSettings)
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+
+        </div>
+
+
+
+
+    </div>*@
 </div>
 

@@ -32,8 +32,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_Partners_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.aspnet_Users), "Partners", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.Partners), true)]
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_UsersPaymentSystems_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DL.aspnet_Users), "UsersPaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.UsersPaymentSystems), true)]
 [assembly: EdmRelationshipAttribute("forexBox2Model", "FK_UsersPaymentSystems_PaymentSystems", "PaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.PaymentSystems), "UsersPaymentSystems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.UsersPaymentSystems), true)]
-[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_DepositsData_Accounts", "Accounts", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.Accounts), "DepositsData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.DepositsData), true)]
-[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "Accounts", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.Accounts), "StatisticConfiguration", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.StatisticConfiguration), true)]
+[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_DepositsData_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.aspnet_Users), "DepositsData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.DepositsData), true)]
+[assembly: EdmRelationshipAttribute("forexBox2Model", "FK_StatisticConfigurations_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DL.aspnet_Users), "StatisticConfiguration", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DL.StatisticConfiguration), true)]
 
 #endregion
 
@@ -998,54 +998,6 @@ namespace DL
         #endregion
 
     
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_Accounts", "DepositsData")]
-        public EntityCollection<DepositsData> DepositsDatas
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_Accounts", "DepositsData");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_Accounts", "DepositsData", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "StatisticConfiguration")]
-        public EntityCollection<StatisticConfiguration> StatisticConfigurations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_Accounts", "StatisticConfiguration");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_Accounts", "StatisticConfiguration", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -3493,6 +3445,50 @@ namespace DL
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_aspnet_Users", "DepositsData")]
+        public EntityCollection<DepositsData> DepositsDatas
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_aspnet_Users", "DepositsData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DepositsData>("forexBox2Model.FK_DepositsData_aspnet_Users", "DepositsData", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_aspnet_Users", "StatisticConfiguration")]
+        public EntityCollection<StatisticConfiguration> StatisticConfigurations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "StatisticConfiguration");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StatisticConfiguration>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "StatisticConfiguration", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -4614,7 +4610,7 @@ namespace DL
         /// <param name="amount">Initial value of the Amount property.</param>
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
-        public static DepositsData CreateDepositsData(global::System.Int32 id, global::System.Decimal amount, global::System.DateTime date, global::System.Int32 userId)
+        public static DepositsData CreateDepositsData(global::System.Int32 id, global::System.Decimal amount, global::System.DateTime date, global::System.Guid userId)
         {
             DepositsData depositsData = new DepositsData();
             depositsData.Id = id;
@@ -4708,7 +4704,7 @@ namespace DL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 UserId
+        public global::System.Guid UserId
         {
             get
             {
@@ -4723,8 +4719,8 @@ namespace DL
                 OnUserIdChanged();
             }
         }
-        private global::System.Int32 _UserId;
-        partial void OnUserIdChanging(global::System.Int32 value);
+        private global::System.Guid _UserId;
+        partial void OnUserIdChanging(global::System.Guid value);
         partial void OnUserIdChanged();
 
         #endregion
@@ -4738,16 +4734,16 @@ namespace DL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_Accounts", "Accounts")]
-        public Accounts Account
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_DepositsData_aspnet_Users", "aspnet_Users")]
+        public aspnet_Users aspnet_Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_DepositsData_aspnet_Users", "aspnet_Users").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_DepositsData_aspnet_Users", "aspnet_Users").Value = value;
             }
         }
         /// <summary>
@@ -4755,17 +4751,17 @@ namespace DL
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Accounts> AccountReference
+        public EntityReference<aspnet_Users> aspnet_UsersReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_DepositsData_aspnet_Users", "aspnet_Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Accounts>("forexBox2Model.FK_DepositsData_Accounts", "Accounts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Users>("forexBox2Model.FK_DepositsData_aspnet_Users", "aspnet_Users", value);
                 }
             }
         }
@@ -5131,7 +5127,7 @@ namespace DL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="data">Initial value of the Data property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
-        public static StatisticConfiguration CreateStatisticConfiguration(global::System.Int32 id, global::System.Byte[] data, global::System.Int32 userId)
+        public static StatisticConfiguration CreateStatisticConfiguration(global::System.Int32 id, global::System.Byte[] data, global::System.Guid userId)
         {
             StatisticConfiguration statisticConfiguration = new StatisticConfiguration();
             statisticConfiguration.Id = id;
@@ -5200,7 +5196,7 @@ namespace DL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 UserId
+        public global::System.Guid UserId
         {
             get
             {
@@ -5215,8 +5211,8 @@ namespace DL
                 OnUserIdChanged();
             }
         }
-        private global::System.Int32 _UserId;
-        partial void OnUserIdChanging(global::System.Int32 value);
+        private global::System.Guid _UserId;
+        partial void OnUserIdChanging(global::System.Guid value);
         partial void OnUserIdChanged();
 
         #endregion
@@ -5230,16 +5226,16 @@ namespace DL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_Accounts", "Accounts")]
-        public Accounts Account
+        [EdmRelationshipNavigationPropertyAttribute("forexBox2Model", "FK_StatisticConfigurations_aspnet_Users", "aspnet_Users")]
+        public aspnet_Users aspnet_Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "aspnet_Users").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "aspnet_Users").Value = value;
             }
         }
         /// <summary>
@@ -5247,17 +5243,17 @@ namespace DL
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Accounts> AccountReference
+        public EntityReference<aspnet_Users> aspnet_UsersReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "aspnet_Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Accounts>("forexBox2Model.FK_StatisticConfigurations_Accounts", "Accounts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Users>("forexBox2Model.FK_StatisticConfigurations_aspnet_Users", "aspnet_Users", value);
                 }
             }
         }

@@ -6,14 +6,14 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 
-namespace DL.Repository
+namespace DL
 {
     /// <summary>
     /// Repository that manages User settings for stattistic displaying
     /// </summary>
     public class StatisticConfigurationRepository
     {
-        public UserStatisticSettings GetUserStatisticSettingsByUserId(int id)
+        public UserStatisticSettings GetUserStatisticSettingsByUserId(Guid id)
         {
             UserStatisticSettings settings = null;
 
@@ -30,7 +30,7 @@ namespace DL.Repository
             return settings;
         }
 
-        public void AddUserStatisticSettings(UserStatisticSettings settings)
+        public bool AddUserStatisticSettings(UserStatisticSettings settings)
         {
             using (var ctx = new forexBox2Entities())
             {
@@ -41,8 +41,14 @@ namespace DL.Repository
                     UserId = settings.UserId,
                 });
 
-                ctx.SaveChanges();
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch { return false; }                                
             }
+
+            return true;
         }
 
         public void UpdateUserStatisticSettings(UserStatisticSettings settings)

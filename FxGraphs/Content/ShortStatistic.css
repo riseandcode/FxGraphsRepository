@@ -150,3 +150,7 @@ a {
     color: #575454;
     text-decoration: none;
 }
+
+.alignL {
+    text-align: left!important;
+}

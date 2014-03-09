@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DL;
 
 namespace ForexBox.Controllers
 {
@@ -26,9 +27,16 @@ namespace ForexBox.Controllers
         }
         public ActionResult Index(string id)
         {
+            StatsManager manager = new StatsManager();
 
-            ViewBag.Settings = 1;
-            return View("Index");
+            Statistic stat = new Statistic();
+            
+            ShortStatistic shortStat = new ShortStatistic();
+            shortStat.Settings = manager.GetOrCreateUserSettings(id);
+
+            stat.ShortStatisticData = shortStat;
+
+            return View("Index", stat);
         }
     }
 }

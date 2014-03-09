@@ -1,4 +1,5 @@
-﻿<link href="../../../Content/ShortStatistic.css" type="text/css" rel="stylesheet" />
+﻿@model DL.ShortStatistic
+<link href="../../../Content/ShortStatistic.css" type="text/css" rel="stylesheet" />
 
 <script type="text/javascript">
     function switchTab(tabId, button) {
@@ -18,37 +19,120 @@
         </ul>
     </div>
     <ul class="quickStats" id="stats" style="">
-        <li class="font12 bold"><span class="floatLeft dotted" id="gainTip">Gain:</span><span class="floatNone"><span class="green">+50.76%</span></span></li>
-        <li class="paddB5 borderB"><span class="floatLeft dotted" id="absGainTip">Abs. Gain:</span>
-            <span class="floatNone"><span class="green">+50.72%</span></span></li>
-        <li class="paddT5"><span class="floatLeft dotted" id="dailyTip">Daily: </span><span class="floatNone">0.16%</span></li>
-        <li><span class="floatLeft dotted" id="monthlyTip">Monthly: </span><span class="floatNone">4.82%</span></li>
-        <li class="paddB5 borderB"><span class="floatLeft">Drawdown: </span><span class="floatNone">18.27%</span></li>
-        <li class="paddT5"><span class="floatLeft">Balance:</span><span class="floatNone"> $7540.84 </span></li>
-        <li><span class="floatLeft">Equity:</span><span class="floatNone"><span class="font10">(100.00%)</span>  $7540.84  </span></li>
-        <li><span class="floatLeft">Highest:</span>
-            <span class="floatNone"><span class="gray font10">(Aug 06) </span>$8190.25 </span></li>
-        <li><span class="floatLeft">Profit:</span><span class="floatNone"> <span class="green">$2537.79</span>  </span></li>
-        <li class="paddB5"><span class="floatLeft">Interest:</span><span class="floatNone">  -$35.09 </span></li>
-
-        <li class="paddT5 borderT"><span class="floatLeft">Deposits:</span><span class="floatNone"> $5003.05 </span></li>
-        <li class="paddB5 borderB"><span class="floatLeft">Withdrawals:</span><span class="floatNone"> $0.00 </span></li>
-
-        <li class="paddB5 border0 paddT5"><span class="floatLeft">Updated:</span><span class="floatNone" id="lastUpdatedTime" time="1375978985000">Aug 08 2013 at 16:23</span></li>
-        <li>
-            <span class="floatLeft">
-                <span class="pointer">
-                    <a href="javascript:void(0)" class="underline" id="trackingButton" onclick="getAccountTracking(621627, 's');">Tracking</a>:
-                </span>
-            </span>
-            <span class="floatNone" id="totalTracking">0</span>
+        @if (Model.Settings.IsGainVisible)
+        {
+            <li class="font12 bold">
+                <span class="floatLeft dotted" id="gainTip">Gain:</span>
+                <span class="floatNone green">+50.76%</span>
+            </li>
+        }
+        @if (Model.Settings.IsAbsGainVisible)
+        {
+            <li class="paddB5 borderB">
+                <span class="floatLeft dotted" id="absGainTip">Abs. Gain:</span>
+                <span class="floatNone green">+50.72%</span>
+            </li>
+        }
+        @if (Model.Settings.IsDailyIncomeVisible)
+        {
+            <li class="paddT5">
+                <span class="floatLeft dotted" id="dailyTip">Daily: </span>
+                <span class="floatNone">0.16%</span>
+            </li>
+        }
+        @if (Model.Settings.IsMonthlyIncomeVisible)
+        {
+            <li>
+                <span class="floatLeft dotted" id="monthlyTip">Monthly: </span>
+                <span class="floatNone">4.82%</span>
+            </li>
+        }
+        @if (Model.Settings.IsDrawdownVisible)
+        {
+            <li class="paddB5 borderB">
+                <span class="floatLeft">Drawdown: </span>
+                <span class="floatNone">18.27%</span>
+            </li>
+        }
+        @if (Model.Settings.IsBalanceVisible)
+        {
+        <li class="paddT5">
+            <span class="floatLeft">Balance:</span>
+            <span class="floatNone">$7540.84 </span>
         </li>
+        }
+        @if (Model.Settings.IsEquityVisible)
+        {
+            <li>
+                <span class="floatLeft">Equity:</span>
+                <span class="floatNone">
+                    <span class="font10">(100.00%)</span>  $7540.84  
+                </span>
+            </li>
+        }
+        @if (Model.Settings.IsHighestVisible)
+        {
+            <li>
+                <span class="floatLeft">Highest:</span>
+                <span class="floatNone">
+                    <span class="gray font10">(Aug 06) </span>$8190.25 
+                </span>
+            </li>
+        }
+        @if (Model.Settings.IsProfitVisible)
+        {
+            <li>
+                <span class="floatLeft">Profit:</span>
+                <span class="floatNone green">$2537.79</span>
+            </li>
+        }
+        @if (Model.Settings.IsInterestVisible)
+        {
+            <li class="paddB5">
+                <span class="floatLeft">Interest:</span>
+                <span class="floatNone">-$35.09</span>
+            </li>
+        }
+        @if (Model.Settings.IsDepositsVisible)
+        {
+            <li class="paddT5 borderT">
+                <span class="floatLeft">Deposits:</span>
+                <span class="floatNone">$5003.05</span>
+            </li>
+        }
+        @if (Model.Settings.IsWithdrawalsVisible)
+        {
+            <li class="paddB5 borderB">
+                <span class="floatLeft">Withdrawals:</span>
+                <span class="floatNone">$0.00</span>
+            </li>
+        }
+        @if (Model.Settings.IsUpdatedVisible)
+        {
+            <li class="paddB5 border0 paddT5">
+                <span class="floatLeft">Updated:</span>
+                <span class="floatNone" id="lastUpdatedTime" time="1375978985000">Aug 08 2013 at 16:23</span>
+            </li>
+        }
+        @if (Model.Settings.IsTrackingVisible)
+        {
+            <li>
+                <span class="floatLeft">
+                    <span class="pointer">
+                        <a href="javascript:void(0)" class="underline" id="trackingButton" onclick="getAccountTracking(621627, 's');">Tracking</a>:
+                    </span>
+                </span>
+                <span class="floatNone" id="totalTracking">0</span>
+            </li>
+        }
     </ul>
     <ul class="quickStats" id="gen" style="display: none;">
-        <li class="alignL" style="max-height: 134px; overflow: hidden; margin-bottom: 16px">
-            <b>Description:</b><br>
-            <div class="pointer inlineBlock" id="descTip">Order flow with price action</div>
-            @*            <script type="text/javascript">
+        @if (Model.Settings.IsDescriptionVisible)
+        {
+            <li style="max-height: 134px; overflow: hidden; margin-bottom: 16px; text-align: left">
+                <b>Description:</b><br>
+                <div class="pointer inlineBlock" id="descTip">Order flow with price action</div>
+                @*            <script type="text/javascript">
                 new Tip('#descTip', 'Order flow with price action', {
                     hook: 'bottomleft',
                     target: 'mouse',
@@ -56,27 +140,48 @@
                     title: 'System Description'
                 });
             </script>*@
-        </li>
+            </li>
+        }
+        @if (Model.Settings.IsBrokerVisible)
+        {
+            <li><span class="floatLeft">Views:</span><span class="floatNone">134</span></li>
+            <li class="paddT5"><span class="floatLeft">Broker: </span>
+                <span class="floatNone">Alpari NZ</span>
+            </li>
+        }
+        @if (Model.Settings.IsLeverageVisible)
+        {
+            <li><span class="floatLeft">Leverage: </span>
+                <span class="floatNone">1:500
+                </span>
+            </li>
+        }
+        @if (Model.Settings.IsTypeVisible)
+        {
+            <li>
+                <span class="floatLeft">Type:</span>
+                <span class="floatNone">Demo</span>
+            </li>
+        }
 
-        <li><span class="floatLeft">Views:</span><span class="floatNone">134</span></li>
-        <li class="paddT5"><span class="floatLeft">Broker: </span>
-            <span class="floatNone">Alpari NZ</span>
-        </li>
-        <li><span class="floatLeft">Leverage: </span>
-            <span class="floatNone">1:500
-            </span>
-        </li>
-        <li>
-            <span class="floatLeft">Type:</span>
-            <span class="floatNone">Demo</span>
-        </li>
+        @if (Model.Settings.IsSystemVisible)
+        {
+            <li><span class="floatLeft">System:</span><span class="floatNone">Technical</span>
 
-        <li><span class="floatLeft">System:</span><span class="floatNone">Technical</span>
-
-        </li>
-        <li><span class="floatLeft">Trading:</span><span class="floatNone">Manual</span>
-        </li>
-        <li><span class="floatLeft">Started:</span><span class="floatNone">Jun 19, 2013</span></li>
-        <li><span class="floatLeft">Timezone:</span><span class="floatNone">GMT +1</span></li>
+            </li>
+        }
+        @if (Model.Settings.IsTradingVisible)
+        {
+            <li><span class="floatLeft">Trading:</span><span class="floatNone">Manual</span>
+            </li>
+        }
+        @if (Model.Settings.IsStartedVisible)
+        {
+            <li><span class="floatLeft">Started:</span><span class="floatNone">Jun 19, 2013</span></li>
+        }
+        @if (Model.Settings.IsTimezoneVisible)
+        {
+            <li><span class="floatLeft">Timezone:</span><span class="floatNone">GMT +1</span></li>
+        }
     </ul>
 </div>
