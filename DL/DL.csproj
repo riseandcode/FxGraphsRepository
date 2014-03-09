@@ -47,7 +47,9 @@
     <Compile Include="Accounts.cs" />
     <Compile Include="Brokers.cs" />
     <Compile Include="Manager\StatsManager.cs" />
-    <Compile Include="Model\UserStatisticSettings.cs" />
+    <Compile Include="Models\ShortStatistic.cs" />
+    <Compile Include="Models\Statistic.cs" />
+    <Compile Include="Models\UserStatisticSettings.cs" />
     <Compile Include="Repository\DepositsDataRepository.cs" />
     <Compile Include="forexBoxDB.Designer.cs">
       <AutoGen>True</AutoGen>

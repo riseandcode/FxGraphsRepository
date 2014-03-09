@@ -20,14 +20,14 @@
               
         <br>
         @{
-            Html.RenderPartial("MainDesign");    
-            Html.RenderPartial("LoginShared");
+            Html.RenderPartial("MainDesign", new ViewDataDictionary());
+            Html.RenderPartial("LoginShared", new ViewDataDictionary());
             
         }
         @if (HttpContext.Current.User.Identity.IsAuthenticated)    
         {
             <div class="menulogin">
-                <a href="@Url.Action("Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
+                <a href="@Url.Action("../Home/Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
             </div>    
         }
 
@@ -44,7 +44,7 @@
     <div class="footer">
         <div class="cell">
             @{
-                Html.RenderPartial("MainDesignfooter");              
+                Html.RenderPartial("MainDesignfooter", new ViewDataDictionary()); ;            
             }  
         </div>
           

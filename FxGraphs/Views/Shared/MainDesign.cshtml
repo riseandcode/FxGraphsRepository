@@ -1,5 +1,5 @@
 ﻿@using ForexBox.LanguagesLocalization
-@model ForexBox.Models.MainDesign
+@*@model ForexBox.Models.MainDesign*@
 
     <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.formstyler.js")"></script>
     <script type="text/javascript">
@@ -57,13 +57,13 @@
     </script>
     <a href="@Url.Action("Index")"><div class="logoup"><div class="logoleft"></div><div class="logo"></div></div></a>
     <div class="menu">
-        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Companymenu")</a>    
-        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Newsmenu")</a>
-        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Forummenu")</a>
-        <a href="@Url.Action("Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Reitingmenu")</a>
-        <a href="@Url.Action("Company")" class="buttonmenu">Jforex</a>
-        <a href="@Url.Action("Company")" class="buttonmenu">Metatrader</a>
-        <a href="@Url.Action("../Stats")" class="buttonmenu">Statistic</a>
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Companymenu")</a>    
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Newsmenu")</a>
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Forummenu")</a>
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">@ResourceReader.GetRes("MainDesign", "Reitingmenu")</a>
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">Jforex</a>
+        <a href="@Url.Action("../Home/Company")" class="buttonmenu">Metatrader</a>
+        <a href="@Url.Action("../Stats/Index/docotor")" class="buttonmenu">Statistic</a>
     </div>
     <div class="langmenupos">
         <ul class="langmenu">   

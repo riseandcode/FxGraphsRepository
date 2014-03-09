@@ -16,7 +16,7 @@ namespace DL
         /// </summary>
         /// <param name="userId">Account id</param>
         /// <returns>List of deposit data for current user</returns>
-        public List<DepositsData> GetDepositsDataByUserId(int userId)
+        public List<DepositsData> GetDepositsDataByUserId(Guid userId)
         {
             using (var ctx = new forexBox2Entities())
             {

@@ -1,4 +1,6 @@
-﻿<style type="text/css">
+﻿@model DL.Statistic
+
+<style type="text/css">
      body {
          width: 100%;
      }
@@ -30,7 +32,7 @@
     <div style="margin-top:50px;margin-left:50px">
         
     <div style="float: left">
-        @Html.Partial("StatisticInfo")
+        @Html.Partial("StatisticInfo", Model.ShortStatisticData)
     </div>
     <div class="chart-wrapper" style="float:left">
         <div id="chart"></div>

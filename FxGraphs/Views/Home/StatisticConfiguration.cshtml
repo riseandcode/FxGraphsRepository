@@ -1,0 +1,102 @@
+﻿@model DL.UserStatisticSettings
+@using (Html.BeginForm("UpdateSettings", "Home", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsGainVisible)</td>
+            <td>Is Gain Visible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsAbsGainVisible)</td>
+            <td>Is Abs Gain Visible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsWithdrawalsVisible)</td>
+            <td>IsWithdrawalsVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsViewsVisible)</td>
+            <td>IsViewsVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsUpdatedVisible)</td>
+            <td>IsUpdatedVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsTypeVisible)</td>
+            <td>IsTypeVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsTradingVisible)</td>
+            <td>IsTradingVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsTrackingVisible)</td>
+            <td>IsTrackingVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsTimezoneVisible)</td>
+            <td>IsTimezoneVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsSystemVisible)</td>
+            <td>IsSystemVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsStartedVisible)</td>
+            <td>IsStartedVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsProfitVisible)</td>
+            <td>Is Abs Gain VisibleIsProfitVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsMonthlyIncomeVisible)</td>
+            <td>IsMonthlyIncomeVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsLeverageVisible)</td>
+            <td>IsLeverageVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsInterestVisible)</td>
+            <td>IsInterestVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsHighestVisible)</td>
+            <td>IsHighestVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsEquityVisible)</td>
+            <td>IsEquityVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsDrawdownVisible)</td>
+            <td>IsDrawdownVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsDescriptionVisible)</td>
+            <td>IsDescriptionVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsDepositsVisible)</td>
+            <td>IsDepositsVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsDailyIncomeVisible)</td>
+            <td>IsDailyIncomeVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsBrokerVisible)</td>
+            <td>IsBrokerVisible</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(x => x.IsBalanceVisible)</td>
+            <td>IsBalanceVisible</td>
+        </tr>
+    </table>
+    
+    @Html.HiddenFor(x => x.UserId)
+    
+    <input type="submit" value="Update" />
+}

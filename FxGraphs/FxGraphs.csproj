@@ -943,6 +943,7 @@
     <Content Include="Views\Home\PammCabinet.cshtml" />
     <Content Include="Views\Shared\MainDesignfooter.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Home\StatisticConfiguration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LanguageResources\LoginShareden.resx">

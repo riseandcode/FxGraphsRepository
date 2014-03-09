@@ -72,10 +72,22 @@ namespace ForexBox.Controllers
             return View("Index");
         }
 
-       
+
+        [HttpPost]
+        public ActionResult UpdateSettings(UserStatisticSettings settings)
+        {
+            StatsManager statsManager = new StatsManager();
+            statsManager.UpdateUserSettings(settings);
+
+            return RedirectToAction("Account");
+        }
+
+        [HttpGet]
         public ActionResult Account()
         {
             AddEmailValidator();
+            StatsManager statsManager = new StatsManager();
+            ViewBag.StatisticSettings = statsManager.GetOrCreateUserSettings(User.Identity.Name);
             if (!User.Identity.IsAuthenticated)
                 return View("Index");
             ViewBag.Title = 
