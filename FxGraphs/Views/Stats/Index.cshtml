@@ -43,128 +43,146 @@
         </div>
         <script>
 
-           -
-
-             $(document).ready(function ()
-             {
-                 selectChart("@Model.CurrentGraphType");
-                //createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
-            });
-
-            //var grandSlam =
-            //    [{
-            //    "year": "2003",
-            //    "win": 13,
-            //    "extremum": "MIN: 13",
-            //    "loss": 3
-            //},{
-            //    "year": "2004",
-            //    "win": 22,
-            //    "loss": 1
-            //},{
-            //    "year": "2005",
-            //    "win": 24,
-            //    "loss": 2
-            //},{
-            //    "year": "2006",
-            //    "win": 27,
-            //    "extremum": "MAX: 27",
-            //    "loss": 1
-            //},{
-            //    "year": "2007",
-            //    "win": 26,
-            //    "loss": 1
-            //},{
-            //    "year": "2008",
-            //    "win": 24,
-            //    "loss": 3
-            //},{
-            //    "year": "2009",
-            //    "win": 26,
-            //    "loss": 2
-            //},{
-            //    "year": "2010",
-            //    "win": 20,
-            //    "loss": 3
-            //},{
-            //    "year": "2011",
-            //    "win": 20,
-            //    "loss": 4
-            //},{
-            //    "year": "2012",
-            //    "win": 19,
-            //    "loss": 3
-            //}];
-
-            function createChart(grandSlam)
-            {
-                $("#chart").kendoChart({
-                    dataSource: {
-                        data: grandSlam
-                    },
-                    title: {
-                        text: "Roger Federer Grand Slam tournament performance"
-                    },
-                    legend: {
-                        position: "bottom"
-                    },
-                    seriesDefaults: {
-                        type: "line"
-                    },
-                    series: [{
-                        field: "win",
-                        name: "Wins",
-                        noteTextField: "extremum",
-                        notes: {
-                            label: {
-                                position: "outside"
-                            },
-                            position: "bottom"
-                        }
-                    }, {
-                        field: "loss",
-                        name: "Losses"
-                    }],
-                    valueAxis: {
-                        line: {
-                            visible: false
-                        }
-                    },
-                    categoryAxis: {
-                        field: "year",
-                        majorGridLines: {
-                            visible: false
-                        }
-                    },
-                    tooltip: {
-                        visible: true,
-                        template: "#= series.name #: #= value #"
-                    }
-                });
-            }
-
-            function selectChart(chartId)
-            {
-                $('#charts.titleNav li').not('.bold').removeClass().addClass('off');
-
-
-                $('#' + chartId).removeClass('off').addClass('on');
-
-                var url = window.location.pathname;
-                var value = url.substring(url.lastIndexOf('/') + 1);
-                url = url.replace(value, chartId);
-                var state = { location: url };
-                history.pushState(state, chartId, url);
-
-                createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
-            }
-
             $(window).bind("popstate", function (e)
             {
                 var state = e.originalEvent.state;
                 if (state)
                     window.location.pathname = state.location;
             });
+
+            $(document).ready(function ()
+            {
+                DrawChart("@Model.CurrentGraphType");
+             });
+
+             //var grandSlam =
+             //    [{
+             //    "year": "2003",
+             //    "win": 13,
+             //    "extremum": "MIN: 13",
+             //    "loss": 3
+             //},{
+             //    "year": "2004",
+             //    "win": 22,
+             //    "loss": 1
+             //},{
+             //    "year": "2005",
+             //    "win": 24,
+             //    "loss": 2
+             //},{
+             //    "year": "2006",
+             //    "win": 27,
+             //    "extremum": "MAX: 27",
+             //    "loss": 1
+             //},{
+             //    "year": "2007",
+             //    "win": 26,
+             //    "loss": 1
+             //},{
+             //    "year": "2008",
+             //    "win": 24,
+             //    "loss": 3
+             //},{
+             //    "year": "2009",
+             //    "win": 26,
+             //    "loss": 2
+             //},{
+             //    "year": "2010",
+             //    "win": 20,
+             //    "loss": 3
+             //},{
+             //    "year": "2011",
+             //    "win": 20,
+             //    "loss": 4
+             //},{
+             //    "year": "2012",
+             //    "win": 19,
+             //    "loss": 3
+             //}];
+
+             function createChart(grandSlam)
+             {
+                 $("#chart").kendoChart({
+                     dataSource: {
+                         data: grandSlam
+                     },
+                     title: {
+                         text: "Roger Federer Grand Slam tournament performance"
+                     },
+                     legend: {
+                         position: "bottom"
+                     },
+                     seriesDefaults: {
+                         type: "line"
+                     },
+                     series: [{
+                         field: "win",
+                         name: "Wins",
+                         noteTextField: "extremum",
+                         notes: {
+                             label: {
+                                 position: "outside"
+                             },
+                             position: "bottom"
+                         }
+                     }, {
+                         field: "loss",
+                         name: "Losses"
+                     }],
+                     valueAxis: {
+                         line: {
+                             visible: false
+                         }
+                     },
+                     categoryAxis: {
+                         field: "year",
+                         majorGridLines: {
+                             visible: false
+                         }
+                     },
+                     tooltip: {
+                         visible: true,
+                         template: "#= series.name #: #= value #"
+                     }
+                 });
+             }
+
+             function selectChart(chartId)
+             {
+                 var url = window.location.pathname;
+                 var value = url.substring(url.lastIndexOf('/') + 1);
+                 url = url.replace(value, chartId);
+                 var state = { location: url };
+                 history.pushState(state, chartId, url);
+
+                 DrawChart(chartId);
+             }
+
+             function DrawChart(chartId)
+             {
+                 $('#charts.titleNav li').not('.bold').removeClass().addClass('off');
+                 $('#' + chartId).removeClass('off').addClass('on');
+
+                 switch (chartId)
+                 {
+                     case "@Constants.GrowthChartId":
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        break;
+                    case "@Constants.BalanceChartId":
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        break;
+                    case "@Constants.ProfitChartId":
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        break;
+                    case "@Constants.DrawdownChartId":
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        break;
+                    default:
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                }
+            }
+
+         
 
             $(document).bind("kendo:skinChange", createChart);
         </script>
