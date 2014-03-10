@@ -20,6 +20,8 @@ namespace DL
             return data;
          }
       }
+
+      public string CurrentGraphType { get; set; }
    }
 
    public struct GrowthData

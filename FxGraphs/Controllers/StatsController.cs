@@ -23,7 +23,7 @@ namespace ForexBox.Controllers
          StatsManager manager = new StatsManager();
 
          Statistic stat = new Statistic();
-
+         stat.CurrentGraphType = graphType;
          ShortStatistic shortStat = new ShortStatistic();
          shortStat.Settings = manager.GetOrCreateUserSettings(userName);
 

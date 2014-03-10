@@ -1,15 +1,13 @@
-﻿@model DL.Statistic
+﻿@using ForexBox.Helpers;
+
+@model DL.Statistic
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Statistics";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <head>
-    <title>Notes</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 
     <link href="@Url.Content("/Content/kendo/kendo.common.min.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/kendo/kendo.dataviz.default.min.css")" rel="stylesheet" />
@@ -22,21 +20,35 @@
     <script src="@Url.Content("/Scripts/kendo/kendo.dataviz.min.js")"></script>
 
 </head>
-<body>
+<body id="body">
     <div style="margin-top: 50px; margin-left: 50px">
 
         <div style="float: left">
             @Html.Partial("StatisticInfo", Model.ShortStatisticData)
         </div>
-        <div class="chart-wrapper" style="float: left">
-            <div id="chart"></div>
+        <div class="box_cont" style="float: left;">
+            <div class="boxTitle">
+                <ul id="charts" class="titleNav">
+                    <li class="bold" style="cursor: auto">Chart</li>
+                    <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
+                    <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
+                    <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
+                    <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
+                </ul>
+            </div>
+
+            <div class="chart-wrapper" style="float: left">
+                <div id="chart"></div>
+            </div>
         </div>
         <script>
 
-            $(document).ready(function ()
-            {
+           -
 
-                createChart(@Html.Raw(Json.Encode( Model.GrowthData)));
+             $(document).ready(function ()
+             {
+                 selectChart("@Model.CurrentGraphType");
+                //createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
             });
 
             //var grandSlam =
@@ -86,7 +98,6 @@
 
             function createChart(grandSlam)
             {
-               // debugger;
                 $("#chart").kendoChart({
                     dataSource: {
                         data: grandSlam
@@ -132,7 +143,29 @@
                 });
             }
 
-            //$(document).ready(createChart);
+            function selectChart(chartId)
+            {
+                $('#charts.titleNav li').not('.bold').removeClass().addClass('off');
+
+
+                $('#' + chartId).removeClass('off').addClass('on');
+
+                var url = window.location.pathname;
+                var value = url.substring(url.lastIndexOf('/') + 1);
+                url = url.replace(value, chartId);
+                var state = { location: url };
+                history.pushState(state, chartId, url);
+
+                createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+            }
+
+            $(window).bind("popstate", function (e)
+            {
+                var state = e.originalEvent.state;
+                if (state)
+                    window.location.pathname = state.location;
+            });
+
             $(document).bind("kendo:skinChange", createChart);
         </script>
     </div>

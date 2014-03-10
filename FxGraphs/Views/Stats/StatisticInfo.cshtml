@@ -1,9 +1,9 @@
 ﻿@model DL.ShortStatistic
-<link href="../../../Content/ShortStatistic.css" type="text/css" rel="stylesheet" />
+<link href="@Url.Content("/Content/ShortStatistic.css")" type="text/css" rel="stylesheet" />
 
 <script type="text/javascript">
     function switchTab(tabId, button) {
-        $('.titleNav li').not('.bold').removeClass().addClass('off');
+        $('#info.titleNav li').not('.bold').removeClass().addClass('off');
         $(button).removeClass('off').addClass('on');
         $('.quickStats').hide();
         $('#' + tabId).show();
@@ -12,7 +12,7 @@
 
 <div class="box_cont" style="width: 195px; height: 348px">
     <div class="boxTitle">
-        <ul class="titleNav">
+        <ul id="info" class="titleNav">
             <li class="bold" style="cursor: auto">Info</li>
             <li class="on" onclick="switchTab('stats',this);">Stats</li>
             <li class="off" onclick="switchTab('gen',this);">General</li>
