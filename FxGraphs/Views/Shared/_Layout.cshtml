@@ -24,12 +24,12 @@
             Html.RenderPartial("LoginShared", new ViewDataDictionary());
             
         }
-        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
+@*        @if (HttpContext.Current.User.Identity.IsAuthenticated)    
         {
             <div class="menulogin">
                 <a href="@Url.Action("../Home/Account")" class="loginbox">@ViewData["Inkabinet"]<div class="imageligin"></div></a>
             </div>    
-        }
+        }*@
 
     </div>
 </div>

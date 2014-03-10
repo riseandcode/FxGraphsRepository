@@ -18,15 +18,15 @@ namespace ForexBox.Controllers
         }
 
 
-      public ActionResult Index(string userName, string graphType = "growth")
+        public ActionResult Index(string userName, string graphType = "growth")
         {
             StatsManager manager = new StatsManager();
 
             Statistic stat = new Statistic();
-            
+
             ShortStatistic shortStat = new ShortStatistic();
-            shortStat.Settings = manager.GetOrCreateUserSettings(id);
-            manager.FillUserStatistic(id, shortStat);
+            shortStat.Settings = manager.GetOrCreateUserSettings(userName);
+            manager.FillUserStatistic(userName, shortStat);
 
             stat.ShortStatisticData = shortStat;
 
