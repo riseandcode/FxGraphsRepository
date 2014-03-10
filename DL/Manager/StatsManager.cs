@@ -37,5 +37,6 @@ namespace DL
             StatisticConfigurationRepository repository = new StatisticConfigurationRepository();
             repository.UpdateUserStatisticSettings(settings);
         }
+
     }
 }

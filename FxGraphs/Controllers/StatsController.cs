@@ -7,37 +7,29 @@ using DL;
 
 namespace ForexBox.Controllers
 {
-    public class StatsController : ForexBoxController
-    {
-        //
-        // GET: /Stats/
+   public class StatsController : ForexBoxController
+   {
+      //
+      // GET: /Stats/
 
-        public ActionResult Test()
-        {
-            return View("Index");
-        }
+      public ActionResult Test()
+      {
+         return View("Index");
+      }
 
-        [HttpGet]
-        public ContentResult GetGraphData(string graphType)
-        {
 
-            string json = "[{ \"year\": \"2003\", \"win\": 13,\"extremum\": \"MIN: 13\",\"loss\": 3},{\"year\": \"2004\",\"win\": 22,\"loss\": 1}]";
+      public ActionResult Index(string userName, string graphType = "growth")
+      {
+         StatsManager manager = new StatsManager();
 
-            return Content(json, "application/json");
+         Statistic stat = new Statistic();
 
-        }
-        public ActionResult Index(string id)
-        {
-            StatsManager manager = new StatsManager();
+         ShortStatistic shortStat = new ShortStatistic();
+         shortStat.Settings = manager.GetOrCreateUserSettings(userName);
 
-            Statistic stat = new Statistic();
-            
-            ShortStatistic shortStat = new ShortStatistic();
-            shortStat.Settings = manager.GetOrCreateUserSettings(id);
+         stat.ShortStatisticData = shortStat;
 
-            stat.ShortStatisticData = shortStat;
-
-            return View("Index", stat);
-        }
-    }
+         return View("Index", stat);
+      }
+   }
 }
