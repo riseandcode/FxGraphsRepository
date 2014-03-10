@@ -34,6 +34,7 @@ namespace ForexBox.Controllers
             
             ShortStatistic shortStat = new ShortStatistic();
             shortStat.Settings = manager.GetOrCreateUserSettings(id);
+            manager.FillUserStatistic(id, shortStat);
 
             stat.ShortStatisticData = shortStat;
 

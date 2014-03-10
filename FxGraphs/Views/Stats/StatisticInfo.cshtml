@@ -56,18 +56,16 @@
         }
         @if (Model.Settings.IsBalanceVisible)
         {
-        <li class="paddT5">
-            <span class="floatLeft">Balance:</span>
-            <span class="floatNone">$7540.84 </span>
-        </li>
+            <li class="paddT5">
+                <span class="floatLeft">Balance:</span>
+                <span class="floatNone">$@Html.DisplayFor(x => x.Balance)</span>
+            </li>
         }
         @if (Model.Settings.IsEquityVisible)
         {
             <li>
                 <span class="floatLeft">Equity:</span>
-                <span class="floatNone">
-                    <span class="font10">(100.00%)</span>  $7540.84  
-                </span>
+                <span class="floatNone">$@Html.DisplayFor(x => x.Equality)</span>
             </li>
         }
         @if (Model.Settings.IsHighestVisible)
@@ -75,7 +73,7 @@
             <li>
                 <span class="floatLeft">Highest:</span>
                 <span class="floatNone">
-                    <span class="gray font10">(Aug 06) </span>$8190.25 
+                    <span class="gray font10">(@Model.HighestDate.ToString("MMMM") @Model.HighestDate.Date.ToString("dd")) </span>$@Html.DisplayFor(x => x.Highest)
                 </span>
             </li>
         }
@@ -83,7 +81,7 @@
         {
             <li>
                 <span class="floatLeft">Profit:</span>
-                <span class="floatNone green">$2537.79</span>
+                <span class="floatNone green">$@Html.DisplayFor(x => x.Profit)</span>
             </li>
         }
         @if (Model.Settings.IsInterestVisible)
@@ -97,7 +95,7 @@
         {
             <li class="paddT5 borderT">
                 <span class="floatLeft">Deposits:</span>
-                <span class="floatNone">$5003.05</span>
+                <span class="floatNone">$@Html.DisplayFor(x => x.Deposits)</span>
             </li>
         }
         @if (Model.Settings.IsWithdrawalsVisible)
