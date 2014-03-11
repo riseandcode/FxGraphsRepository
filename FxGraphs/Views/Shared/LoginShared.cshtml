@@ -19,34 +19,34 @@
         var errorMessage = "";
         if (un == "") {
             errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotlog")\n";
-     }
-     if (pass == "") {
-         errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotpas")\n";
-        }
+    }
+    if (pass == "") {
+        errorMessage += "@ResourceReader.GetRes("LoginShared", "Forgotpas")\n";
+    }
 
-        if (errorMessage == "") {
-            $.ajax(
-                {
-                    url: '@Url.Action("CheckLogin", "Home")',
-                    type: 'POST',
+    if (errorMessage == "") {
+        $.ajax(
+            {
+                url: '@Url.Action("CheckLogin", "Home")',
+                type: 'POST',
 
-                    data: JSON.stringify({ "userName": un, "password": pass }),
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (data) {
-                        if (data == "false") {
-                            jAlert("@ResourceReader.GetRes("LoginShared", "Incorrectlogpas")", "@ResourceReader.GetRes("LoginShared", "Attention")");
-                            $("#buttonregload").attr("class", "button");
-                        } else {
+                data: JSON.stringify({ "userName": un, "password": pass }),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data == "false") {
+                        jAlert("@ResourceReader.GetRes("LoginShared", "Incorrectlogpas")", "@ResourceReader.GetRes("LoginShared", "Attention")");
+                         $("#buttonregload").attr("class", "button");
+                     } else {
 
-                            $.post("@Url.Action("Login", "Home")",
-                            {
-                                userName: $("#textboxlog").val(),
-                                password: $("#textboxlog2").val()
-                            },
-                            function (data, status, xhr) {
-                                if (data.Success == true || data=="{\"Success\":true}") {
-                                    var lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.Parent.Name";
+                         $.post("@Url.Action("Login", "Home")",
+                         {
+                             userName: $("#textboxlog").val(),
+                             password: $("#textboxlog2").val()
+                         },
+                         function (data, status, xhr) {
+                             if (data.Success == true || data == "{\"Success\":true}") {
+                                 var lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.Parent.Name";
                                     window.location = "/" + lang + "/Home/Account";
                                 }
                                 else {
@@ -57,65 +57,65 @@
                             });
 
                         }
-                    },
-                    error: function () {
-                        jAlert('@ResourceReader.GetRes("LoginShared", "Alert")');
-                        $("#buttonregload").attr("class", "button");
-                    }
-                });
-            } else {
-                errorMessage = "@ResourceReader.GetRes("LoginShared", "Incorrectplease")\n" + errorMessage;
-            jAlert(errorMessage, "@ResourceReader.GetRes("LoginShared", "Attention")");
-            $("#buttonregload").attr("class", "button");
-        }
-        return false;
+                 },
+                error: function () {
+                    jAlert('@ResourceReader.GetRes("LoginShared", "Alert")');
+                     $("#buttonregload").attr("class", "button");
+                 }
+            });
+         } else {
+             errorMessage = "@ResourceReader.GetRes("LoginShared", "Incorrectplease")\n" + errorMessage;
+        jAlert(errorMessage, "@ResourceReader.GetRes("LoginShared", "Attention")");
+        $("#buttonregload").attr("class", "button");
     }
+    return false;
+}
 
-    $(document).ready(function () {
-
-
-
-        /*hack for function not found in java scrpt*/
-        $('#textboxlog2').keypress(function (e) {
-            if (e.which == 13) {
-                jQuery(this).blur();
-                CheckLoginParametersAndSubmit1();
-                // jQuery('#regbutton').focus();
-            }
-        });
-
-        $('#textboxlog').keypress(function (e) {
-            if (e.which == 13) {
-
-                jQuery(this).blur();
-                jQuery('#textboxlog2').focus();
-            }
-        });
+$(document).ready(function () {
 
 
 
+    /*hack for function not found in java scrpt*/
+    $('#textboxlog2').keypress(function (e) {
+        if (e.which == 13) {
+            jQuery(this).blur();
+            CheckLoginParametersAndSubmit1();
+            // jQuery('#regbutton').focus();
+        }
+    });
 
+    $('#textboxlog').keypress(function (e) {
+        if (e.which == 13) {
+
+            jQuery(this).blur();
+            jQuery('#textboxlog2').focus();
+        }
     });
 
 
 
-    $(document).ready(function () {
-        $('div.loginbox').click(function () {
-            var modalid = $(this).attr('rel');
-            $('#' + modalid).fadeIn(300);
-            $('#fadebody').fadeIn(300);
-            var topm = ($('#' + modalid).height() + 10) / 2;
-            var leftm = ($('#' + modalid).width() + 10) / 2;
-            $('#' + modalid).css({
-                'margin-top': -topm,
-                'margin-left': -leftm
-            });
-            $('.close').click(function () {
-                $('#fadebody , .modalbox').fadeOut(300);
-                return false;
-            });
+
+});
+
+
+
+$(document).ready(function () {
+    $('div.loginbox').click(function () {
+        var modalid = $(this).attr('rel');
+        $('#' + modalid).fadeIn(300);
+        $('#fadebody').fadeIn(300);
+        var topm = ($('#' + modalid).height() + 10) / 2;
+        var leftm = ($('#' + modalid).width() + 10) / 2;
+        $('#' + modalid).css({
+            'margin-top': -topm,
+            'margin-left': -leftm
+        });
+        $('.close').click(function () {
+            $('#fadebody , .modalbox').fadeOut(300);
+            return false;
         });
     });
+});
 
 
 </script>
@@ -156,7 +156,8 @@
 @if (!HttpContext.Current.User.Identity.IsAuthenticated)
 {
     <div class="menulogin">
-        <a class="loginbox" onclick="return Login();" tabindex="1">@ResourceReader.GetRes("LoginShared", "LogInbutton")<div class="imageligin"></div></a>
+        <a class="loginbox" onclick="return Login();" tabindex="1">@ResourceReader.GetRes("LoginShared", "LogInbutton")<div class="imageligin"></div>
+        </a>
     </div>
             
     <div class="sub-menu">
@@ -196,10 +197,14 @@
     </div>
 
 }
-else 
+else
 {
     <div class="menulogin">
-        <a href="@Url.Action("LogOff", "Home")" id="logout" class="loginbox">@ResourceReader.GetRes("ForexBox", "exit")</a>
+        <a class="loginbox" href="@Url.Action("Account","Home")" tabindex="1" style="display:inline">@ResourceReader.GetRes("LoginShared", "LogInbutton")
+            <div class="imageligin" style="display:inline"></div>
+        </a>
+        <span style="color:#fff"> / </span>
+        <a href="@Url.Action("LogOff", "Home")" id="logout" class="loginbox" style="display:inline">@ResourceReader.GetRes("ForexBox", "exit")</a>
     </div>
 }
 
