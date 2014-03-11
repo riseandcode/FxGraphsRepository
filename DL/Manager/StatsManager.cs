@@ -38,7 +38,7 @@ namespace DL
             repository.UpdateUserStatisticSettings(settings);
         }
 
-        public void FillUserStatistic(string loginName, ShortStatistic toFill)
+        public void FillUserStatistic(string loginName, ShortStatistic toFill, Statistic graphModel)
         {
             var userRepository = new UsersRepository();
             var user = userRepository.GetUserByLoginName(loginName);
@@ -58,6 +58,7 @@ namespace DL
 
                 decimal maxAmount = deposits.Max(x => x.Amount);
                 var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
+                
                 if (highestEntity != null)
                 {
                     toFill.Highest = highestEntity.Amount;
@@ -75,7 +76,14 @@ namespace DL
 
                     toFill.Equality = startValue + toFill.Profit;
                 }
+
+                FillGraphData(sortedByDate, graphModel);
             }
+        }
+
+        private void FillGraphData(IEnumerable<DepositsData> sortedByDate, Statistic toFill)
+        {
+           
         }
     }
 }
