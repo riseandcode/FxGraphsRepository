@@ -48,32 +48,35 @@ namespace DL
                 var depositsRepository = new DepositsDataRepository();
                 var deposits = depositsRepository.GetDepositsDataByUserId(user.UserId);
 
-                var sortedByDate = deposits.OrderBy(x => x.Date);
-
-                if (sortedByDate.FirstOrDefault() != null)
-                    toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
-
-                if (sortedByDate.LastOrDefault() != null)
-                    toFill.Balance = sortedByDate.LastOrDefault().Amount;                
-
-                decimal maxAmount = deposits.Max(x => x.Amount);
-                var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
-                if (highestEntity != null)
+                if (deposits.Count != 0)
                 {
-                    toFill.Highest = highestEntity.Amount;
-                    toFill.HighestDate = highestEntity.Date;
-                }
+                    var sortedByDate = deposits.OrderBy(x => x.Date);
 
-                if (sortedByDate.FirstOrDefault() != null && sortedByDate.LastOrDefault() != null)
-                {
-                    decimal startValue = sortedByDate.FirstOrDefault().Amount;
-                    decimal endValue = sortedByDate.LastOrDefault().Amount;
-                    decimal defference = endValue - startValue;
-                    decimal value = (defference / startValue) * 100;
-                    toFill.Profit = endValue - startValue;
-                    toFill.AbsGain = value;
+                    if (sortedByDate.FirstOrDefault() != null)
+                        toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
 
-                    toFill.Equality = startValue + toFill.Profit;
+                    if (sortedByDate.LastOrDefault() != null)
+                        toFill.Balance = sortedByDate.LastOrDefault().Amount;
+
+                    decimal maxAmount = deposits.Max(x => x.Amount);
+                    var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
+                    if (highestEntity != null)
+                    {
+                        toFill.Highest = highestEntity.Amount;
+                        toFill.HighestDate = highestEntity.Date;
+                    }
+
+                    if (sortedByDate.FirstOrDefault() != null && sortedByDate.LastOrDefault() != null)
+                    {
+                        decimal startValue = sortedByDate.FirstOrDefault().Amount;
+                        decimal endValue = sortedByDate.LastOrDefault().Amount;
+                        decimal defference = endValue - startValue;
+                        decimal value = (defference / startValue) * 100;
+                        toFill.Profit = endValue - startValue;
+                        toFill.AbsGain = value;
+
+                        toFill.Equality = startValue + toFill.Profit;
+                    }
                 }
             }
         }
