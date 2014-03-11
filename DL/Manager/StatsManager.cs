@@ -48,6 +48,8 @@ namespace DL
                 var depositsRepository = new DepositsDataRepository();
                 var deposits = depositsRepository.GetDepositsDataByUserId(user.UserId);
 
+                if (deposits.Count != 0)
+                {
                 var sortedByDate = deposits.OrderBy(x => x.Date);
 
                 if (sortedByDate.FirstOrDefault() != null)
@@ -79,11 +81,12 @@ namespace DL
 
                 FillGraphData(sortedByDate, graphModel);
             }
-        }
+            }
 
         private void FillGraphData(IEnumerable<DepositsData> sortedByDate, Statistic toFill)
         {
            
         }
     }
+}
 }
