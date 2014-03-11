@@ -100,14 +100,14 @@
              //    "loss": 3
              //}];
 
-             function createChart(grandSlam)
+             function createChart(graphData, title)
              {
                  $("#chart").kendoChart({
                      dataSource: {
-                         data: grandSlam
+                         data: graphData
                      },
                      title: {
-                         text: "Roger Federer Grand Slam tournament performance"
+                         text: title
                      },
                      legend: {
                          position: "bottom"
@@ -115,32 +115,39 @@
                      seriesDefaults: {
                          type: "line"
                      },
-                     series: [{
+                     series: 
+                         [{
                          field: "win",
                          name: "Wins",
-                         noteTextField: "extremum",
                          notes: {
-                             label: {
+                             label: 
+                                 {
                                  position: "outside"
                              },
                              position: "bottom"
                          }
-                     }, {
+                     }, 
+                     {
                          field: "loss",
                          name: "Losses"
                      }],
-                     valueAxis: {
-                         line: {
+                     valueAxis: 
+                         {
+                         line: 
+                             {
                              visible: false
                          }
                      },
-                     categoryAxis: {
+                     categoryAxis: 
+                         {
                          field: "year",
-                         majorGridLines: {
+                         majorGridLines: 
+                             {
                              visible: false
                          }
                      },
-                     tooltip: {
+                     tooltip: 
+                         {
                          visible: true,
                          template: "#= series.name #: #= value #"
                      }
@@ -166,19 +173,19 @@
                  switch (chartId)
                  {
                      case "@Constants.GrowthChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth");
                         break;
                     case "@Constants.BalanceChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        createChart(@Html.Raw(Json.Encode(Model.BalanceData)), "Balance");
                         break;
                     case "@Constants.ProfitChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Profit");
                         break;
                     case "@Constants.DrawdownChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Drawdown");
                         break;
                     default:
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)));
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth");
                 }
             }
 
