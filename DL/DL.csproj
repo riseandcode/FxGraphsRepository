@@ -47,6 +47,7 @@
     <Compile Include="Accounts.cs" />
     <Compile Include="Brokers.cs" />
     <Compile Include="Manager\StatsManager.cs" />
+    <Compile Include="Models\DepositsData.cs" />
     <Compile Include="Models\ShortStatistic.cs" />
     <Compile Include="Models\Statistic.cs" />
     <Compile Include="Models\UserStatisticSettings.cs">
