@@ -62,6 +62,10 @@ namespace ForexBox
             }
          }
 
+         routes.MapRoute(
+             "Catchall",
+             "{*anything}",
+             new { controller = "Home", action = "Index" });
       }
 
       protected void Application_Start()
