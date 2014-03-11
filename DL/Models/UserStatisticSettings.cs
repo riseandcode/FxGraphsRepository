@@ -58,6 +58,16 @@ namespace DL
         [DataMember]
         public bool IsTimezoneVisible { get; set; }
 
+        //Settings for tabs visibility
+        [DataMember]
+        public bool IsGrowthTabVisible { get; set; }
+        [DataMember]
+        public bool IsBalanceTabVisible { get; set; }
+        [DataMember]
+        public bool IsProfitTabVisible { get; set; }
+        [DataMember]
+        public bool IsDrawdownTabVisible { get; set; }
+
         public UserStatisticSettings()
         {
             IsGainVisible = true;
