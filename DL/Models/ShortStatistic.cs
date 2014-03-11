@@ -15,6 +15,6 @@ namespace DL
         public decimal Profit { get; set; }
         public decimal Highest { get; set; }
         public DateTime HighestDate { get; set; }
-        public decimal Equality { get; set; }
+        public decimal Equity { get; set; }
     }
 }

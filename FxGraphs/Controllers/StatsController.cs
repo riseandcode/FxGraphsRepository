@@ -9,13 +9,6 @@ namespace ForexBox.Controllers
 {
    public class StatsController : ForexBoxController
    {
-      //
-      // GET: /Stats/
-
-      public ActionResult Test()
-      {
-         return View("Index");
-      }
 
 
       public ActionResult Index(string userName, string graphType = "growth")
@@ -24,8 +17,10 @@ namespace ForexBox.Controllers
 
          Statistic stat = new Statistic();
          stat.CurrentGraphType = graphType;
+
          ShortStatistic shortStat = new ShortStatistic();
          shortStat.Settings = manager.GetOrCreateUserSettings(userName);
+
          manager.FillUserStatistic(userName, shortStat, stat);
 
          stat.ShortStatisticData = shortStat;

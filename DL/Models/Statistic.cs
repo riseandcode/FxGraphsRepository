@@ -7,45 +7,52 @@ namespace DL
 {
    public class Statistic
    {
+      public Statistic()
+      {
+         GrowthData = new List<GrowthDataValue>();
+         BalanceData = new List<BalanceDataValue>();
+         ProfitData = new List<ProfitDataValue>();
+         DrawdownData = new List<DrawdownDataValue>();
+      }
+
       public ShortStatistic ShortStatisticData { get; set; }
 
-      public List<GrowthData> GrowthData
-      {
-         get
-         {
-            var data = new List<GrowthData> { new GrowthData { year = 2003, win = 13, loss = 3 },
-                                             new GrowthData { year = 2004, win = 16, loss = 7 },
-                                              new GrowthData{year=2005,win=17,loss=8}};
-            return data;
-         }
-      }
+      public List<GrowthDataValue> GrowthData { get; set; }
 
-      public List<BalanceData> BalanceData
-      {
-         get
-         {
-            var data = new List<BalanceData> { new BalanceData { year = 2003, win = 13, loss = 3 },
-                                             new BalanceData { year = 2004, win = 16, loss = 7 },
-                                              };
-            return data;
-         }
-      }
+      public List<BalanceDataValue> BalanceData { get; set; }
+
+      public List<ProfitDataValue> ProfitData { get; set; }
+
+      public List<DrawdownDataValue> DrawdownData { get; set; }
 
       public string CurrentGraphType { get; set; }
    }
 
 
-   public struct GrowthData
+   public class BaseDataValue
    {
-      public int year { get; set; }
-      public int win { get; set; }
-      public int loss { get; set; }
+      public DateTime Date { get; set; }
    }
 
-   public struct BalanceData
+   public class GrowthDataValue : BaseDataValue
    {
-      public int year { get; set; }
-      public int win { get; set; }
-      public int loss { get; set; }
+      public decimal Growth { get; set; }
+      public decimal EquityGrowth { get; set; }
+   }
+
+   public class BalanceDataValue : BaseDataValue
+   {
+      public decimal Balance { get; set; }
+      public decimal Equity { get; set; }
+   }
+
+   public class ProfitDataValue : BaseDataValue
+   {
+      public decimal Profit { get; set; }
+   }
+
+   public class DrawdownDataValue : BaseDataValue
+   {
+      public int Value { get; set; }
    }
 }

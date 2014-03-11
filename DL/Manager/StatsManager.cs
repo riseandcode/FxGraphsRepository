@@ -52,11 +52,9 @@ namespace DL
             {
                var sortedByDate = deposits.OrderBy(x => x.Date);
 
-               if (sortedByDate.FirstOrDefault() != null)
-                  toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
+               toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
 
-               if (sortedByDate.LastOrDefault() != null)
-                  toFill.Balance = sortedByDate.LastOrDefault().Amount;
+               toFill.Balance = sortedByDate.LastOrDefault().Amount;
 
                decimal maxAmount = deposits.Max(x => x.Amount);
                var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
@@ -67,25 +65,46 @@ namespace DL
                   toFill.HighestDate = highestEntity.Date;
                }
 
-               if (sortedByDate.FirstOrDefault() != null && sortedByDate.LastOrDefault() != null)
-               {
-                  decimal startValue = sortedByDate.FirstOrDefault().Amount;
-                  decimal endValue = sortedByDate.LastOrDefault().Amount;
-                  decimal defference = endValue - startValue;
-                  decimal value = (defference / startValue) * 100;
-                  toFill.Profit = endValue - startValue;
-                  toFill.AbsGain = value;
+               decimal startValue = sortedByDate.FirstOrDefault().Amount;
+               decimal endValue = sortedByDate.LastOrDefault().Amount;
+               decimal defference = endValue - startValue;
+               decimal value = startValue != 0 ? (defference / startValue) * 100 : 0;
+               toFill.Profit = endValue - startValue;
+               toFill.AbsGain = value;
 
-                  toFill.Equality = startValue + toFill.Profit;
-               }
+               toFill.Equity = startValue + toFill.Profit;
 
-               FillGraphData(sortedByDate, graphModel);
+               FillGraphData(sortedByDate.ToList(), graphModel);
             }
          }
       }
 
-      private void FillGraphData(IEnumerable<DepositsData> sortedByDate, Statistic toFill)
+      private void FillGraphData(List<DepositsData> sortedByDate, Statistic toFill)
       {
+         if (sortedByDate.Count == 0)
+            return;
+
+         var start = sortedByDate.First();
+
+         toFill.ProfitData.Add(new ProfitDataValue { Date = start.Date, Profit = 0 });
+         toFill.GrowthData.Add(new GrowthDataValue { Date = start.Date, Growth = 0 });
+         
+         for (int i = 0; i < sortedByDate.Count; i++)
+         {
+            if (i > 0)
+            {
+               decimal difference = sortedByDate[i].Amount - sortedByDate[i - 1].Amount;
+               toFill.ProfitData.Add(new ProfitDataValue { Date = sortedByDate[i].Date, Profit = difference });
+
+               var growth = sortedByDate[i - 1].Amount != 0 ? (difference / sortedByDate[i - 1].Amount) * 100 : 0;
+               toFill.GrowthData.Add(new GrowthDataValue { Date = sortedByDate[i].Date, Growth = growth });
+
+
+            }
+
+            //TODO check Equity
+            toFill.BalanceData.Add(new BalanceDataValue { Date = sortedByDate[i].Date, Balance = sortedByDate[i].Amount, Equity = sortedByDate[i].Amount });
+         }
 
       }
    }
