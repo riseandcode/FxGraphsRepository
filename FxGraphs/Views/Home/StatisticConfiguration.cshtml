@@ -1,108 +1,104 @@
 ﻿@model DL.UserStatisticSettings
 <div>
-    @using (Html.BeginForm("UpdateSettings", "Home", FormMethod.Post))
-    {
-        <input type="checkbox" />//fake chackbox
-        <table>
-            <tbody>
-                <tr>
-                    <td>@Html.HiddenFor(x => x.UserId)</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsAbsGainVisible)</td>
-                    <td>Is Abs Gain Visible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsGainVisible)</td>
-                    <td>Is Gain Visible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsWithdrawalsVisible)</td>
-                    <td>IsWithdrawalsVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsViewsVisible)</td>
-                    <td>IsViewsVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsUpdatedVisible)</td>
-                    <td>IsUpdatedVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsTypeVisible)</td>
-                    <td>IsTypeVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsTradingVisible)</td>
-                    <td>IsTradingVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsTrackingVisible)</td>
-                    <td>IsTrackingVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsTimezoneVisible)</td>
-                    <td>IsTimezoneVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsSystemVisible)</td>
-                    <td>IsSystemVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsStartedVisible)</td>
-                    <td>IsStartedVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsProfitVisible)</td>
-                    <td>Is Abs Gain VisibleIsProfitVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsMonthlyIncomeVisible)</td>
-                    <td>IsMonthlyIncomeVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsLeverageVisible)</td>
-                    <td>IsLeverageVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsInterestVisible)</td>
-                    <td>IsInterestVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsHighestVisible)</td>
-                    <td>IsHighestVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsEquityVisible)</td>
-                    <td>IsEquityVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsDrawdownVisible)</td>
-                    <td>IsDrawdownVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsDescriptionVisible)</td>
-                    <td>IsDescriptionVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsDepositsVisible)</td>
-                    <td>IsDepositsVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsDailyIncomeVisible)</td>
-                    <td>IsDailyIncomeVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsBrokerVisible)</td>
-                    <td>IsBrokerVisible</td>
-                </tr>
-                <tr>
-                    <td>@Html.EditorFor(x => x.IsBalanceVisible)</td>
-                    <td>IsBalanceVisible</td>
-                </tr>
-            </tbody>
-        </table>
-       
-        <input type="submit" value="Update" />
-    }
+    <h4>Statistic Caption Visibility</h4>
+    <div style="display:none">
+        <input type="checkbox" />@*fake chackbox*@
+    </div>
+    @Html.HiddenFor(x => x.UserId)
+    <table>
+        <tbody>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsAbsGainVisible)</td>
+                <td>Is Abs Gain Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsGainVisible)</td>
+                <td>Is Gain Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsWithdrawalsVisible)</td>
+                <td>Is Withdrawals Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsViewsVisible)</td>
+                <td>Is Views Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsUpdatedVisible)</td>
+                <td>Is Updated Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsTypeVisible)</td>
+                <td>Is Type Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsTradingVisible)</td>
+                <td>Is Trading Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsTrackingVisible)</td>
+                <td>Is Tracking Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsTimezoneVisible)</td>
+                <td>Is Timezone Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsSystemVisible)</td>
+                <td>Is System Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsStartedVisible)</td>
+                <td>Is Started Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsProfitVisible)</td>
+                <td>Is Profit Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsMonthlyIncomeVisible)</td>
+                <td>Is Monthly Income Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsLeverageVisible)</td>
+                <td>Is Leverage Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsInterestVisible)</td>
+                <td>Is Interest Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsHighestVisible)</td>
+                <td>Is Highest Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsEquityVisible)</td>
+                <td>Is Equity Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsDrawdownVisible)</td>
+                <td>Is Drawdown Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsDescriptionVisible)</td>
+                <td>Is Description Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsDepositsVisible)</td>
+                <td>Is Deposits Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsDailyIncomeVisible)</td>
+                <td>Is Daily Income Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsBrokerVisible)</td>
+                <td>Is Broker Visible</td>
+            </tr>
+            <tr>
+                <td>@Html.EditorFor(x => x.IsBalanceVisible)</td>
+                <td>Is Balance Visible</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

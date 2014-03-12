@@ -376,6 +376,7 @@
           <Property Name="Amount" Type="decimal" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="int" />
         </EntityType>
         <EntityType Name="Partners">
           <Key>
@@ -1334,15 +1335,15 @@
           <EntitySet Name="ASPStateTempSessions" EntityType="forexBox2Model.ASPStateTempSessions" />
           <EntitySet Name="Deposits" EntityType="forexBox2Model.Deposits" />
           <EntitySet Name="sysdiagrams" EntityType="forexBox2Model.sysdiagrams" />
-          <EntitySet Name="DepositsDatas" EntityType="forexBox2Model.DepositsData" />
           <EntitySet Name="StatisticConfigurations" EntityType="forexBox2Model.StatisticConfiguration" />
-          <AssociationSet Name="FK_DepositsData_aspnet_Users" Association="forexBox2Model.FK_DepositsData_aspnet_Users">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="DepositsData" EntitySet="DepositsDatas" />
-          </AssociationSet>
           <AssociationSet Name="FK_StatisticConfigurations_aspnet_Users" Association="forexBox2Model.FK_StatisticConfigurations_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="StatisticConfiguration" EntitySet="StatisticConfigurations" />
+          </AssociationSet>
+          <EntitySet Name="DepositsDatas" EntityType="forexBox2Model.DepositsData" />
+          <AssociationSet Name="FK_DepositsData_aspnet_Users" Association="forexBox2Model.FK_DepositsData_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="DepositsData" EntitySet="DepositsDatas" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
@@ -1469,8 +1470,8 @@
           <NavigationProperty Name="aspnet_Roles" Relationship="forexBox2Model.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
           <NavigationProperty Name="Partners" Relationship="forexBox2Model.FK_Partners_aspnet_Users" FromRole="aspnet_Users" ToRole="Partners" />
           <NavigationProperty Name="UsersPaymentSystems" Relationship="forexBox2Model.FK_UsersPaymentSystems_aspnet_Users" FromRole="aspnet_Users" ToRole="UsersPaymentSystems" />
-          <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_aspnet_Users" FromRole="aspnet_Users" ToRole="DepositsData" />
           <NavigationProperty Name="StatisticConfigurations" Relationship="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" FromRole="aspnet_Users" ToRole="StatisticConfiguration" />
+          <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_aspnet_Users" FromRole="aspnet_Users" ToRole="DepositsData" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -1868,16 +1869,6 @@
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="DepositsData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Guid" Name="UserId" Nullable="false" />
-          <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_DepositsData_aspnet_Users" FromRole="DepositsData" ToRole="aspnet_Users" />
-        </EntityType>
         <EntityType Name="StatisticConfiguration">
           <Key>
             <PropertyRef Name="Id" />
@@ -1887,18 +1878,6 @@
           <Property Type="Guid" Name="UserId" Nullable="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" FromRole="StatisticConfiguration" ToRole="aspnet_Users" />
         </EntityType>
-        <Association Name="FK_DepositsData_aspnet_Users">
-          <End Type="forexBox2Model.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
-          <End Type="forexBox2Model.DepositsData" Role="DepositsData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="DepositsData">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StatisticConfigurations_aspnet_Users">
           <End Type="forexBox2Model.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
           <End Type="forexBox2Model.StatisticConfiguration" Role="StatisticConfiguration" Multiplicity="*" />
@@ -1907,6 +1886,29 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="StatisticConfiguration">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DepositsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="Type" />
+          <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_DepositsData_aspnet_Users" FromRole="DepositsData" ToRole="aspnet_Users" />
+        </EntityType>
+        <Association Name="FK_DepositsData_aspnet_Users">
+          <End Type="forexBox2Model.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="forexBox2Model.DepositsData" Role="DepositsData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DepositsData">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2193,21 +2195,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DepositsDatas">
-            <EntityTypeMapping TypeName="forexBox2Model.DepositsData">
-              <MappingFragment StoreEntitySet="DepositsData">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="StatisticConfigurations">
             <EntityTypeMapping TypeName="forexBox2Model.StatisticConfiguration">
               <MappingFragment StoreEntitySet="StatisticConfigurations">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepositsDatas">
+            <EntityTypeMapping TypeName="forexBox2Model.DepositsData">
+              <MappingFragment StoreEntitySet="DepositsData">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2324,10 +2327,10 @@
         <EntityTypeShape EntityType="forexBox2Model.ASPStateTempSessions" Width="1.5" PointX="5.375" PointY="15.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="forexBox2Model.Deposits" Width="1.5" PointX="15.375" PointY="6.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="forexBox2Model.sysdiagrams" Width="1.5" PointX="15.375" PointY="9.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="6.75" PointY="19.875" />
         <EntityTypeShape EntityType="forexBox2Model.StatisticConfiguration" Width="1.5" PointX="9.75" PointY="21.375" />
-        <AssociationConnector Association="forexBox2Model.FK_DepositsData_aspnet_Users" />
         <AssociationConnector Association="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" />
+        <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="6.9809181052171247" PointY="10.006011460910557" />
+        <AssociationConnector Association="forexBox2Model.FK_DepositsData_aspnet_Users" />
       </Diagram>
     </Diagrams>
   </Designer>

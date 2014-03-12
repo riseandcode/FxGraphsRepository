@@ -78,21 +78,28 @@ namespace ForexBox.Controllers
         {
             StatsManager statsManager = new StatsManager();
             statsManager.UpdateUserSettings(settings);
+            ViewData["IsPostSuccess"] = true;
 
-            return RedirectToAction("Account");
+            return InitiateAccountView();
         }
 
         [HttpGet]
         public ActionResult Account()
+        {
+            return InitiateAccountView();
+        }
+
+        private ActionResult InitiateAccountView()
         {
             AddEmailValidator();
             StatsManager statsManager = new StatsManager();
             ViewBag.StatisticSettings = statsManager.GetOrCreateUserSettings(User.Identity.Name);
             if (!User.Identity.IsAuthenticated)
                 return View("Index");
-            ViewBag.Title = 
+            ViewBag.Title =
             ViewData["PartnerCode"] = UsersManager.GetIdAsPartner(User.Identity.Name);
-            return View();
+
+            return View("Account");
         }
 
         

@@ -944,6 +944,7 @@
     <Content Include="Views\Shared\MainDesignfooter.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Home\StatisticConfiguration.cshtml" />
+    <Content Include="Views\Home\StatisticTabsConfiguration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LanguageResources\LoginShareden.resx">

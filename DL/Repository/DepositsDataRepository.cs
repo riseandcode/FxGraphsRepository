@@ -20,7 +20,7 @@ namespace DL
         {
             using (var ctx = new forexBox2Entities())
             {
-                var values = ctx.DepositsDatas.Where(x => x.UserId == userId).ToList();
+                var values = ctx.DepositsDatas.Where(x => x.UserId == userId).ToList();                
                 return values;
             }
         }
