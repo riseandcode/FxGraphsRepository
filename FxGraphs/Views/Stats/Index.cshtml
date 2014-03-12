@@ -20,13 +20,13 @@
     <script src="@Url.Content("/Scripts/kendo/kendo.dataviz.min.js")"></script>
 
 </head>
-<body id="body">
-    <div style="margin-top: 50px; margin-left: 50px">
+<body>
+    <div style="margin-top: 50px; margin-left: 50px;" >
 
-        <div style="float: left">
+        <div style="float: left; ">
             @Html.Partial("StatisticInfo", Model.ShortStatisticData)
-        </div>
-        <div class="box_cont" style="float: left;">
+        </div >
+        <div class="box_cont" style="float: left; margin-left:15px">
             <div class="boxTitle">
                 <ul id="charts" class="titleNav">
                     <li class="bold" style="cursor: auto">Chart</li>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="chart-wrapper" style="float: left">
-                <div id="chart"></div>
+                <div id="chart" style="height:321px;"></div>
             </div>
         </div>
         <script>
@@ -55,17 +55,16 @@
                 DrawChart("@Model.CurrentGraphType");
             });
 
-            function createChart(graphData, title, graphSeries, percentage)
+            function createChart(graphData, graphSeries, isPercentage)
             {
                 //debugger;
-                var valueAxisFormat = percentage ? "{0}%" : "${0}";
+                var valueFormat = isPercentage ? "{0}%" : "${0}";
+                var tooltipTemplate = isPercentage ? "#= series.name #, #= category #: #= value #%":
+                                                   "#= series.name #, #= category #: $#= value #";
                
                 $("#chart").kendoChart({
                     dataSource: {
                         data: graphData
-                    },
-                    title: {
-                        text: title
                     },
                     legend: {
                         position: "bottom"
@@ -77,26 +76,36 @@
                     valueAxis: 
                         {
                             labels:{
-                                format:valueAxisFormat
+                                format:valueFormat,
+                                color:"#767676",
+                                font:"10px verdana"
                             },
                             line: 
                                 {
                                     visible: false
-                                }
+                                },
+                            
                         },
                     categoryAxis: 
                         {
                             field: "StringDate",
+                            labels:
+                                {
+                                    step:3,
+                                    color:"#767676"
+                                },
                             majorGridLines: 
                                 {
                                     visible: true
-                                }
+                                },
                         },
                     tooltip: 
                         {
+                            format: valueFormat,
                             visible: true,
-                            template: "#= series.name #: #= value #"
+                            template: tooltipTemplate
                         }
+
                 });
             }
 
@@ -119,39 +128,40 @@
                 switch (chartId)
                 {
                     case "@Constants.GrowthChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth", createSeries("Growth","Growth", "Equity", "Equity"), true);
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), createSeries("Growth","Growth", "Equity", "Equity"), true);
                         break;
                     case "@Constants.BalanceChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.BalanceData)), "Balance", createSeries("Balance","Balance", "Equity", "Equity"));
+                        createChart(@Html.Raw(Json.Encode(Model.BalanceData)),  createSeries("Balance","Balance", "Equity", "Equity"));
                         break;
                     case "@Constants.ProfitChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.ProfitData)), "Profit", createSeries("Profit","Profit"));
+                        createChart(@Html.Raw(Json.Encode(Model.ProfitData)), createSeries("Profit","Profit"));
                         break;
                     case "@Constants.DrawdownChartId":
-                        createChart(@Html.Raw(Json.Encode(Model.DrawdownData)), "Drawdown");
+                        createChart(@Html.Raw(Json.Encode(Model.DrawdownData)));
                         break;
                     default:
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth", createSeries("Growth","Growth", "Equity", "Equity"));
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), createSeries("Growth","Growth", "Equity", "Equity"));
                  }
              }
 
              function createSeries(firstField, firstTitle, secondField, secondTitle){
                
                  var series= [{
+                     width:1,
                      field: firstField,
                      name: firstTitle,
+                     markers:{ size: 5},
                      notes: {
-                         label: 
-                             {
-                                 position: "outside"
-                             },
+                         label: { position: "outside" },
                          position: "bottom"
-                     }
-                 }, 
-                             {
-                                 field: secondField,
-                                 name: secondTitle
-                             }];
+                            }
+                     }, 
+                     {
+                         width:1,
+                         markers:{ size: 5},
+                         field: secondField,
+                         name: secondTitle
+                     }];
                  return series;
              }
 
