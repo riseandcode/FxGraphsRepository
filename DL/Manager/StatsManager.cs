@@ -84,18 +84,42 @@ namespace DL
          if (sortedByDate.Count == 0)
             return;
 
-         var start = sortedByDate.First();
 
-         foreach (var item in sortedByDate)
+         var depositsByDate = sortedByDate.Where(x => x.IncomeType == DataType.Deposit).ToArray();           //.OrderBy(x => x.Date.Date);
+         var floatingProfitByDate = sortedByDate.Where(x => x.IncomeType == DataType.FloatingProfit).ToArray();       //.OrderBy(x => x.Date.Date);
+
+         decimal startDeposit = depositsByDate.First().Amount;
+         decimal startEquity = floatingProfitByDate.First().Amount + startDeposit;
+
+         for (int i = 0; i < depositsByDate.Length; i++)
          {
-            decimal difference = item.Amount - start.Amount;
-            toFill.ProfitData.Add(new ProfitDataValue { Date = item.Date, Profit = difference });
+            decimal difference = depositsByDate[i].Amount - startDeposit;
 
-            var growth = start.Amount != 0 ? (difference / start.Amount) * 100 : 0;
-            toFill.GrowthData.Add(new GrowthDataValue { Date = item.Date, Growth = growth });
-            toFill.BalanceData.Add(new BalanceDataValue { Date = item.Date, Balance = item.Amount, Equity = item.Amount });
+            toFill.ProfitData.Add(new ProfitDataValue { Date = depositsByDate[i].Date, Profit = difference });
+
+            decimal currentEquity = depositsByDate[i].Amount + floatingProfitByDate[i].Amount;
+            toFill.BalanceData.Add(new BalanceDataValue
+            {
+               Date = depositsByDate[i].Date,
+               Balance = depositsByDate[i].Amount,
+               Equity = currentEquity
+            });
+
+
+            decimal growth = startDeposit != 0 ? (difference / startDeposit) * 100 : 0;
+
+            decimal equityDifference = currentEquity - startEquity;
+
+            decimal equityGrowth = startEquity != 0 ? (equityDifference / startEquity) * 100 : 0;
+
+            toFill.GrowthData.Add(new GrowthDataValue { Date = depositsByDate[i].Date, Growth = growth, EquityGrowth = equityGrowth });
+
+            if (i + 1 < depositsByDate.Length && currentEquity!=0)
+            {
+               decimal drawdown = ((currentEquity - (depositsByDate[i + 1].Amount + floatingProfitByDate[i + 1].Amount)) / currentEquity) * 100;
+               toFill.DrawdownData.Add(new DrawdownDataValue { Date = depositsByDate[i + 1].Date, Value = drawdown });
+            }
          }
-         
       }
    }
 }

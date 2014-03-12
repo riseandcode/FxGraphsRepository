@@ -67,6 +67,6 @@ namespace DL
 
    public class DrawdownDataValue : BaseDataValue
    {
-      public int Value { get; set; }
+      public decimal Value { get; set; }
    }
 }
