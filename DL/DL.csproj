@@ -54,6 +54,7 @@
     <Compile Include="Models\UserStatisticSettings.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\DepositsDataRepository.cs" />
     <Compile Include="forexBoxDB.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -16,11 +16,11 @@ namespace DL
         /// </summary>
         /// <param name="userId">Account id</param>
         /// <returns>List of deposit data for current user</returns>
-        public List<DepositsData> GetDepositsDataByUserId(Guid userId)
+        public List<DepositsData> GetDepositsDataByUserId(int accountId)
         {
             using (var ctx = new forexBox2Entities())
             {
-                var values = ctx.DepositsDatas.Where(x => x.UserId == userId).ToList();                
+                var values = ctx.DepositsDatas.Where(x => x.AccountId == accountId).ToList();                
                 return values;
             }
         }

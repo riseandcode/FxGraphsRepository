@@ -67,7 +67,7 @@ namespace ForexBox.Controllers
             {
                 var cook = new HttpCookie("partnerKey", parKey);
                 cook.Expires = DateTime.Now.AddHours(5);
-                HttpContext.Response.Cookies.Add(cook); 
+                HttpContext.Response.Cookies.Add(cook);
             }
             return View("Index");
         }
@@ -102,10 +102,10 @@ namespace ForexBox.Controllers
             return View("Account");
         }
 
-        
+
         public ActionResult WithdrawRequest(string amount)
         {
-            if(Request.IsAjaxRequest() && Request.IsAuthenticated)
+            if (Request.IsAjaxRequest() && Request.IsAuthenticated)
             {
                 var message = UsersManager.GetIdAsPartner(User.Identity.Name).ToString() + " хочет получить " + amount;
                 SendMail("forexboxinfo@gmail.com", "new withdraw request", message);
@@ -115,7 +115,7 @@ namespace ForexBox.Controllers
             return Json(false);
         }
 
-       
+
         public ActionResult Withdraw()
         {
             AddEmailValidator();
@@ -130,7 +130,7 @@ namespace ForexBox.Controllers
 
             foreach (var userAccount in accounts)
             {
-                userAccount.StatusDescription = userAccount.Active ? "Активен" 
+                userAccount.StatusDescription = userAccount.Active ? "Активен"
                     : "В обработке";
             }
 
@@ -180,7 +180,7 @@ namespace ForexBox.Controllers
 
             var un = HttpContext.User.Identity.Name;
             var uID = UsersManager.GetUserIDByName(un);
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var accs = AccountsManagement.GetAccountsOfUser(uID);
                 bool notNeededAddtion = accs.FindAll(a => a.AccountNumber == model.AccountNumber).Count > 0;
@@ -193,7 +193,7 @@ namespace ForexBox.Controllers
                     AccountsManagement.CreateAccount(model.AccountNumber, uID, model.BrokerID);
                     accounts = AccountsManagement.GetAccountsOfUser(uID);
                     var userMail = Membership.GetUser(User.Identity.Name).Email;
-                    SendActivatedMail( model.AccountNumber.ToString(), userMail, brokerName);                    
+                    SendActivatedMail(model.AccountNumber.ToString(), userMail, brokerName);
                 }
 
                 foreach (var userAccount in accounts)
@@ -209,7 +209,7 @@ namespace ForexBox.Controllers
             return View(model);
         }
 
-       
+
         public ActionResult Advisors()
         {
             AddEmailValidator();
@@ -281,7 +281,7 @@ namespace ForexBox.Controllers
             return View();
         }
 
-       
+
         public ActionResult Advisor()
         {
             ViewBag.Title = "Страница советника. Автоматическая торговля на рынке форекс. Скачать советник бессплатно.";
@@ -304,7 +304,7 @@ namespace ForexBox.Controllers
 
         public ActionResult CheckAvailabilityUserName(string userName)
         {
-            if(UsersManager.IsUserNameAvailable(userName))
+            if (UsersManager.IsUserNameAvailable(userName))
             {
                 return Json("true");
             }
@@ -322,7 +322,7 @@ namespace ForexBox.Controllers
 
         public ActionResult CheckLogin(string userName, string password)
         {
-            if(Membership.ValidateUser(userName, password))
+            if (Membership.ValidateUser(userName, password))
             {
                 return Json("true");
             }
@@ -332,11 +332,12 @@ namespace ForexBox.Controllers
         [HttpPost]
         public ActionResult Login(string userName, string password)
         {
-            return Login1(new LogOnModel() {
-             Password = password,
-             UserName = userName,
-             RememberMe = false
-            
+            return Login1(new LogOnModel()
+            {
+                Password = password,
+                UserName = userName,
+                RememberMe = false
+
             }, "");
         }
 
@@ -344,13 +345,13 @@ namespace ForexBox.Controllers
         public ActionResult Login1(LogOnModel model, string returnUrl)
         {
             ViewBag.Title = "Войти в кабинет. Автоматическая торговля на рынке форекс. Скачать советник бессплатно.";
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    return Json(new {Success = true });
+                    return Json(new { Success = true });
                 }
                 else
                 {
@@ -364,13 +365,13 @@ namespace ForexBox.Controllers
         public ActionResult News()
         {
             ViewBag.Title = "Новости компании";
-            ViewData["emailValidator"] = @"/^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";            
+            ViewData["emailValidator"] = @"/^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
             return View();
         }
 
         public ActionResult SavePaymentSession(long partnerID, string amount)
         {
-            if(Request.IsAjaxRequest() && Request.IsAuthenticated)
+            if (Request.IsAjaxRequest() && Request.IsAuthenticated)
             {
                 var pInfo = new PaymentInfo();
                 double resMoney;
@@ -381,7 +382,7 @@ namespace ForexBox.Controllers
                 }
                 else
                 {
-                    if(amount.Contains('.'))
+                    if (amount.Contains('.'))
                     {
                         amount = amount.Replace('.', ',');
                     }
@@ -396,12 +397,12 @@ namespace ForexBox.Controllers
                         pInfo.Amount = resMoney;
                     }
                 }
-                
+
                 pInfo.PartnerID = partnerID;
                 Session["paymentInfo"] = pInfo;
                 return Json(new { Success = true });
             }
-            return Json(new {Success = false});
+            return Json(new { Success = false });
         }
 
         public ActionResult GetPaymentSession()
@@ -422,7 +423,7 @@ namespace ForexBox.Controllers
                 return View("Index");
             ViewBag.Title = "Пополнить счет";
             ViewData["PartnerCode"] = UsersManager.GetIdAsPartner(User.Identity.Name);
-            
+
             return View();
         }
 
@@ -443,7 +444,7 @@ namespace ForexBox.Controllers
 
         public ActionResult UpdateBalance(double money, long partnerID)
         {
-            if(Request.IsAjaxRequest() && Request.IsAuthenticated)
+            if (Request.IsAjaxRequest() && Request.IsAuthenticated)
             {
                 AccountsManagement.DepositMoney(partnerID, money);
                 Session["paymentInfo"] = null;
@@ -484,7 +485,7 @@ namespace ForexBox.Controllers
             ViewBag.Title = "Кабинет партнера";
 
             ViewData["PartnerCode"] = UsersManager.GetIdAsPartner(User.Identity.Name);
-            
+
             string userName = User.Identity.Name;
             var pm = new PartnerModel();
 
@@ -538,8 +539,8 @@ namespace ForexBox.Controllers
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    long ? pCode;
-                    if(model.PartnerCode == 0)
+                    long? pCode;
+                    if (model.PartnerCode == 0)
                     {
                         pCode = null;
                     }
@@ -547,9 +548,9 @@ namespace ForexBox.Controllers
                     {
                         pCode = model.PartnerCode;
                     }
-                    UsersManager.CreatePartnerRecord(model.UserName, pCode);                   
+                    UsersManager.CreatePartnerRecord(model.UserName, pCode);
                     return Json(new { Success = true });
-                 }               
+                }
                 else
                 {
                     ModelState.AddModelError("", ErrorCodeToString(createStatus));
@@ -570,7 +571,7 @@ namespace ForexBox.Controllers
                 string subject = nameSurname + " хочет октрыть счет";
                 string body = nameSurname + " хочет открыть счет на сумму " + depositSize + " понятный ему язык: " + language;
                 this.SendMail(to, subject, body);
-                
+
                 return Json(new { Success = true });
             }
             return Json(new { Success = false });
@@ -613,8 +614,8 @@ namespace ForexBox.Controllers
             UsersManager.SetLockedStatusToFalse(currentUser.Email);
 
             var changePasswordSucceeded = currentUser.ChangePassword(model.GeneratedPassword, model.NewPassword);
-           
-            if(changePasswordSucceeded)
+
+            if (changePasswordSucceeded)
             {
                 return Json("true");
             }
@@ -643,7 +644,7 @@ namespace ForexBox.Controllers
             if (ModelState.IsValid)
             {
                 string userName = Membership.GetUserNameByEmail(model.Email);
-                if(userName != null)
+                if (userName != null)
                 {
                     MembershipUser currentUser = Membership.GetUser(userName);
                     UsersManager.SetLockedStatusToFalse(currentUser.Email);
@@ -713,7 +714,7 @@ namespace ForexBox.Controllers
 
             string newPassword = user.ResetPassword();
             link = string.Format(link, user.UserName, newPassword);
-            
+
             var body = @"<html>
 <head>
 <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">  
@@ -746,7 +747,7 @@ namespace ForexBox.Controllers
 
 "
                 + user.UserName +
-            
+
             @"
 </span>		
 <table width=""400"" cellpadding=""0"" cellspacing=""0"" align=""center"" style=""clear:both""><tbody><tr><td height=""32""></td></tr></tbody></table>		
@@ -870,5 +871,27 @@ namespace ForexBox.Controllers
         }
         #endregion
 
+
+        [HttpGet]
+        public ActionResult AddAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddAccount(AccountData account)
+        {
+            UsersRepository repository = new UsersRepository();
+            var user = repository.GetUserByLoginName(User.Identity.Name);
+            if (user != null)
+                account.UserId = user.UserId;
+
+            AccountRepository accountRepository = new AccountRepository();
+            if (accountRepository.AddAcount(account))
+                ViewData["SaveSucceded"] = true;
+
+            return View();
+
+        }
     }
 }

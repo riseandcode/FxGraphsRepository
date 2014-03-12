@@ -25,7 +25,7 @@ namespace ForexBox
 
          routes.MapRoute(
             "Stats",
-            "Stats/{userName}/{graphType}",
+            "Stats/{accountId}/{graphType}",
             new { controller = "Stats", action = "Index", graphType = UrlParameter.Optional }
         );
 

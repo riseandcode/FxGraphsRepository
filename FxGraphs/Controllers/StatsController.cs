@@ -7,25 +7,22 @@ using DL;
 
 namespace ForexBox.Controllers
 {
-   public class StatsController : ForexBoxController
-   {
+    public class StatsController : ForexBoxController
+    {
+        public ActionResult Index(int accountId, string graphType = "growth")
+        {
+            StatsManager manager = new StatsManager();
 
+            Statistic stat = new Statistic();
+            stat.CurrentGraphType = graphType;
 
-      public ActionResult Index(string userName, string graphType = "growth")
-      {
-         StatsManager manager = new StatsManager();
+            ShortStatistic shortStat = new ShortStatistic();
+            shortStat.Settings = manager.GetOrCreateUserSettings(User.Identity.Name);
 
-         Statistic stat = new Statistic();
-         stat.CurrentGraphType = graphType;
+            manager.FillUserStatistic(accountId, shortStat, stat);
+            stat.ShortStatisticData = shortStat;
 
-         ShortStatistic shortStat = new ShortStatistic();
-         shortStat.Settings = manager.GetOrCreateUserSettings(userName);
-
-         manager.FillUserStatistic(userName, shortStat, stat);
-
-         stat.ShortStatisticData = shortStat;
-
-         return View("Index", stat);
-      }
-   }
+            return View("Index", stat);
+        }
+    }
 }
