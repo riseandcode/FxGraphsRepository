@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace DL
 {
@@ -31,7 +32,20 @@ namespace DL
 
    public class BaseDataValue
    {
-      public DateTime Date { get; set; }
+      private DateTime date;
+
+      [ScriptIgnore]
+      public DateTime Date
+      {
+         get { return date; }
+         set
+         {
+            date = value;
+            StringDate = value.ToString("MMM dd, yy");
+         }
+      }
+
+      public string StringDate { get; set; }
    }
 
    public class GrowthDataValue : BaseDataValue

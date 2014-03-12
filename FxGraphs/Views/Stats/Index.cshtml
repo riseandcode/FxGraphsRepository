@@ -55,8 +55,11 @@
                 DrawChart("@Model.CurrentGraphType");
             });
 
-            function createChart(graphData, title)
+            function createChart(graphData, title, graphSeries, percentage)
             {
+                //debugger;
+                var valueAxisFormat = percentage ? "{0}%" : "${0}";
+               
                 $("#chart").kendoChart({
                     dataSource: {
                         data: graphData
@@ -70,24 +73,12 @@
                     seriesDefaults: {
                         type: "line"
                     },
-                    series: 
-                        [{
-                            field: "win",
-                            name: "Wins",
-                            notes: {
-                                label: 
-                                    {
-                                        position: "outside"
-                                    },
-                                position: "bottom"
-                            }
-                        }, 
-                    {
-                        field: "loss",
-                        name: "Losses"
-                    }],
+                    series: graphSeries,
                     valueAxis: 
                         {
+                            labels:{
+                                format:valueAxisFormat
+                            },
                             line: 
                                 {
                                     visible: false
@@ -95,10 +86,10 @@
                         },
                     categoryAxis: 
                         {
-                            field: "year",
+                            field: "StringDate",
                             majorGridLines: 
                                 {
-                                    visible: false
+                                    visible: true
                                 }
                         },
                     tooltip: 
@@ -124,29 +115,47 @@
             {
                 $('#charts.titleNav li').not('.bold').removeClass().addClass('off');
                 $('#' + chartId).removeClass('off').addClass('on');
-
+                
                 switch (chartId)
                 {
                     case "@Constants.GrowthChartId":
-                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth");
-                         break;
-                     case "@Constants.BalanceChartId":
-                         createChart(@Html.Raw(Json.Encode(Model.BalanceData)), "Balance");
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth", createSeries("Growth","Growth", "Equity", "Equity"), true);
+                        break;
+                    case "@Constants.BalanceChartId":
+                        createChart(@Html.Raw(Json.Encode(Model.BalanceData)), "Balance", createSeries("Balance","Balance", "Equity", "Equity"));
                         break;
                     case "@Constants.ProfitChartId":
-                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Profit");
+                        createChart(@Html.Raw(Json.Encode(Model.ProfitData)), "Profit", createSeries("Profit","Profit"));
                         break;
                     case "@Constants.DrawdownChartId":
-                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Drawdown");
+                        createChart(@Html.Raw(Json.Encode(Model.DrawdownData)), "Drawdown");
                         break;
                     default:
-                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth");
-                }
-            }
+                        createChart(@Html.Raw(Json.Encode(Model.GrowthData)), "Growth", createSeries("Growth","Growth", "Equity", "Equity"));
+                 }
+             }
 
-         
+             function createSeries(firstField, firstTitle, secondField, secondTitle){
+               
+                 var series= [{
+                     field: firstField,
+                     name: firstTitle,
+                     notes: {
+                         label: 
+                             {
+                                 position: "outside"
+                             },
+                         position: "bottom"
+                     }
+                 }, 
+                             {
+                                 field: secondField,
+                                 name: secondTitle
+                             }];
+                 return series;
+             }
 
-            $(document).bind("kendo:skinChange", createChart);
+             $(document).bind("kendo:skinChange", createChart);
         </script>
     </div>
 

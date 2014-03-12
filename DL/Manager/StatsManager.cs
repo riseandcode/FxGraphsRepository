@@ -86,26 +86,16 @@ namespace DL
 
          var start = sortedByDate.First();
 
-         toFill.ProfitData.Add(new ProfitDataValue { Date = start.Date, Profit = 0 });
-         toFill.GrowthData.Add(new GrowthDataValue { Date = start.Date, Growth = 0 });
-         
-         for (int i = 0; i < sortedByDate.Count; i++)
+         foreach (var item in sortedByDate)
          {
-            if (i > 0)
-            {
-               decimal difference = sortedByDate[i].Amount - sortedByDate[i - 1].Amount;
-               toFill.ProfitData.Add(new ProfitDataValue { Date = sortedByDate[i].Date, Profit = difference });
+            decimal difference = item.Amount - start.Amount;
+            toFill.ProfitData.Add(new ProfitDataValue { Date = item.Date, Profit = difference });
 
-               var growth = sortedByDate[i - 1].Amount != 0 ? (difference / sortedByDate[i - 1].Amount) * 100 : 0;
-               toFill.GrowthData.Add(new GrowthDataValue { Date = sortedByDate[i].Date, Growth = growth });
-
-
-            }
-
-            //TODO check Equity
-            toFill.BalanceData.Add(new BalanceDataValue { Date = sortedByDate[i].Date, Balance = sortedByDate[i].Amount, Equity = sortedByDate[i].Amount });
+            var growth = start.Amount != 0 ? (difference / start.Amount) * 100 : 0;
+            toFill.GrowthData.Add(new GrowthDataValue { Date = item.Date, Growth = growth });
+            toFill.BalanceData.Add(new BalanceDataValue { Date = item.Date, Balance = item.Amount, Equity = item.Amount });
          }
-
+         
       }
    }
 }
