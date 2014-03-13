@@ -37,73 +37,73 @@ namespace DL
          repository.UpdateUserStatisticSettings(settings);
       }
 
-        public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
+      public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
       {
 
-            var depositsRepository = new DepositsDataRepository();
-            var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
+         var depositsRepository = new DepositsDataRepository();
+         var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
 
-            var accountRepository = new AccountRepository();
-            var account = accountRepository.GetAccountById(accountId);
+         var accountRepository = new AccountRepository();
+         var account = accountRepository.GetAccountById(accountId);
 
-            if (accountId != null)
+         if (accountId != null)
          {
-                toFill.Broker = account.Broker;
-                toFill.Leverage = account.Leverage;
-                toFill.StartedDate = account.Date ?? DateTime.Now;
-                toFill.System = account.System;
-                toFill.TimeZone = account.TimeZone ?? 0;
-                toFill.Trading = account.Trading;
-                toFill.Type = account.Type;
-            }
-
-            if (deposits.Count != 0)
-            {
-               var sortedByDate = deposits.OrderBy(x => x.Date);
-
-               toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
-
-               toFill.Balance = sortedByDate.LastOrDefault().Amount;
-
-               decimal maxAmount = deposits.Max(x => x.Amount);
-               var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
-
-               if (highestEntity != null)
-               {
-                  toFill.Highest = highestEntity.Amount;
-                  toFill.HighestDate = highestEntity.Date;
-               }
-
-               decimal startValue = sortedByDate.FirstOrDefault().Amount;
-               decimal endValue = sortedByDate.LastOrDefault().Amount;
-               decimal defference = endValue - startValue;
-               decimal value = startValue != 0 ? (defference / startValue) * 100 : 0;
-               toFill.Profit = endValue - startValue;
-               toFill.AbsGain = value;
-
-               toFill.Equity = startValue + toFill.Profit;
-
-               FillGraphData(sortedByDate.ToList(), graphModel);
-            }
-        }
-
-        public string GetUserNameByAccountId(int accountId)
-        {
-            string userName = string.Empty;
-
-            var accountRepository = new AccountRepository();
-            var account = accountRepository.GetAccountById(accountId);
-
-            if (account != null)
-            {
-                var userRepository = new UsersRepository();
-                var user = userRepository.GetUserById(account.UserId);
-
-                if (user != null)
-                    userName = user.UserName;
+            toFill.Broker = account.Broker;
+            toFill.Leverage = account.Leverage;
+            toFill.StartedDate = account.Date ?? DateTime.Now;
+            toFill.System = account.System;
+            toFill.TimeZone = account.TimeZone ?? 0;
+            toFill.Trading = account.Trading;
+            toFill.Type = account.Type;
          }
 
-            return userName;
+         if (deposits.Count != 0)
+         {
+            var sortedByDate = deposits.OrderBy(x => x.Date);
+
+            toFill.Deposits = sortedByDate.FirstOrDefault().Amount;
+
+            toFill.Balance = sortedByDate.LastOrDefault().Amount;
+
+            decimal maxAmount = deposits.Max(x => x.Amount);
+            var highestEntity = deposits.FirstOrDefault(x => x.Amount == maxAmount);
+
+            if (highestEntity != null)
+            {
+               toFill.Highest = highestEntity.Amount;
+               toFill.HighestDate = highestEntity.Date;
+            }
+
+            decimal startValue = sortedByDate.FirstOrDefault().Amount;
+            decimal endValue = sortedByDate.LastOrDefault().Amount;
+            decimal defference = endValue - startValue;
+            decimal value = startValue != 0 ? (defference / startValue) * 100 : 0;
+            toFill.Profit = endValue - startValue;
+            toFill.AbsGain = value;
+
+            toFill.Equity = startValue + toFill.Profit;
+
+            FillGraphData(sortedByDate.ToList(), graphModel);
+         }
+      }
+
+      public string GetUserNameByAccountId(int accountId)
+      {
+         string userName = string.Empty;
+
+         var accountRepository = new AccountRepository();
+         var account = accountRepository.GetAccountById(accountId);
+
+         if (account != null)
+         {
+            var userRepository = new UsersRepository();
+            var user = userRepository.GetUserById(account.UserId);
+
+            if (user != null)
+               userName = user.UserName;
+         }
+
+         return userName;
       }
 
       private void FillGraphData(List<DepositsData> sortedByDate, Statistic toFill)
@@ -140,12 +140,13 @@ namespace DL
             decimal equityGrowth = startEquity != 0 ? (equityDifference / startEquity) * 100 : 0;
 
             toFill.GrowthData.Add(new GrowthDataValue { Date = depositsByDate[i].Date, Growth = growth, EquityGrowth = equityGrowth });
+         }
 
-            if (i + 1 < depositsByDate.Length && currentEquity!=0)
-            {
-               decimal drawdown = ((currentEquity - (depositsByDate[i + 1].Amount + floatingProfitByDate[i + 1].Amount)) / currentEquity) * 100;
-               toFill.DrawdownData.Add(new DrawdownDataValue { Date = depositsByDate[i + 1].Date, Value = drawdown });
-            }
+         decimal maxEquity = toFill.BalanceData.Select(x => x.Equity).Max();
+         foreach (var item in toFill.BalanceData)
+         {
+            decimal drawdown = maxEquity != 0 ? ((maxEquity - item.Equity) / maxEquity) * 100 : 0;
+            toFill.DrawdownData.Add(new DrawdownDataValue { Date = item.Date, Value = drawdown });
          }
       }
 
