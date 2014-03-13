@@ -22,7 +22,10 @@
 </head>
 <body>
     <div style="margin-top: 50px; margin-left: 50px;">
-
+        @if (ViewData.ContainsKey("AccountError"))
+        {
+            <h3 style="color: red;margin-bottom:10px">You didn't choose any account</h3>
+        }
         <div style="float: left;">
             @Html.Partial("StatisticInfo", Model.ShortStatisticData)
         </div>
@@ -141,10 +144,10 @@
                         
                     },
                     tooltip: {
-                    visible: true,
+                        visible: true,
                        
-                    template: "#= category #: #= kendo.toString(value, '0.00') #%"
-                }
+                        template: "#= category #: #= kendo.toString(value, '0.00') #%"
+                    }
                 });
             }
 
@@ -176,7 +179,7 @@
                         createChart(@Html.Raw(Json.Encode(Model.ProfitData)), createSeries("Profit","Profit"));
                         break;
                     case "@Constants.DrawdownChartId":
-                        createBarChart(@Html.Raw(Json.Encode(Model.DrawdownData.Select(x=>x.Value))), @Html.Raw(Json.Encode(Model.DrawdownData.Select(x=>x.StringDate))));
+                        createBarChart(@Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.Value))), @Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.StringDate))));
                         break;
                     default:
                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), createSeries("Growth","Growth", "EquityGrowth", "Equity growth"));

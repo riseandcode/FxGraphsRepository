@@ -23,16 +23,10 @@
         {
             <li class="font12 bold">
                 <span class="floatLeft dotted" id="gainTip">Gain:</span>
-                <span class="floatNone green">+TODO%</span>
+                <span class="floatNone green">@Html.DisplayFor(x => x.AbsGain)%</span>
             </li>
         }
-        @if (Model.Settings.IsAbsGainVisible)
-        {
-            <li class="paddB5 borderB">
-                <span class="floatLeft dotted" id="absGainTip">Abs. Gain:</span>
-                <span class="floatNone green">+@Html.DisplayFor(x => x.AbsGain)%</span>
-            </li>
-        }
+
         @if (Model.Settings.IsDailyIncomeVisible)
         {
             <li class="paddT5">
@@ -79,18 +73,12 @@
         }
         @if (Model.Settings.IsProfitVisible)
         {
-            <li>
+            <li class="paddB5">
                 <span class="floatLeft">Profit:</span>
                 <span class="floatNone green">$@Html.DisplayFor(x => x.Profit)</span>
             </li>
         }
-        @if (Model.Settings.IsInterestVisible)
-        {
-            <li class="paddB5">
-                <span class="floatLeft">Interest:</span>
-                <span class="floatNone">-$TODO</span>
-            </li>
-        }
+
         @if (Model.Settings.IsDepositsVisible)
         {
             <li class="paddT5 borderT">
@@ -130,19 +118,17 @@
             <li style="max-height: 134px; overflow: hidden; margin-bottom: 16px; text-align: left">
                 <b>Description:</b><br>
                 <div class="pointer inlineBlock" id="descTip">Order flow with price action</div>
-                @*            <script type="text/javascript">
-                new Tip('#descTip', 'Order flow with price action', {
-                    hook: 'bottomleft',
-                    target: 'mouse',
-                    maxWidth: 200,
-                    title: 'System Description'
-                });
-            </script>*@
+            </li>
+        }
+        @if (Model.Settings.IsViewsVisible)
+        {
+            <li>
+                <span class="floatLeft">Views:</span>
+                <span class="floatNone">@Model.Views</span>
             </li>
         }
         @if (Model.Settings.IsBrokerVisible)
-        {
-            <li><span class="floatLeft">Views:</span><span class="floatNone">134</span></li>
+        {            
             <li class="paddT5"><span class="floatLeft">Broker: </span>
                 <span class="floatNone">@Model.Broker</span>
             </li>

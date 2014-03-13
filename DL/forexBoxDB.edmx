@@ -204,6 +204,7 @@
           <Property Name="TimeZone" Type="int" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="Trading" Type="varchar" MaxLength="50" />
+          <Property Name="Views" Type="int" />
         </EntityType>
         <EntityType Name="Accounts">
           <Key>
@@ -1952,6 +1953,7 @@
           <Property Type="Int32" Name="TimeZone" />
           <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Trading" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Views" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_AccountData_AccountData" FromRole="AccountData" ToRole="aspnet_Users" />
           <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_AccountData" FromRole="AccountData" ToRole="DepositsData" />
         </EntityType>
@@ -2284,6 +2286,7 @@
           <EntitySetMapping Name="AccountDatas">
             <EntityTypeMapping TypeName="forexBox2Model.AccountData">
               <MappingFragment StoreEntitySet="AccountData">
+                <ScalarProperty Name="Views" ColumnName="Views" />
                 <ScalarProperty Name="Trading" ColumnName="Trading" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
@@ -2412,7 +2415,7 @@
         <EntityTypeShape EntityType="forexBox2Model.StatisticConfiguration" Width="1.5" PointX="9.75" PointY="21.375" />
         <AssociationConnector Association="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" />
         <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="7.25" PointY="21.5" />
-        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="11.228067481530861" PointY="9.0801943880879286" />
+        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="3.4761594531480968" PointY="11.470334088183163" />
         <AssociationConnector Association="forexBox2Model.FK_AccountData_AccountData" />
         <AssociationConnector Association="forexBox2Model.FK_DepositsData_AccountData" />
         </Diagram>

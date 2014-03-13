@@ -22,7 +22,7 @@ namespace DL
                 ctx.AccountDatas.AddObject(account);
 
                 try
-                {                    
+                {
                     ctx.SaveChanges();
                 }
                 catch { return false; }
@@ -63,6 +63,25 @@ namespace DL
             }
 
             return true;
+        }
+
+        public void IncrementViewsById(int accountId)
+        {
+            using (var ctx = new forexBox2Entities())
+            {
+                var account = ctx.AccountDatas.FirstOrDefault(x => x.Id == accountId);
+
+                if (account != null)
+                {
+                    account.Views = (account.Views == null) ? 1 : account.Views + 1;
+
+                    try
+                    {
+                        ctx.SaveChanges();
+                    }
+                    catch { }
+                }
+            }
         }
     }
 }

@@ -1137,6 +1137,30 @@ namespace DL
         private global::System.String _Trading;
         partial void OnTradingChanging(global::System.String value);
         partial void OnTradingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Views
+        {
+            get
+            {
+                return _Views;
+            }
+            set
+            {
+                OnViewsChanging(value);
+                ReportPropertyChanging("Views");
+                _Views = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Views");
+                OnViewsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Views;
+        partial void OnViewsChanging(Nullable<global::System.Int32> value);
+        partial void OnViewsChanged();
 
         #endregion
 
