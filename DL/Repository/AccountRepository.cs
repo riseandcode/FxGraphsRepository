@@ -30,5 +30,39 @@ namespace DL
 
             return true;
         }
+
+        public List<AccountData> GetAccountsByUserId(Guid id)
+        {
+            using (var ctx = new forexBox2Entities())
+            {
+                return ctx.AccountDatas.Where(x => x.UserId == id).ToList();
+            }
+        }
+
+        public bool DeleteAccount(int id)
+        {
+            using (var ctx = new forexBox2Entities())
+            {
+                var account = ctx.AccountDatas.FirstOrDefault(x => x.Id == id);
+                if (account != null)
+                {
+                    var datas = ctx.DepositsDatas.Where(x => x.AccountId == id);
+                    foreach (var data in datas)
+                    {
+                        ctx.DeleteObject(data);
+                    }
+
+                    ctx.DeleteObject(account);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch { return false; }
+            }
+
+            return true;
+        }
     }
 }

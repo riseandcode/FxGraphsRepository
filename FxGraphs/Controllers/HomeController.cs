@@ -893,5 +893,31 @@ namespace ForexBox.Controllers
             return View();
 
         }
+
+        [HttpGet]
+        public ActionResult ManageAccounts()
+        {
+            var userRepository = new UsersRepository();
+            var user = userRepository.GetUserByLoginName(User.Identity.Name);
+
+            List<AccountData> accounts = new List<AccountData>();
+
+            if (user != null)
+            {
+                var accountRepository = new AccountRepository();
+                accounts = accountRepository.GetAccountsByUserId(user.UserId);
+            }
+
+            return View(accounts);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAccount(int accountId)
+        {
+            var accountRepository = new AccountRepository();
+            accountRepository.DeleteAccount(accountId);
+
+            return Json(true);
+        }
     }
 }
