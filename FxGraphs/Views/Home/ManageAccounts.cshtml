@@ -5,29 +5,34 @@
 }
 
 <style type="text/css">
-    .accountTable {
+    .accountTable
+    {
         margin: 0px;
         padding: 0px;
         width: 100%;
         border: 1px solid #dedede;
     }
 
-        .accountTable table {
+        .accountTable table
+        {
             width: 100%;
             height: 100%;
             margin: 0px;
             padding: 0px;
         }
 
-        .accountTable tr:nth-child(odd) {
+        .accountTable tr:nth-child(odd)
+        {
             background-color: #F7F5F5;
         }
 
-        .accountTable tr:nth-child(even) {
+        .accountTable tr:nth-child(even)
+        {
             background-color: #ffffff;
         }
 
-        .accountTable td {
+        .accountTable td
+        {
             vertical-align: middle;
             text-align: left;
             padding: 7px;
@@ -37,45 +42,25 @@
             color: #000000;
         }
 
-        .accountTable tr:last-child td {
+        .accountTable tr:last-child td
+        {
             border-width: 0px 0px 0px 0px;
         }
 
-        .accountTable tr:first-child td {
-            background: -webkit-gradient(linear,left top,left bottom,from(#c8c8c8),to(#e9e9e9));
-            background: -moz-linear-gradient(top,#c8c8c8,#e9e9e9) repeat scroll 0 0 transparent;
-            background: -o-linear-gradient(top,#c8c8c8,#e9e9e9);
+        .accountTable tr:first-child td
+        {
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");
-            background: -o-linear-gradient(top,#cccccc,b2b2b2);
             background-color: #cccccc;
             text-align: center;
-            border-width: 0px 0px 0px 0px;
             font-size: 14px;
             font-family: arial;
             font-weight: bold;
             color: #767676;
         }
 
-    .buttonStyle {
-        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        box-shadow: inset 0px 1px 0px 0px #ffffff;
-        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-        background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+    .buttonStyle
+    {
         background-color: #ededed;
-        -webkit-border-top-left-radius: 6px;
-        -moz-border-radius-topleft: 6px;
-        border-top-left-radius: 6px;
-        -webkit-border-top-right-radius: 6px;
-        -moz-border-radius-topright: 6px;
-        border-top-right-radius: 6px;
-        -webkit-border-bottom-right-radius: 6px;
-        -moz-border-radius-bottomright: 6px;
-        border-bottom-right-radius: 6px;
-        -webkit-border-bottom-left-radius: 6px;
-        -moz-border-radius-bottomleft: 6px;
-        border-bottom-left-radius: 6px;
         text-indent: 0;
         border: 1px solid #dcdcdc;
         display: inline-block;
@@ -89,24 +74,23 @@
         width: 100px;
         text-decoration: none;
         text-align: center;
-        text-shadow: 1px 1px 0px #ffffff;
     }
 
-        .buttonStyle:hover {
-            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-            background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+        .buttonStyle:hover
+        {
             background-color: #dfdfdf;
         }
 
-        .buttonStyle:active {
+        .buttonStyle:active
+        {
             position: relative;
             top: 1px;
         }
 </style>
 
 <script type="text/javascript">
-    function DeleteAccount(element, id) {
+    function DeleteAccount(element, id)
+    {
         $(element).parent().parent().remove();
 
         $.ajax({
@@ -115,10 +99,12 @@
             data: JSON.stringify({ "accountId": id }),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            success: function (data) {
+            success: function (data)
+            {
                 jAlert("Account was successfully deleted.", "Account");
             },
-            error: function () {
+            error: function ()
+            {
                 alert('Error occured', "Account");
             }
         });
@@ -127,11 +113,13 @@
 
 </script>
 
-<h4>ManageAccounts</h4>
 
-<div style="margin-top: 30px; margin-left: 20px; width: 40%">
+<div style="margin: 40px 20px">
     <h4>Manage User Accounts</h4>
-    <table class="accountTable" style="margin-top: 10px">
+</div>
+<div style="margin: 30px auto; width: 40%;">
+
+    <table class="accountTable">
         <tr>
             <td>ID</td>
             <td>System</td>

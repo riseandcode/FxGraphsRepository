@@ -46,7 +46,7 @@ namespace DL
          var accountRepository = new AccountRepository();
          var account = accountRepository.GetAccountById(accountId);
 
-         if (accountId != null)
+         if (account != null)
          {
             toFill.Broker = account.Broker;
             toFill.Leverage = account.Leverage;

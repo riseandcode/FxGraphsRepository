@@ -30,10 +30,22 @@
             <div class="boxTitle">
                 <ul id="charts" class="titleNav">
                     <li class="bold" style="cursor: auto">Chart</li>
-                    <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
-                    <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
-                    <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
-                    <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
+                    @if (Model.ShortStatisticData.Settings.IsGrowthTabVisible)
+                    {
+                        <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
+                    }
+                    @if (Model.ShortStatisticData.Settings.IsBalanceTabVisible)
+                    {
+                        <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
+                    }
+                    @if (Model.ShortStatisticData.Settings.IsProfitTabVisible)
+                    {
+                        <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
+                    }
+                    @if (Model.ShortStatisticData.Settings.IsDrawdownTabVisible)
+                    {
+                        <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
+                    }
                 </ul>
             </div>
 
@@ -141,10 +153,10 @@
                         
                     },
                     tooltip: {
-                    visible: true,
+                        visible: true,
                        
-                    template: "#= category #: #= kendo.toString(value, '0.00') #%"
-                }
+                        template: "#= category #: #= kendo.toString(value, '0.00') #%"
+                    }
                 });
             }
 
@@ -176,7 +188,7 @@
                         createChart(@Html.Raw(Json.Encode(Model.ProfitData)), createSeries("Profit","Profit"));
                         break;
                     case "@Constants.DrawdownChartId":
-                        createBarChart(@Html.Raw(Json.Encode(Model.DrawdownData.Select(x=>x.Value))), @Html.Raw(Json.Encode(Model.DrawdownData.Select(x=>x.StringDate))));
+                        createBarChart(@Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.Value))), @Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.StringDate))));
                         break;
                     default:
                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), createSeries("Growth","Growth", "EquityGrowth", "Equity growth"));
