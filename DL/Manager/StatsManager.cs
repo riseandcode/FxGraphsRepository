@@ -43,6 +43,20 @@ namespace DL
             var depositsRepository = new DepositsDataRepository();
             var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
 
+            var accountRepository = new AccountRepository();
+            var account = accountRepository.GetAccountById(accountId);
+
+            if (accountId != null)
+            {
+                toFill.Broker = account.Broker;
+                toFill.Leverage = account.Leverage;
+                toFill.StartedDate = account.Date ?? DateTime.Now;
+                toFill.System = account.System;
+                toFill.TimeZone = account.TimeZone ?? 0;
+                toFill.Trading = account.Trading;
+                toFill.Type = account.Type;
+            }
+
             if (deposits.Count != 0)
             {
                 var sortedByDate = deposits.OrderBy(x => x.Date);

@@ -202,6 +202,8 @@
           <Property Name="Technical" Type="varchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
           <Property Name="TimeZone" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Trading" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Accounts">
           <Key>
@@ -1370,8 +1372,8 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="StatisticConfiguration" EntitySet="StatisticConfigurations" />
           </AssociationSet>
-          <EntitySet Name="AccountDatas" EntityType="forexBox2Model.AccountData" />
           <EntitySet Name="DepositsDatas" EntityType="forexBox2Model.DepositsData" />
+          <EntitySet Name="AccountDatas" EntityType="forexBox2Model.AccountData" />
           <AssociationSet Name="FK_AccountData_AccountData" Association="forexBox2Model.FK_AccountData_AccountData">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="AccountData" EntitySet="AccountDatas" />
@@ -1925,6 +1927,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DepositsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Type" />
+          <Property Type="Int32" Name="AccountId" />
+          <NavigationProperty Name="AccountData" Relationship="forexBox2Model.FK_DepositsData_AccountData" FromRole="DepositsData" ToRole="AccountData" />
+        </EntityType>
         <EntityType Name="AccountData">
           <Key>
             <PropertyRef Name="Id" />
@@ -1937,19 +1950,10 @@
           <Property Type="String" Name="Technical" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Date" Precision="3" />
           <Property Type="Int32" Name="TimeZone" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Trading" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_AccountData_AccountData" FromRole="AccountData" ToRole="aspnet_Users" />
           <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_AccountData" FromRole="AccountData" ToRole="DepositsData" />
-        </EntityType>
-        <EntityType Name="DepositsData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="Type" />
-          <Property Type="Int32" Name="AccountId" />
-          <NavigationProperty Name="AccountData" Relationship="forexBox2Model.FK_DepositsData_AccountData" FromRole="DepositsData" ToRole="AccountData" />
         </EntityType>
         <Association Name="FK_AccountData_AccountData">
           <End Type="forexBox2Model.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
@@ -2266,20 +2270,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountDatas">
-            <EntityTypeMapping TypeName="forexBox2Model.AccountData">
-              <MappingFragment StoreEntitySet="AccountData">
-                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Technical" ColumnName="Technical" />
-                <ScalarProperty Name="System" ColumnName="System" />
-                <ScalarProperty Name="Leverage" ColumnName="Leverage" />
-                <ScalarProperty Name="Broker" ColumnName="Broker" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DepositsDatas">
             <EntityTypeMapping TypeName="forexBox2Model.DepositsData">
               <MappingFragment StoreEntitySet="DepositsData">
@@ -2287,6 +2277,22 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDatas">
+            <EntityTypeMapping TypeName="forexBox2Model.AccountData">
+              <MappingFragment StoreEntitySet="AccountData">
+                <ScalarProperty Name="Trading" ColumnName="Trading" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="Leverage" ColumnName="Leverage" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2405,11 +2411,11 @@
         <EntityTypeShape EntityType="forexBox2Model.sysdiagrams" Width="1.5" PointX="15.375" PointY="9.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="forexBox2Model.StatisticConfiguration" Width="1.5" PointX="9.75" PointY="21.375" />
         <AssociationConnector Association="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" />
-        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="4.25" PointY="20" />
         <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="7.25" PointY="21.5" />
+        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="11.228067481530861" PointY="9.0801943880879286" />
         <AssociationConnector Association="forexBox2Model.FK_AccountData_AccountData" />
         <AssociationConnector Association="forexBox2Model.FK_DepositsData_AccountData" />
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>

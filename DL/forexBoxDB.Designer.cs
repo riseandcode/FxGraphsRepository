@@ -569,22 +569,6 @@ namespace DL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AccountData> AccountDatas
-        {
-            get
-            {
-                if ((_AccountDatas == null))
-                {
-                    _AccountDatas = base.CreateObjectSet<AccountData>("AccountDatas");
-                }
-                return _AccountDatas;
-            }
-        }
-        private ObjectSet<AccountData> _AccountDatas;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<DepositsData> DepositsDatas
         {
             get
@@ -597,6 +581,22 @@ namespace DL
             }
         }
         private ObjectSet<DepositsData> _DepositsDatas;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AccountData> AccountDatas
+        {
+            get
+            {
+                if ((_AccountDatas == null))
+                {
+                    _AccountDatas = base.CreateObjectSet<AccountData>("AccountDatas");
+                }
+                return _AccountDatas;
+            }
+        }
+        private ObjectSet<AccountData> _AccountDatas;
 
         #endregion
 
@@ -843,19 +843,19 @@ namespace DL
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AccountDatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAccountDatas(AccountData accountData)
-        {
-            base.AddObject("AccountDatas", accountData);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the DepositsDatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToDepositsDatas(DepositsData depositsData)
         {
             base.AddObject("DepositsDatas", depositsData);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AccountDatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAccountDatas(AccountData accountData)
+        {
+            base.AddObject("AccountDatas", accountData);
         }
 
         #endregion
@@ -1089,6 +1089,54 @@ namespace DL
         private Nullable<global::System.Int32> _TimeZone;
         partial void OnTimeZoneChanging(Nullable<global::System.Int32> value);
         partial void OnTimeZoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.String _Type;
+        partial void OnTypeChanging(global::System.String value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Trading
+        {
+            get
+            {
+                return _Trading;
+            }
+            set
+            {
+                OnTradingChanging(value);
+                ReportPropertyChanging("Trading");
+                _Trading = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Trading");
+                OnTradingChanged();
+            }
+        }
+        private global::System.String _Trading;
+        partial void OnTradingChanging(global::System.String value);
+        partial void OnTradingChanged();
 
         #endregion
 
