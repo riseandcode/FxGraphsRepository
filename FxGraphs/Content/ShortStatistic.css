@@ -118,6 +118,7 @@
 .borderB {
     border-bottom: solid 1px #f2f1f1;
 }
+
 .paddT5 {
     padding-top: 5px;
 }
@@ -136,11 +137,11 @@
     font-weight: normal;
 }
 
-.gray a {
-    color: #9f9f9f;
-    font-size: 11px;
-    font-weight: normal;
-}
+    .gray a {
+        color: #9f9f9f;
+        font-size: 11px;
+        font-weight: normal;
+    }
 
 .border0 {
     border: 0!important;

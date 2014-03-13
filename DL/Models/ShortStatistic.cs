@@ -16,5 +16,13 @@ namespace DL
         public decimal Highest { get; set; }
         public DateTime HighestDate { get; set; }
         public decimal Equity { get; set; }
+
+        public string Broker { get; set; }
+        public string Leverage { get; set; }
+        public string Type { get; set; }
+        public string System { get; set; }
+        public string Trading { get; set; }
+        public DateTime StartedDate { get; set; }
+        public int TimeZone { get; set; }
     }
 }

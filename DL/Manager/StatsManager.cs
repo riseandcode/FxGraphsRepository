@@ -1,5 +1,4 @@
-﻿using DL.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,15 +37,25 @@ namespace DL
          repository.UpdateUserStatisticSettings(settings);
       }
 
-      public void FillUserStatistic(string loginName, ShortStatistic toFill, Statistic graphModel)
+        public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
       {
-         var userRepository = new UsersRepository();
-         var user = userRepository.GetUserByLoginName(loginName);
 
-         if (user != null)
-         {
             var depositsRepository = new DepositsDataRepository();
-            var deposits = depositsRepository.GetDepositsDataByUserId(user.UserId);
+            var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
+
+            var accountRepository = new AccountRepository();
+            var account = accountRepository.GetAccountById(accountId);
+
+            if (accountId != null)
+         {
+                toFill.Broker = account.Broker;
+                toFill.Leverage = account.Leverage;
+                toFill.StartedDate = account.Date ?? DateTime.Now;
+                toFill.System = account.System;
+                toFill.TimeZone = account.TimeZone ?? 0;
+                toFill.Trading = account.Trading;
+                toFill.Type = account.Type;
+            }
 
             if (deposits.Count != 0)
             {
@@ -76,7 +85,25 @@ namespace DL
 
                FillGraphData(sortedByDate.ToList(), graphModel);
             }
+        }
+
+        public string GetUserNameByAccountId(int accountId)
+        {
+            string userName = string.Empty;
+
+            var accountRepository = new AccountRepository();
+            var account = accountRepository.GetAccountById(accountId);
+
+            if (account != null)
+            {
+                var userRepository = new UsersRepository();
+                var user = userRepository.GetUserById(account.UserId);
+
+                if (user != null)
+                    userName = user.UserName;
          }
+
+            return userName;
       }
 
       private void FillGraphData(List<DepositsData> sortedByDate, Statistic toFill)
@@ -121,5 +148,6 @@ namespace DL
             }
          }
       }
+
    }
 }

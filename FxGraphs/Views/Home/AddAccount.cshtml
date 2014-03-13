@@ -1,0 +1,75 @@
+﻿@model DL.AccountData
+@{
+    ViewBag.Title = "AddAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddAccount</h2>
+
+<style type="text/css">
+    .mainContent {
+        font-size: 11px;
+        font-family: Tahoma,sans-serif;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+
+    .rowContent {
+        padding-bottom: 10px;
+    }
+</style>
+
+<script type="text/javascript">
+    function CreateAccount() {
+        var date = new Date();
+        var offset = date.getTimezoneOffset() / 60;
+        $('#TimeZone').val(offset);
+        $('#Date').val(date.toJSON());
+    }
+</script>
+
+<div class="mainContent" style="margin: 40px">
+    @if (ViewData.ContainsKey("SaveSucceded"))
+    {        
+        <script type="text/javascript" src="@Url.Content("/ForexBoxTrade2/javascript/jquery.alerts.js")"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                jAlert("Account was saccessfully saved.", "Account");
+            });
+        </script>
+    }
+    @using (Html.BeginForm("AddAccount", "Home", FormMethod.Post))
+    {
+        <h4>Create New Account</h4>
+        <div class="rowContent">
+            <div><span>Broker:</span></div>
+            <div>@Html.EditorFor(x => x.Broker)</div>
+        </div>
+        <div class="rowContent">
+            <div><span>Leverage:</span></div>
+            <div>@Html.EditorFor(x => x.Leverage)</div>
+        </div>
+        <div class="rowContent">
+            <div><span>System:</span></div>
+            <div>@Html.EditorFor(x => x.System)</div>
+        </div>
+        <div class="rowContent">
+            <div><span>Technical:</span></div>
+            <div>@Html.EditorFor(x => x.Technical)</div>
+        </div>
+        <div class="rowContent">
+            <div><span>Type:</span></div>
+            <div>@Html.EditorFor(x => x.Type)</div>
+        </div>
+        <div class="rowContent">
+            <div><span>Trading:</span></div>
+            <div>@Html.EditorFor(x => x.Trading)</div>
+        </div>
+        <div style="display: none">
+            @Html.HiddenFor(x => x.TimeZone)
+            @Html.HiddenFor(x => x.Date);
+        </div>
+
+        <input type="submit" onclick="CreateAccount()" value="Create Account" />
+    }
+</div>

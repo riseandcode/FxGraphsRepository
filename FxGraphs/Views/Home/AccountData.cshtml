@@ -1,0 +1,8 @@
+﻿@model DL.AccountData
+<tr>
+    <td>@Html.DisplayFor(x => x.Id)</td>
+    <td>@Html.DisplayFor(x => x.System)</td>
+    <td>@Html.DisplayFor(x => x.Broker)</td>
+    <td>
+    <a href="#" onclick="DeleteAccount(this, @Model.Id)" class="buttonStyle">Delete</a>
+</tr>

@@ -144,42 +144,50 @@
         {
             <li><span class="floatLeft">Views:</span><span class="floatNone">134</span></li>
             <li class="paddT5"><span class="floatLeft">Broker: </span>
-                <span class="floatNone">Alpari NZ</span>
+                <span class="floatNone">@Model.Broker</span>
             </li>
         }
         @if (Model.Settings.IsLeverageVisible)
         {
             <li><span class="floatLeft">Leverage: </span>
-                <span class="floatNone">1:500
-                </span>
+                <span class="floatNone">@Model.Leverage</span>
             </li>
         }
         @if (Model.Settings.IsTypeVisible)
         {
             <li>
                 <span class="floatLeft">Type:</span>
-                <span class="floatNone">Demo</span>
+                <span class="floatNone">@Model.Type</span>
             </li>
         }
 
         @if (Model.Settings.IsSystemVisible)
         {
-            <li><span class="floatLeft">System:</span><span class="floatNone">Technical</span>
-
+            <li>
+                <span class="floatLeft">System:</span>
+                <span class="floatNone">@Model.System</span>
             </li>
         }
         @if (Model.Settings.IsTradingVisible)
         {
-            <li><span class="floatLeft">Trading:</span><span class="floatNone">Manual</span>
+            <li>
+                <span class="floatLeft">Trading:</span>
+                <span class="floatNone">@Model.Trading</span>
             </li>
         }
         @if (Model.Settings.IsStartedVisible)
         {
-            <li><span class="floatLeft">Started:</span><span class="floatNone">Jun 19, 2013</span></li>
+            <li>
+                <span class="floatLeft">Started:</span>
+                <span class="floatNone">@Model.StartedDate.ToShortDateString()</span>
+            </li>
         }
         @if (Model.Settings.IsTimezoneVisible)
         {
-            <li><span class="floatLeft">Timezone:</span><span class="floatNone">GMT +1</span></li>
+            <li>
+                <span class="floatLeft">Timezone:</span>
+                <span class="floatNone">GMT @Model.TimeZone</span>
+            </li>
         }
     </ul>
 </div>

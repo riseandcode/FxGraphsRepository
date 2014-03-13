@@ -945,6 +945,9 @@
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Home\StatisticConfiguration.cshtml" />
     <Content Include="Views\Home\StatisticTabsConfiguration.cshtml" />
+    <Content Include="Views\Home\AddAccount.cshtml" />
+    <Content Include="Views\Home\ManageAccounts.cshtml" />
+    <Content Include="Views\Home\AccountData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LanguageResources\LoginShareden.resx">
