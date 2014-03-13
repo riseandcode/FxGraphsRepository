@@ -122,6 +122,7 @@
                     }],
                     valueAxis: {
                         labels: {
+                            
                             format: "{0}%",
                             color:"#767676",
                             font:"10px verdana, sans-sarif"
@@ -136,13 +137,15 @@
                         line: {
                             visible: false
                         },
+                        labels:{ step:3,  color:"#767676"},
                         
-                        tooltip: {
-                            visible: true,
-                            format: "{0}%",
-                            template: "#= category #: #= value #"
-                        }
-                    }});
+                    },
+                    tooltip: {
+                    visible: true,
+                       
+                    template: "#= category #: #= kendo.toString(value, '0.00') #%"
+                }
+                });
             }
 
             function selectChart(chartId)
