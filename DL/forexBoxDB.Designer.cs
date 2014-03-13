@@ -881,13 +881,11 @@ namespace DL
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
-        /// <param name="broker">Initial value of the Broker property.</param>
-        public static AccountData CreateAccountData(global::System.Int32 id, global::System.Guid userId, global::System.String broker)
+        public static AccountData CreateAccountData(global::System.Int32 id, global::System.Guid userId)
         {
             AccountData accountData = new AccountData();
             accountData.Id = id;
             accountData.UserId = userId;
-            accountData.Broker = broker;
             return accountData;
         }
 
@@ -949,7 +947,7 @@ namespace DL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Broker
         {
@@ -961,7 +959,7 @@ namespace DL
             {
                 OnBrokerChanging(value);
                 ReportPropertyChanging("Broker");
-                _Broker = StructuralObject.SetValidValue(value, false);
+                _Broker = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Broker");
                 OnBrokerChanged();
             }
