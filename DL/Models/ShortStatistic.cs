@@ -16,6 +16,9 @@ namespace DL
         public decimal Highest { get; set; }
         public DateTime HighestDate { get; set; }
         public decimal Equity { get; set; }
+        public decimal Drawdown { get; set; }
+        public decimal Daily { get; set; }
+        public decimal Monthly { get; set; }
 
         public string Broker { get; set; }
         public string Leverage { get; set; }

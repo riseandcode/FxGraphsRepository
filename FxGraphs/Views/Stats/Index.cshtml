@@ -4,6 +4,11 @@
 @{
     ViewBag.Title = "Statistics";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string chartDivDisplay = Model.ShortStatisticData.Settings.IsGrowthTabVisible ||
+        Model.ShortStatisticData.Settings.IsBalanceTabVisible ||
+        Model.ShortStatisticData.Settings.IsProfitTabVisible ||
+        Model.ShortStatisticData.Settings.IsDrawdownTabVisible ?
+        "" : "none";
 }
 
 
@@ -32,7 +37,7 @@
         <div class="box_cont" style="float: left; margin-left: 15px">
             <div class="boxTitle">
                 <ul id="charts" class="titleNav">
-                    <li class="bold" style="cursor: auto">Chart</li>
+                    <li class="bold" style="cursor: auto; display:@chartDivDisplay">Chart</li>
                     @if (Model.ShortStatisticData.Settings.IsGrowthTabVisible)
                     {
                     <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
@@ -52,7 +57,7 @@
                 </ul>
             </div>
 
-            <div class="chart-wrapper" style="float: left">
+            <div class="chart-wrapper" style="float: left; display: @chartDivDisplay">
                 <div id="chart" style="height: 321px;"></div>
             </div>
         </div>

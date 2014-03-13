@@ -40,12 +40,12 @@ namespace DL
       public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
       {
          var depositsRepository = new DepositsDataRepository();
-         var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
+         var deposits = depositsRepository.GetDepositsDataByUserId(accountId).Where(x => x.IncomeType == DataType.Deposit).ToList();
 
          var accountRepository = new AccountRepository();
          var account = accountRepository.GetAccountById(accountId);
 
-            if (account != null)
+         if (account != null)
          {
             toFill.Broker = account.Broker;
             toFill.Leverage = account.Leverage;
@@ -54,7 +54,7 @@ namespace DL
             toFill.TimeZone = account.TimeZone ?? 0;
             toFill.Trading = account.Trading;
             toFill.Type = account.Type;
-                toFill.Views = account.Views ?? 0;
+            toFill.Views = account.Views ?? 0;
          }
 
          if (deposits.Count != 0)
@@ -83,7 +83,7 @@ namespace DL
 
             toFill.Equity = startValue + toFill.Profit;
 
-            FillGraphData(sortedByDate.ToList(), graphModel);
+            FillGraphData(sortedByDate.ToList(), graphModel, toFill);
          }
       }
 
@@ -106,7 +106,7 @@ namespace DL
          return userName;
       }
 
-      private void FillGraphData(List<DepositsData> sortedByDate, Statistic toFill)
+      private void FillGraphData(List<DepositsData> sortedByDate, Statistic toFill, ShortStatistic shortStat)
       {
          if (sortedByDate.Count == 0)
             return;
@@ -116,7 +116,9 @@ namespace DL
          var floatingProfitByDate = sortedByDate.Where(x => x.IncomeType == DataType.FloatingProfit).ToArray();       //.OrderBy(x => x.Date.Date);
 
          decimal startDeposit = depositsByDate.First().Amount;
-         decimal startEquity = floatingProfitByDate.First().Amount + startDeposit;
+         decimal startEquity = 0;
+         if (floatingProfitByDate.Length > 0)
+            startEquity = floatingProfitByDate.First().Amount + startDeposit;
 
          for (int i = 0; i < depositsByDate.Length; i++)
          {
@@ -124,7 +126,10 @@ namespace DL
 
             toFill.ProfitData.Add(new ProfitDataValue { Date = depositsByDate[i].Date, Profit = difference });
 
-            decimal currentEquity = depositsByDate[i].Amount + floatingProfitByDate[i].Amount;
+            decimal currentEquity = 0;
+            if (floatingProfitByDate.Length > 0)
+               currentEquity = depositsByDate[i].Amount + floatingProfitByDate[i].Amount;
+
             toFill.BalanceData.Add(new BalanceDataValue
             {
                Date = depositsByDate[i].Date,
@@ -148,12 +153,19 @@ namespace DL
             decimal drawdown = maxEquity != 0 ? ((maxEquity - item.Equity) / maxEquity) * 100 : 0;
             toFill.DrawdownData.Add(new DrawdownDataValue { Date = item.Date, Value = drawdown });
          }
+
+         shortStat.Drawdown = toFill.DrawdownData.Sum(x => x.Value) / sortedByDate.Count;
+
+         decimal sum = toFill.ProfitData.Sum(x => x.Profit);
+         shortStat.Daily = sum / sortedByDate.Count;
+         shortStat.Monthly = sum / toFill.GrowthData.GroupBy(x => x.Date.Month).Count();
+
       }
 
-        public void IncrementViews(int accountId)
-        {
-            var repository = new AccountRepository();
-            repository.IncrementViewsById(accountId);
-        }
+      public void IncrementViews(int accountId)
+      {
+         var repository = new AccountRepository();
+         repository.IncrementViewsById(accountId);
+      }
    }
 }

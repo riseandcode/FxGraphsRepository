@@ -31,21 +31,21 @@
         {
             <li class="paddT5">
                 <span class="floatLeft dotted" id="dailyTip">Daily: </span>
-                <span class="floatNone">TODO%</span>
+                <span class="floatNone">$@Html.DisplayFor(x => x.Daily)</span>
             </li>
         }
         @if (Model.Settings.IsMonthlyIncomeVisible)
         {
             <li>
                 <span class="floatLeft dotted" id="monthlyTip">Monthly: </span>
-                <span class="floatNone">TODO%</span>
+                <span class="floatNone">$@Html.DisplayFor(x => x.Monthly)</span>
             </li>
         }
         @if (Model.Settings.IsDrawdownVisible)
         {
             <li class="paddB5 borderB">
                 <span class="floatLeft">Drawdown: </span>
-                <span class="floatNone">TODO%</span>
+                <span class="floatNone">@Html.DisplayFor(x => x.Drawdown)%</span>
             </li>
         }
         @if (Model.Settings.IsBalanceVisible)
