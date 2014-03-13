@@ -11,7 +11,11 @@ namespace ForexBox.Controllers
     {
         public ActionResult Index(int accountId, string graphType = "growth")
         {
+            if (accountId == 0)
+                ViewData["AccountError"] = true;
+
             StatsManager manager = new StatsManager();
+            manager.IncrementViews(accountId);
 
             Statistic stat = new Statistic();
             stat.CurrentGraphType = graphType;

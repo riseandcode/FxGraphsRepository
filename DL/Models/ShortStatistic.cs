@@ -24,5 +24,6 @@ namespace DL
         public string Trading { get; set; }
         public DateTime StartedDate { get; set; }
         public int TimeZone { get; set; }
+        public int Views { get; set; }
     }
 }

@@ -39,14 +39,13 @@ namespace DL
 
       public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
       {
-
          var depositsRepository = new DepositsDataRepository();
          var deposits = depositsRepository.GetDepositsDataByUserId(accountId);
 
          var accountRepository = new AccountRepository();
          var account = accountRepository.GetAccountById(accountId);
 
-         if (account != null)
+            if (account != null)
          {
             toFill.Broker = account.Broker;
             toFill.Leverage = account.Leverage;
@@ -55,6 +54,7 @@ namespace DL
             toFill.TimeZone = account.TimeZone ?? 0;
             toFill.Trading = account.Trading;
             toFill.Type = account.Type;
+                toFill.Views = account.Views ?? 0;
          }
 
          if (deposits.Count != 0)
@@ -150,5 +150,10 @@ namespace DL
          }
       }
 
+        public void IncrementViews(int accountId)
+        {
+            var repository = new AccountRepository();
+            repository.IncrementViewsById(accountId);
+        }
    }
 }

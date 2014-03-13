@@ -4,6 +4,13 @@
     <td>@Html.DisplayFor(x => x.System)</td>
     <td>@Html.DisplayFor(x => x.Broker)</td>
     <td>
-        <a href="#" onclick="DeleteAccount(this, @Model.Id); return false;" class="buttonStyle">Delete</a>
+        <div>
+            <div style="float:left">
+                @Html.ActionLink("Statistic", "Index", "Stats", new { controller = "Stats", action = "Index", accountId = Model.Id }, new { @class = "buttonStyle" })
+            </div>            
+            <div style="float:left;margin-left:10px">
+                <a href="#" onclick="DeleteAccount(this, @Model.Id)" class="buttonStyle">Delete</a>
+            </div>            
+        </div>
     </td>
 </tr>

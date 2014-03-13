@@ -89,9 +89,8 @@
 </style>
 
 <script type="text/javascript">
-    function DeleteAccount(element, id)
-    {
-        $(element).parent().parent().remove();
+    function DeleteAccount(element, id) {
+        $(element).parent().parent().parent().parent().remove();
 
         $.ajax({
             url: '@Url.Action("DeleteAccount")',

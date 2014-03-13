@@ -22,7 +22,10 @@
 </head>
 <body>
     <div style="margin-top: 50px; margin-left: 50px;">
-
+        @if (ViewData.ContainsKey("AccountError"))
+        {
+            <h3 style="color: red;margin-bottom:10px">You didn't choose any account</h3>
+        }
         <div style="float: left;">
             @Html.Partial("StatisticInfo", Model.ShortStatisticData)
         </div>
@@ -32,19 +35,19 @@
                     <li class="bold" style="cursor: auto">Chart</li>
                     @if (Model.ShortStatisticData.Settings.IsGrowthTabVisible)
                     {
-                        <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
+                    <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsBalanceTabVisible)
                     {
-                        <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
+                    <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsProfitTabVisible)
                     {
-                        <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
+                    <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsDrawdownTabVisible)
                     {
-                        <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
+                    <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
                     }
                 </ul>
             </div>
@@ -153,10 +156,10 @@
                         
                     },
                     tooltip: {
-                        visible: true,
+                    visible: true,
                        
-                        template: "#= category #: #= kendo.toString(value, '0.00') #%"
-                    }
+                    template: "#= category #: #= kendo.toString(value, '0.00') #%"
+                }
                 });
             }
 
