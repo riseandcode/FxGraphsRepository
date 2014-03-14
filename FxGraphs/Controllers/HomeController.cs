@@ -883,19 +883,37 @@ namespace ForexBox.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddAccount(AccountData account)
+        [HttpGet]
+        public ActionResult EditAccount(int id)
         {
-            UsersRepository repository = new UsersRepository();
-            var user = repository.GetUserByLoginName(User.Identity.Name);
-            if (user != null)
-                account.UserId = user.UserId;
-
+            AccountData accountData = new AccountData();
             AccountRepository accountRepository = new AccountRepository();
-            if (accountRepository.AddAcount(account))
-                ViewData["SaveSucceded"] = true;
+            var account = accountRepository.GetAccountById(id);
 
-            return View(new AccountData());
+            if (account != null)
+                accountData = account;
+
+            return View("EditAccount", account);
+        }
+
+        [HttpPost]
+        public ActionResult SaveAccount(AccountData account)
+        {
+            if (account != null)
+            {
+                AccountRepository accountRepository = new AccountRepository();
+                if (account.Id == 0)
+                {
+                    UsersRepository repository = new UsersRepository();
+                    var user = repository.GetUserByLoginName(User.Identity.Name);
+                    if (user != null)
+                        account.UserId = user.UserId;
+                    accountRepository.AddAcount(account);
+                }
+                else accountRepository.SaveAcount(account);
+            }
+
+            return RedirectToAction("ManageAccounts");
 
         }
 

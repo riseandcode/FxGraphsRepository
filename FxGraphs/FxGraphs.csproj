@@ -948,6 +948,8 @@
     <Content Include="Views\Home\AddAccount.cshtml" />
     <Content Include="Views\Home\ManageAccounts.cshtml" />
     <Content Include="Views\Home\AccountData.cshtml" />
+    <Content Include="Views\Home\EditAccount.cshtml" />
+    <Content Include="Views\Home\AccountDataEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LanguageResources\LoginShareden.resx">

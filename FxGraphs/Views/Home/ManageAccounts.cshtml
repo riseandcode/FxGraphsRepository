@@ -5,34 +5,29 @@
 }
 
 <style type="text/css">
-    .accountTable
-    {
+    .accountTable {
         margin: 0px;
         padding: 0px;
         width: 100%;
         border: 1px solid #dedede;
     }
 
-        .accountTable table
-        {
+        .accountTable table {
             width: 100%;
             height: 100%;
             margin: 0px;
             padding: 0px;
         }
 
-        .accountTable tr:nth-child(odd)
-        {
+        .accountTable tr:nth-child(odd) {
             background-color: #F7F5F5;
         }
 
-        .accountTable tr:nth-child(even)
-        {
+        .accountTable tr:nth-child(even) {
             background-color: #ffffff;
         }
 
-        .accountTable td
-        {
+        .accountTable td {
             vertical-align: middle;
             text-align: left;
             padding: 7px;
@@ -42,13 +37,11 @@
             color: #000000;
         }
 
-        .accountTable tr:last-child td
-        {
+        .accountTable tr:last-child td {
             border-width: 0px 0px 0px 0px;
         }
 
-        .accountTable tr:first-child td
-        {
+        .accountTable tr:first-child td {
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");
             background-color: #cccccc;
             text-align: center;
@@ -58,8 +51,7 @@
             color: #767676;
         }
 
-    .buttonStyle
-    {
+    .buttonStyle {
         background-color: #ededed;
         text-indent: 0;
         border: 1px solid #dcdcdc;
@@ -76,13 +68,11 @@
         text-align: center;
     }
 
-        .buttonStyle:hover
-        {
+        .buttonStyle:hover {
             background-color: #dfdfdf;
         }
 
-        .buttonStyle:active
-        {
+        .buttonStyle:active {
             position: relative;
             top: 1px;
         }
@@ -98,12 +88,10 @@
             data: JSON.stringify({ "accountId": id }),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            success: function (data)
-            {
+            success: function (data) {
                 jAlert("Account was successfully deleted.", "Account");
             },
-            error: function ()
-            {
+            error: function () {
                 alert('Error occured', "Account");
             }
         });
@@ -113,21 +101,21 @@
 </script>
 
 
-<div style="margin: 40px 20px">
+<div style="margin: 80px auto; width: 60%;">
     <h4>Manage User Accounts</h4>
-</div>
-<div style="margin: 30px auto; width: 40%;">
-
-    <table class="accountTable">
-        <tr>
-            <td>ID</td>
-            <td>System</td>
-            <td>Broker</td>
-            <td></td>
-        </tr>
-        @foreach (var account in Model)
-        {
-            @Html.Partial("AccountData", account)
-        }
-    </table>
+    <div>
+        <div style="float:left;margin-top:10px;margin-bottom:10px">@Html.ActionLink("Add Account", "AddAccount", null, new { @class = "buttonStyle" })</div>
+        <table class="accountTable">
+            <tr>
+                <td>ID</td>
+                <td>System</td>
+                <td>Broker</td>
+                <td></td>
+            </tr>
+            @foreach (var account in Model)
+            {
+                @Html.Partial("AccountData", account)
+            }
+        </table>
+    </div>
 </div>
