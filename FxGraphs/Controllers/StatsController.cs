@@ -11,8 +11,8 @@ namespace ForexBox.Controllers
     {
         public ActionResult Index(int accountId, string graphType)
         {
-           if (string.IsNullOrWhiteSpace(graphType))
-              return new RedirectResult(string.Format("/ru/Stats/{0}/growth", accountId));
+            if (string.IsNullOrWhiteSpace(graphType))
+                return RedirectToAction("Index", "Stats", new { accountId = accountId, graphType = "growth" });
 
             if (accountId == 0)
                 ViewData["AccountError"] = true;
