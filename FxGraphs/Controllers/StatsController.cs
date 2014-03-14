@@ -24,7 +24,7 @@ namespace ForexBox.Controllers
             stat.CurrentGraphType = graphType;
 
             ShortStatistic shortStat = new ShortStatistic();
-            shortStat.Settings = manager.GetOrCreateUserSettings(User.Identity.Name);
+            shortStat.Settings = manager.GetAccountSettings(accountId);
 
             manager.FillUserStatistic(accountId, shortStat, stat);
             stat.ShortStatisticData = shortStat;

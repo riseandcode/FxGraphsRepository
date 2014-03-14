@@ -168,5 +168,23 @@ namespace DL
          var repository = new AccountRepository();
          repository.IncrementViewsById(accountId);
       }
+
+      public UserStatisticSettings GetAccountSettings(int accountId)
+      {
+          var settings = new UserStatisticSettings();
+
+          var accountRepository = new AccountRepository();
+          var account = accountRepository.GetAccountById(accountId);
+
+          if (account != null)
+          {
+              var userRepository = new UsersRepository();
+              var user = userRepository.GetUserById(account.UserId);
+
+              settings = GetOrCreateUserSettings(user.LoweredUserName);
+          }
+
+          return settings;
+      }
    }
 }

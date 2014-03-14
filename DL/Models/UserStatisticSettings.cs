@@ -93,6 +93,11 @@ namespace DL
             IsTradingVisible = true;
             IsStartedVisible = true;
             IsTimezoneVisible = true;
+
+            IsGrowthTabVisible = true;
+            IsBalanceTabVisible = true;
+            IsProfitTabVisible = true;
+            IsDrawdownTabVisible = true;
         }
     }
 }
