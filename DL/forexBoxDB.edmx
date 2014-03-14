@@ -205,6 +205,7 @@
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="Trading" Type="varchar" MaxLength="50" />
           <Property Name="Views" Type="int" />
+          <Property Name="Desctiption" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Accounts">
           <Key>
@@ -1954,6 +1955,7 @@
           <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Trading" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Views" />
+          <Property Type="String" Name="Desctiption" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="forexBox2Model.FK_AccountData_AccountData" FromRole="AccountData" ToRole="aspnet_Users" />
           <NavigationProperty Name="DepositsDatas" Relationship="forexBox2Model.FK_DepositsData_AccountData" FromRole="AccountData" ToRole="DepositsData" />
         </EntityType>
@@ -2286,6 +2288,7 @@
           <EntitySetMapping Name="AccountDatas">
             <EntityTypeMapping TypeName="forexBox2Model.AccountData">
               <MappingFragment StoreEntitySet="AccountData">
+                <ScalarProperty Name="Desctiption" ColumnName="Desctiption" />
                 <ScalarProperty Name="Views" ColumnName="Views" />
                 <ScalarProperty Name="Trading" ColumnName="Trading" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -2415,7 +2418,7 @@
         <EntityTypeShape EntityType="forexBox2Model.StatisticConfiguration" Width="1.5" PointX="9.75" PointY="21.375" />
         <AssociationConnector Association="forexBox2Model.FK_StatisticConfigurations_aspnet_Users" />
         <EntityTypeShape EntityType="forexBox2Model.DepositsData" Width="1.5" PointX="7.25" PointY="21.5" />
-        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="3.4761594531480968" PointY="11.470334088183163" />
+        <EntityTypeShape EntityType="forexBox2Model.AccountData" Width="1.5" PointX="9.625" PointY="24.25" />
         <AssociationConnector Association="forexBox2Model.FK_AccountData_AccountData" />
         <AssociationConnector Association="forexBox2Model.FK_DepositsData_AccountData" />
         </Diagram>

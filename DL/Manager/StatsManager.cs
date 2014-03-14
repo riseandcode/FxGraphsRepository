@@ -55,6 +55,7 @@ namespace DL
             toFill.Trading = account.Trading;
             toFill.Type = account.Type;
             toFill.Views = account.Views ?? 0;
+            toFill.Desctiption = account.Desctiption;
          }
 
          if (deposits.Count != 0)

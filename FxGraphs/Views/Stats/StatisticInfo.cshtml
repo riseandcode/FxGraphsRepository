@@ -86,38 +86,20 @@
                 <span class="floatNone">$@Html.DisplayFor(x => x.Deposits)</span>
             </li>
         }
-        @if (Model.Settings.IsWithdrawalsVisible)
+@*        @if (Model.Settings.IsWithdrawalsVisible)
         {
             <li class="paddB5 borderB">
                 <span class="floatLeft">Withdrawals:</span>
                 <span class="floatNone">$TODO</span>
             </li>
-        }
-        @if (Model.Settings.IsUpdatedVisible)
-        {
-            <li class="paddB5 border0 paddT5">
-                <span class="floatLeft">Updated:</span>
-                <span class="floatNone" id="lastUpdatedTime" time="1375978985000">TODO</span>
-            </li>
-        }
-        @if (Model.Settings.IsTrackingVisible)
-        {
-            <li>
-                <span class="floatLeft">
-                    <span class="pointer">
-                        <a href="javascript:void(0)" class="underline" id="trackingButton" onclick="getAccountTracking(621627, 's');">Tracking</a>:
-                    </span>
-                </span>
-                <span class="floatNone" id="totalTracking">0</span>
-            </li>
-        }
+        }*@
     </ul>
     <ul class="quickStats" id="gen" style="display: none;">
         @if (Model.Settings.IsDescriptionVisible)
         {
             <li style="max-height: 134px; overflow: hidden; margin-bottom: 16px; text-align: left">
                 <b>Description:</b><br>
-                <div class="pointer inlineBlock" id="descTip">Order flow with price action</div>
+                <div class="pointer inlineBlock" id="descTip">@Model.Desctiption</div>
             </li>
         }
         @if (Model.Settings.IsViewsVisible)

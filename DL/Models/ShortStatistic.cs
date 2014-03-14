@@ -28,5 +28,6 @@ namespace DL
         public DateTime StartedDate { get; set; }
         public int TimeZone { get; set; }
         public int Views { get; set; }
+        public string Desctiption { get; set; }
     }
 }

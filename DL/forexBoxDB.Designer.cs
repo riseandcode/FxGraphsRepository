@@ -1159,6 +1159,30 @@ namespace DL
         private Nullable<global::System.Int32> _Views;
         partial void OnViewsChanging(Nullable<global::System.Int32> value);
         partial void OnViewsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Desctiption
+        {
+            get
+            {
+                return _Desctiption;
+            }
+            set
+            {
+                OnDesctiptionChanging(value);
+                ReportPropertyChanging("Desctiption");
+                _Desctiption = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Desctiption");
+                OnDesctiptionChanged();
+            }
+        }
+        private global::System.String _Desctiption;
+        partial void OnDesctiptionChanging(global::System.String value);
+        partial void OnDesctiptionChanged();
 
         #endregion
 

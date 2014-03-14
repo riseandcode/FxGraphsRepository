@@ -65,6 +65,10 @@
             <div><span>Trading:</span></div>
             <div>@Html.EditorFor(x => x.Trading)</div>
         </div>
+        <div class="rowContent">
+            <div><span>Description:</span></div>
+            <div>@Html.EditorFor(x => x.Desctiption)</div>
+        </div>
         <div style="display: none">
             @Html.HiddenFor(x => x.TimeZone)
             @Html.HiddenFor(x => x.Date);

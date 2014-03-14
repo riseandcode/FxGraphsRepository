@@ -890,7 +890,7 @@ namespace ForexBox.Controllers
             if (accountRepository.AddAcount(account))
                 ViewData["SaveSucceded"] = true;
 
-            return View();
+            return View(new AccountData());
 
         }
 
