@@ -31,6 +31,32 @@ namespace DL
             return true;
         }
 
+        public bool SaveAcount(AccountData account)
+        {
+            using (var ctx = new forexBox2Entities())
+            {
+                var existAccount = ctx.AccountDatas.FirstOrDefault(x => x.Id == account.Id);
+                if (existAccount != null)
+                {
+                    existAccount.Broker = account.Broker;
+                    existAccount.Leverage = account.Leverage;
+                    existAccount.System = account.System;
+                    existAccount.Technical = account.Technical;
+                    existAccount.Trading = account.Trading;
+                    existAccount.Type = account.Trading;
+                    existAccount.Desctiption = account.Desctiption;
+
+                    try
+                    {
+                        ctx.SaveChanges();
+                    }
+                    catch { return false; }
+                }
+            }
+
+            return true;
+        }
+
         public List<AccountData> GetAccountsByUserId(Guid id)
         {
             using (var ctx = new forexBox2Entities())

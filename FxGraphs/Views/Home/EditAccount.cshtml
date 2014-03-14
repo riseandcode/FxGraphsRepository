@@ -1,0 +1,17 @@
+﻿@model DL.AccountData
+@{
+    ViewBag.Title = "EditAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mainContent" style="margin: 50px">
+    @using (Html.BeginForm("SaveAccount", "Home", FormMethod.Post))
+    {
+        <div style="margin: 20px auto; width: 90%">
+            <h4 style="margin-bottom: 20px">Edit Account</h4>
+            @Html.Partial("AccountDataEditor", Model)
+
+            <input type="submit" value="Update Account" />
+        </div>
+    }
+</div>

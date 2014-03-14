@@ -1,0 +1,49 @@
+﻿@model DL.AccountData
+<style type="text/css">
+    .mainContent {
+        font-size: 11px;
+        font-family: Tahoma,sans-serif;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+
+    .rowContent {
+        padding-bottom: 10px;
+    }
+</style>
+
+<div>
+    <div class="rowContent">
+        <div><span>Broker:</span></div>
+        <div>@Html.EditorFor(x => x.Broker)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>Leverage:</span></div>
+        <div>@Html.EditorFor(x => x.Leverage)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>System:</span></div>
+        <div>@Html.EditorFor(x => x.System)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>Technical:</span></div>
+        <div>@Html.EditorFor(x => x.Technical)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>Type:</span></div>
+        <div>@Html.EditorFor(x => x.Type)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>Trading:</span></div>
+        <div>@Html.EditorFor(x => x.Trading)</div>
+    </div>
+    <div class="rowContent">
+        <div><span>Description:</span></div>
+        <div>@Html.EditorFor(x => x.Desctiption)</div>
+    </div>
+    <div style="display: none">
+        @Html.HiddenFor(x => x.TimeZone)
+        @Html.HiddenFor(x => x.Date)
+        @Html.HiddenFor(x => x.Id)
+    </div>
+</div>
