@@ -40,7 +40,7 @@ namespace DL
         public void FillUserStatistic(int accountId, ShortStatistic toFill, Statistic graphModel)
         {
             var depositsRepository = new DepositsDataRepository();
-            var deposits = depositsRepository.GetDepositsDataByUserId(accountId).Where(x => x.IncomeType == DataType.Deposit).ToList();
+            var deposits = depositsRepository.GetDepositsDataByUserId(accountId).ToList();
 
             var accountRepository = new AccountRepository();
             var account = accountRepository.GetAccountById(accountId);
