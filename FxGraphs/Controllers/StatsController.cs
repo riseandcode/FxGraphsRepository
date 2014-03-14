@@ -11,17 +11,19 @@ namespace ForexBox.Controllers
     {
         public ActionResult Index(int accountId, string graphType)
         {
-            if (string.IsNullOrWhiteSpace(graphType))
+            StatsManager manager = new StatsManager();
+            GraphType type = manager.ParseStringToGrphType(graphType);
+
+            if (type == GraphType.none)
                 return RedirectToAction("Index", "Stats", new { accountId = accountId, graphType = "growth" });
 
             if (accountId == 0)
                 ViewData["AccountError"] = true;
-
-            StatsManager manager = new StatsManager();
+            
             manager.IncrementViews(accountId);
 
             Statistic stat = new Statistic();
-            stat.CurrentGraphType = graphType;
+            stat.CurrentGraphType = type;
 
             ShortStatistic shortStat = new ShortStatistic();
             shortStat.Settings = manager.GetAccountSettings(accountId);

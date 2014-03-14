@@ -26,7 +26,7 @@ namespace DL
 
       public List<DrawdownDataValue> DrawdownData { get; set; }
 
-      public string CurrentGraphType { get; set; }
+      public GraphType CurrentGraphType { get; set; }
    }
 
 

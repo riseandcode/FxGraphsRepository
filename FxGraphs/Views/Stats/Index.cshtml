@@ -1,4 +1,5 @@
 ﻿@using ForexBox.Helpers;
+@using DL;
 
 @model DL.Statistic
 @{
@@ -40,19 +41,19 @@
                     <li class="bold" style="cursor: auto; display:@chartDivDisplay">Chart</li>
                     @if (Model.ShortStatisticData.Settings.IsGrowthTabVisible)
                     {
-                    <li id="@Constants.GrowthChartId" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
+                    <li id="@GraphType.growth.ToString()" class="on" onclick="selectChart($(this).attr('id'));">Growth</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsBalanceTabVisible)
                     {
-                    <li id="@Constants.BalanceChartId" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
+                    <li id="@GraphType.balance.ToString()" class="off" onclick="selectChart($(this).attr('id'));">Balance</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsProfitTabVisible)
                     {
-                    <li id="@Constants.ProfitChartId" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
+                    <li id="@GraphType.profit.ToString()" class="off" onclick="selectChart($(this).attr('id'));">Profit</li>
                     }
                     @if (Model.ShortStatisticData.Settings.IsDrawdownTabVisible)
                     {
-                    <li id="@Constants.DrawdownChartId" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
+                    <li id="@GraphType.drawdown.ToString()" class="off" onclick="selectChart($(this).attr('id'));">Drawdown</li>
                     }
                 </ul>
             </div>
@@ -186,16 +187,16 @@
                 
                 switch (chartId)
                 {
-                    case "@Constants.GrowthChartId":
+                    case "@GraphType.growth.ToString()":
                         createChart(@Html.Raw(Json.Encode(Model.GrowthData)), createSeries("Growth","Growth", "EquityGrowth", "Equity growth"), true);
                         break;
-                    case "@Constants.BalanceChartId":
+                    case "@GraphType.balance.ToString()":
                         createChart(@Html.Raw(Json.Encode(Model.BalanceData)),  createSeries("Balance","Balance", "Equity", "Equity"));
                         break;
-                    case "@Constants.ProfitChartId":
+                    case "@GraphType.profit.ToString()":
                         createChart(@Html.Raw(Json.Encode(Model.ProfitData)), createSeries("Profit","Profit"));
                         break;
-                    case "@Constants.DrawdownChartId":
+                    case "@GraphType.drawdown.ToString()":
                         createBarChart(@Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.Value))), @Html.Raw(Json.Encode(Model.DrawdownData.Select(x => x.StringDate))));
                         break;
                     default:
