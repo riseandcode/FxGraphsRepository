@@ -830,6 +830,11 @@ namespace ForexBox.Controllers
         }
 
 
+        public ActionResult Error()
+        {
+           return View("Error");
+        }
+
 
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
